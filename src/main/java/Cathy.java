@@ -8,13 +8,6 @@ public class Cathy {
         Random rand = new Random();
         ArrayList<Task> toDoList = new ArrayList<>();
         int counter = 0;
-        
-        String[] goodbyes = {
-                "Finally! I was getting bored...",
-                "Leaving already? I barely started rolling my eyes.",
-                "Oh joy, another person abandoning me.",
-                "Bye then. Try not to miss me too much."
-        };
 
         String logo =
                   "      ____      _   _          \n"
@@ -62,8 +55,7 @@ public class Cathy {
                 System.out.println("    ____________________________________________________________\n");
 
             } else if (userInput.equalsIgnoreCase("bye")) {
-                int idx = rand.nextInt(goodbyes.length);
-                System.out.println("     " + goodbyes[idx]);
+                System.out.println("     Finally! I was getting bored...");
                 System.out.println("    ____________________________________________________________\n");
                 break;
             } else if (userInput.equalsIgnoreCase("list")) {
@@ -111,7 +103,7 @@ public class Cathy {
                         Task newT = toDoList.get(taskNumber - 1);
                         if (newT.getStatusIcon().equals(" ")) {
                             System.out.println("     Task " + taskNumber + " is already unmarked.");
-                            System.out.println("Stop trying to double negative your way through life.");
+                            System.out.println("     Stop trying to double negative your way through life.");
                             System.out.println("    ____________________________________________________________\n");
                         } else {
                             newT.markAsNotDone();
@@ -148,7 +140,7 @@ public class Cathy {
                 String[] parts = details.split(" /by ");
 
                 if (parts.length < 2) {
-                    System.out.println("Invalid deadline format! Use: deadline <desc> /by <date>");
+                    System.out.println("     Invalid deadline format! Use: deadline <desc> /by <date>");
                     System.out.println("    ____________________________________________________________\n");
                 } else {
                     String description = parts[0]; // "return book"
@@ -174,13 +166,13 @@ public class Cathy {
 
                 // Make sure /from was provided
                 if (parts.length < 2) {
-                    System.out.println("Invalid event format! Use: event <desc> /from <start> /to <end>");
+                    System.out.println("     Invalid event format! Use: event <desc> /from <start> /to <end>");
                     System.out.println("    ____________________________________________________________\n");
                 } else {
                     String duration = parts[1].trim();
                     String[] parts2 = duration.split(" /to "); // note space before /to
                     if (parts2.length < 2) {
-                        System.out.println("Invalid event format! Missing /to <end>");
+                        System.out.println("     Invalid event format! Missing /to <end>");
                         System.out.println("    ____________________________________________________________\n");
                     } else {
                         String from = parts2[0].trim(); // "Mon 2pm"

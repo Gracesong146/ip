@@ -1,7 +1,125 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+      ____      _   _
+     / ___|__ _| |_| |__  _   _
+    | |   / _` | __| '_ \| | | |
+    | |__| (_| | |_| | | | |_| |
+     \____\__,_|\__|_| |_|\__, |
+                           __| |
+                           |___/
+    ____________________________________________________________
+
+     Oh look, someone showed up.
+     I'm Cathy, your gloriously underappreciated task assistant.
+
+     Here's what I *might* help you with (if you're lucky):
+
+     - There are 3 types of tasks, and yes, you need to follow the format:
+         1. ToDos: simple tasks with no date/time. Example command: todo visit new theme park
+         2. Deadlines: tasks that must be done before a date/time. Example command: deadline submit report /by 11/10/2019 5pm
+         3. Events: tasks with a start and end time. Example command: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm
+            (Notice the /from and /to – don’t forget them!)
+     - Type 'list' to see your glorious pile of tasks.
+     - Type 'mark <number>' to mark a task as done. Try not to mess it up.
+     - Type 'unmark <number>' to undo a completed task.
+     - Type 'help' to see this list of commands. Even I can’t help the clueless otherwise.
+     - Type 'bye' to leave me in peace.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Fine, I've added to the list:
+       [T][ ] visit museum
+     You’ve got 1 tasks now. Try not to lose track this time.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Invalid deadline format! Use: deadline <desc> /by <date>
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Fine, I've added to the list:
+       [D][ ] return book (by: Sunday)
+     You’ve got 2 tasks now. Try not to lose track this time.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Invalid event format! Use: event <desc> /from <start> /to <end>
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Invalid event format! Missing /to <end>
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Fine, I've added to the list:
+       [E][ ] project meeting (from: Mon 2pm to: 4pm)
+     You’ve got 3 tasks now. Try not to lose track this time.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Your tasks, in all their glory.
+     Don’t pretend you didn’t forget some:
+     1. [T][ ] visit museum
+     2. [D][ ] return book (by: Sunday)
+     3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Marked as done. Go ahead, feel proud for once:
+        [D][X] return book (by: Sunday)
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Darling, that task’s already done. No need to be an overachiever.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Fine, it lives to torment you another day:
+        [D][ ] return book (by: Sunday)
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Task 2 is already unmarked.
+     Stop trying to double negative your way through life.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Hmm… fascinating gibberish.
+     Try again, or type "help" to see what I actually understand.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Ugh… you again? Fine, I’ll repeat it. Pay attention this time.
+     I'm Cathy, your gloriously underappreciated task assistant.
+
+     Here’s what I *might* help you with (if your brain can handle it):
+
+     - There are 3 types of tasks, so don’t mess up the format:
+         1. ToDos: simple tasks with no date/time. Example: todo visit new theme park
+         2. Deadlines: must be done before a date/time. Example: deadline submit report /by 11/10/2019 5pm
+         3. Events: start and end times required. Example: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm
+            (Yes, /from and /to are mandatory. Try not to forget.)
+     - Type 'list' to see your glorious pile of tasks (again).
+     - Type 'mark <number>' to mark a task as done. Don’t screw it up.
+     - Type 'unmark <number>' to undo a completed task. Not that you’ll remember.
+     - Type 'help' to see this list again… seriously, pay attention.
+     - Type 'bye' to finally leave me alone.
+     And yes, I’ll never repeat this again… so maybe try reading this carefully.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Finally! I was getting bored...
+    ____________________________________________________________
 

@@ -18,4 +18,13 @@ REM run the program, feed commands from input.txt file and redirect the output t
 java -classpath ..\bin Cathy < input.txt > ACTUAL.TXT
 
 REM compare the output to the expected output
-FC ACTUAL.TXT EXPECTED.TXT
+REM ignore all white space differences
+FC /W ACTUAL.TXT EXPECTED.TXT > NUL
+
+IF ERRORLEVEL 1 (
+    echo Differences detected! Test FAILED.
+) ELSE (
+    echo No differences encountered. Test PASSED.
+)
+
+pause
