@@ -87,7 +87,8 @@ public class Cathy {
                         System.out.println("     Sweetie, numbers only. This isn’t a spelling bee");
                         System.out.println("    ____________________________________________________________\n");
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("     Nice try, but that task doesn't even exist.");
+                        System.out.println("     Trying to mark task " + Integer.parseInt(parts[1]) + " as done? Cute.");
+                        System.out.println("     You can't just mark imaginary tasks to feel accomplished.");
                         System.out.println("    ____________________________________________________________\n");
                     }
                 } else {
@@ -120,7 +121,31 @@ public class Cathy {
                         System.out.println("    ____________________________________________________________\n");
                     }
                 } else {
-                    System.out.println("     If you're going to mark something, at least give me a valid number. I'm not psychic");
+                    System.out.println("     If you're going to unmark something, at least give me a valid number. I'm not psychic");
+                    System.out.println("    ____________________________________________________________\n");
+                }
+            } else if (userInput.toLowerCase().startsWith("delete")) {
+                String[] parts = userInput.split(" ");
+                if (parts.length == 2) {
+                    try {
+                        int taskNumber = Integer.parseInt(parts[1]);
+                        Task newT = toDoList.get(taskNumber - 1);
+                        toDoList.remove(taskNumber - 1);
+                        System.out.println("     Noted. I've removed this task:");
+                        System.out.println("        " + newT);
+                        System.out.println("     One less thing for you to forget.");
+                        System.out.println("     You’ve got " + counter + " tasks now.");
+                        System.out.println("    ____________________________________________________________\n");
+                    } catch (NumberFormatException e) {
+                        System.out.println("     Sweetie, numbers only. This isn’t a spelling bee");
+                        System.out.println("    ____________________________________________________________\n");
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("     Nice try, but that task doesn't even exist.");
+                        System.out.println("    ____________________________________________________________\n");
+                    }
+                } else {
+                    System.out.println("     If you're going to delete something, at least give me something valid.");
+                    System.out.println("     Give it in the following form: delete [number]");
                     System.out.println("    ____________________________________________________________\n");
                 }
             } else if (userInput.toLowerCase().startsWith("todo")) {
