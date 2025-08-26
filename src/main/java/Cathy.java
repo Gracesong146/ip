@@ -123,62 +123,44 @@ public class Cathy {
                     System.out.println("     If you're going to mark something, at least give me a valid number. I'm not psychic");
                     System.out.println("    ____________________________________________________________\n");
                 }
-            } else if (userInput.toLowerCase().startsWith("todo ")) {
-                String description = userInput.substring(5);
-                Task t = new ToDo(description);
-                toDoList.add(t);
-                counter += 1;
-                System.out.println("     Fine, I've added to the list:");
-                System.out.println("       " + t);
-                System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
-                System.out.println("    ____________________________________________________________\n");
-            } else if (userInput.toLowerCase().startsWith("deadline ")) {
-                // Remove the command word "deadline " first
-                String details = userInput.substring(9);
-
-                // Split description and due date
-                String[] parts = details.split(" /by ");
-
-                if (parts.length < 2) {
-                    System.out.println("     Invalid deadline format! Use: deadline <desc> /by <date>");
-                    System.out.println("    ____________________________________________________________\n");
-                } else {
-                    String description = parts[0]; // "return book"
-                    String by = parts[1];          // "Sunday"
-
-                    Task t = new Deadline(description, by);
+            } else if (userInput.toLowerCase().startsWith("todo")) {
+                try {
+                    String description = userInput.length() > 4 ? userInput.substring(5).trim() : "";
+                    if (description.isEmpty()) {
+                        throw new IllegalArgumentException("Empty description");
+                    }
+                    Task t = new ToDo(description);
                     toDoList.add(t);
                     counter += 1;
                     System.out.println("     Fine, I've added to the list:");
                     System.out.println("       " + t);
                     System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
                     System.out.println("    ____________________________________________________________\n");
-                }
-
-            } else if (userInput.toLowerCase().startsWith("event ")) {
-                // Remove the command word "deadline " first
-                String details = userInput.substring(6);
-
-                // example: event project meeting /from Mon 2pm /to 4pm
-                // Split description and due date
-                String[] parts = details.split(" /from ");
-                String description = parts[0].trim(); // "project meeting"
-
-                // Make sure /from was provided
-                if (parts.length < 2) {
-                    System.out.println("     Invalid event format! Use: event <desc> /from <start> /to <end>");
+                } catch (IllegalArgumentException e) {
+                    System.out.println("     Excuse you—trying to add a todo with no description?");
+                    System.out.println("     Use: todo <desc> and try not to waste my time.");
                     System.out.println("    ____________________________________________________________\n");
-                } else {
-                    String duration = parts[1].trim();
-                    String[] parts2 = duration.split(" /to "); // note space before /to
-                    if (parts2.length < 2) {
-                        System.out.println("     Invalid event format! Missing /to <end>");
+                }
+            } else if (userInput.toLowerCase().startsWith("deadline")) {
+                try {
+                    // Remove the command word "deadline " first
+                    String details = userInput.length() > 8 ? userInput.substring(9).trim() : "";
+                    if (details.isEmpty()) {
+                        throw new IllegalArgumentException("Empty description");
+                    }
+    
+                    // Split description and due date
+                    String[] parts = details.split(" /by ");
+    
+                    if (parts.length < 2) {
+                        System.out.println("     Seriously? That deadline format is a mess.");
+                        System.out.println("     Try again like you actually read the instructions: deadline <desc> /by <date>");
                         System.out.println("    ____________________________________________________________\n");
                     } else {
-                        String from = parts2[0].trim(); // "Mon 2pm"
-                        String to = parts2[1].trim();   // "4pm"
-
-                        Task t = new Event(description, from, to);
+                        String description = parts[0]; // "return book"
+                        String by = parts[1];          // "Sunday"
+    
+                        Task t = new Deadline(description, by);
                         toDoList.add(t);
                         counter += 1;
                         System.out.println("     Fine, I've added to the list:");
@@ -186,6 +168,53 @@ public class Cathy {
                         System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
                         System.out.println("    ____________________________________________________________\n");
                     }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("     Wow. That’s not even close to a proper deadline format.");
+                    System.out.println("     Use: deadline <desc> /by <date> and try not to waste my time.");
+                    System.out.println("    ____________________________________________________________\n");
+                }
+
+            } else if (userInput.toLowerCase().startsWith("event")) {
+                try {
+                    // Remove the command word "deadline " first
+                    String details = userInput.length() > 5 ? userInput.substring(6).trim() : "";
+                    if (details.isEmpty()) {
+                        throw new IllegalArgumentException("Empty description");
+                    }    
+                    // example: event project meeting /from Mon 2pm /to 4pm
+                    // Split description and due date
+                    String[] parts = details.split(" /from ");
+                    String description = parts[0].trim(); // "project meeting"
+    
+                    // Make sure /from was provided
+                    if (parts.length < 2) {
+                        System.out.println("     Invalid event format. Did you even try?");
+                        System.out.println("     Use: event <desc> /from <start> /to <end> — it's not that hard.");
+                        System.out.println("    ____________________________________________________________\n");
+                    } else {
+                        String duration = parts[1].trim();
+                        String[] parts2 = duration.split(" /to "); // note space before /to
+                        if (parts2.length < 2) {
+                            System.out.println("     Missing '/to <end>' in your event. Planning half an event now?");
+                            System.out.println("     Use: event <desc> /from <start> /to <end> — complete it like a grown-up.");
+                            System.out.println("    ____________________________________________________________\n");
+                        } else {
+                            String from = parts2[0].trim(); // "Mon 2pm"
+                            String to = parts2[1].trim();   // "4pm"
+    
+                            Task t = new Event(description, from, to);
+                            toDoList.add(t);
+                            counter += 1;
+                            System.out.println("     Fine, I've added to the list:");
+                            System.out.println("       " + t);
+                            System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
+                            System.out.println("    ____________________________________________________________\n");
+                        }
+                    }
+                }  catch (IllegalArgumentException e) {
+                    System.out.println("     'event'... and then silence. Inspiring.");
+                    System.out.println("     Try: event <desc> /from <start> /to <end> — give me *something* to work with.");
+                    System.out.println("    ____________________________________________________________\n");
                 }
             } else {
                 System.out.println("     Hmm… fascinating gibberish.");
