@@ -33,31 +33,83 @@
 
     ____________________________________________________________
 
-     Invalid deadline format! Use: deadline <desc> /by <date>
+     Excuse you—trying to add a todo with no description?
+     Use: todo <desc> and try not to waste my time.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Excuse you—trying to add a todo with no description?
+     Use: todo <desc> and try not to waste my time.
     ____________________________________________________________
 
     ____________________________________________________________
 
      Fine, I've added to the list:
-       [D][ ] return book (by: Sunday)
+       [T][ ] read a book
      You’ve got 2 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
     ____________________________________________________________
 
-     Invalid event format! Use: event <desc> /from <start> /to <end>
+     Wow. That’s not even close to a proper deadline format.
+     Use: deadline <desc> /by <date> and try not to waste my time.
     ____________________________________________________________
 
     ____________________________________________________________
 
-     Invalid event format! Missing /to <end>
+     Wow. That’s not even close to a proper deadline format.
+     Use: deadline <desc> /by <date> and try not to waste my time.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Seriously? That deadline format is a mess.
+     Try again like you actually read the instructions: deadline <desc> /by <date>
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Seriously? That deadline format is a mess.
+     Try again like you actually read the instructions: deadline <desc> /by <date>
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Fine, I've added to the list:
+       [D][ ] complete cs2100 assignment 1 (by: Sunday)
+     You’ve got 3 tasks now. Try not to lose track this time.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     'event'... and then silence. Inspiring.
+     Try: event <desc> /from <start> /to <end> — give me *something* to work with.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     'event'... and then silence. Inspiring.
+     Try: event <desc> /from <start> /to <end> — give me *something* to work with.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Invalid event format. Did you even try?
+     Use: event <desc> /from <start> /to <end> — it's not that hard.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Missing '/to <end>' in your event. Planning half an event now?
+     Use: event <desc> /from <start> /to <end> — complete it like a grown-up.
     ____________________________________________________________
 
     ____________________________________________________________
 
      Fine, I've added to the list:
        [E][ ] project meeting (from: Mon 2pm to: 4pm)
-     You’ve got 3 tasks now. Try not to lose track this time.
+     You’ve got 4 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
     ____________________________________________________________
@@ -65,14 +117,15 @@
      Your tasks, in all their glory.
      Don’t pretend you didn’t forget some:
      1. [T][ ] visit museum
-     2. [D][ ] return book (by: Sunday)
-     3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+     2. [T][ ] read a book
+     3. [D][ ] complete cs2100 assignment 1 (by: Sunday)
+     4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
     ____________________________________________________________
 
     ____________________________________________________________
 
      Marked as done. Go ahead, feel proud for once:
-        [D][X] return book (by: Sunday)
+        [T][X] read a book
     ____________________________________________________________
 
     ____________________________________________________________
@@ -83,13 +136,52 @@
     ____________________________________________________________
 
      Fine, it lives to torment you another day:
-        [D][ ] return book (by: Sunday)
+        [T][ ] read a book
     ____________________________________________________________
 
     ____________________________________________________________
 
      Task 2 is already unmarked.
      Stop trying to double negative your way through life.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Trying to mark task 9 as done? Cute.
+     You can't just mark imaginary tasks to feel accomplished.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Trying to mark task -1 as done? Cute.
+     You can't just mark imaginary tasks to feel accomplished.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Nice try, but that task doesn't even exist.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Nice try, but that task doesn't even exist.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Noted. I've removed this task:
+        [T][ ] visit museum
+     One less thing for you to forget.
+     You’ve got 3 tasks now.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Your tasks, in all their glory.
+     Don’t pretend you didn’t forget some:
+     1. [T][ ] read a book
+     2. [D][ ] complete cs2100 assignment 1 (by: Sunday)
+     3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
     ____________________________________________________________
 
     ____________________________________________________________

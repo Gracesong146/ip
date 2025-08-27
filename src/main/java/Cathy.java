@@ -131,6 +131,7 @@ public class Cathy {
                         int taskNumber = Integer.parseInt(parts[1]);
                         Task newT = toDoList.get(taskNumber - 1);
                         toDoList.remove(taskNumber - 1);
+                        counter -= 1;
                         System.out.println("     Noted. I've removed this task:");
                         System.out.println("        " + newT);
                         System.out.println("     One less thing for you to forget.");

@@ -1,6 +1,14 @@
 todo visit museum
-deadline return book /by
-deadline return book /by Sunday
+todo
+todo
+todo read a book
+deadline
+deadline
+deadline complete cs2100 assignment 1
+deadline complete cs2100 assignment 1 /by
+deadline complete cs2100 assignment 1 /by Sunday
+event
+event
 event project meeting /from
 event project meeting /from Mon 2pm /to
 event project meeting /from Mon 2pm /to 4pm
@@ -9,6 +17,12 @@ mark 2
 mark 2
 unmark 2
 unmark 2
+mark 9
+mark -1
+delete 9
+delete -1
+delete 1
+list
 quit
 help
 bye
