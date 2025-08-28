@@ -1,3 +1,9 @@
+/**
+ * Represents an {@link Task} that occurs within a specific time range.
+ * <p>
+ * An {@code Event} task has a description (inherited from {@link Task})
+ * along with a start time ({@code from}) and an end time ({@code to}).
+ */
 public class Event extends Task {
 
     protected String from;

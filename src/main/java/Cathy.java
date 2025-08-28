@@ -2,6 +2,32 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.ArrayList;
 
+/**
+ * The main class for the Cathy task assistant application.
+ * <p>
+ * This class provides a command-line interface for managing tasks of three types:
+ * <ul>
+ *   <li>{@link ToDo} – simple tasks without date/time.</li>
+ *   <li>{@link Deadline} – tasks with a due date/time.</li>
+ *   <li>{@link Event} – tasks with a start and end time.</li>
+ * </ul>
+ * <p>
+ * Supported commands:
+ * <ul>
+ *   <li>todo &lt;description&gt;</li>
+ *   <li>deadline &lt;description&gt; /by &lt;date&gt;</li>
+ *   <li>event &lt;description&gt; /from &lt;start&gt; /to &lt;end&gt;</li>
+ *   <li>list – display all tasks</li>
+ *   <li>mark &lt;number&gt; – mark a task as done</li>
+ *   <li>unmark &lt;number&gt; – mark a task as not done</li>
+ *   <li>delete &lt;number&gt; – remove a task</li>
+ *   <li>help – display instructions</li>
+ *   <li>bye – exit the program</li>
+ * </ul>
+ * <p>
+ * This class also handles invalid input with custom messages via {@link InvalidTaskTypeException}.
+ */
+
 public class Cathy {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

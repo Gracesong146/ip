@@ -1,3 +1,10 @@
+/**
+ * Exception thrown when a task of a specific {@link TaskType}
+ * is provided with an invalid or incomplete description.
+ * <p>
+ * This exception customizes its error message depending on
+ * the type of task (TODO, DEADLINE, or EVENT) that triggered it.
+ */
 public class InvalidTaskTypeException extends Exception {
 
     private TaskType type;

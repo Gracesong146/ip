@@ -1,3 +1,9 @@
+/**
+ * Represents a {@link Task} with a specific deadline.
+ * <p>
+ * A {@code Deadline} task has a description (inherited from {@link Task})
+ * and an additional {@code by} field that indicates the due date or time.
+ */
 public class Deadline extends Task {
 
     protected String by;
