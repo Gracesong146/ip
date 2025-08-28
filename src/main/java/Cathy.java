@@ -153,7 +153,7 @@ public class Cathy {
                 try {
                     String description = userInput.length() > 4 ? userInput.substring(5).trim() : "";
                     if (description.isEmpty()) {
-                        throw new IllegalArgumentException("Empty description");
+                        throw new InvalidTaskTypeException(TaskType.TODO);
                     }
                     Task t = new ToDo(description);
                     toDoList.add(t);
@@ -162,17 +162,15 @@ public class Cathy {
                     System.out.println("       " + t);
                     System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
                     System.out.println("    ____________________________________________________________\n");
-                } catch (IllegalArgumentException e) {
-                    System.out.println("     Excuse you—trying to add a todo with no description?");
-                    System.out.println("     Use: todo <desc> and try not to waste my time.");
-                    System.out.println("    ____________________________________________________________\n");
+                } catch (InvalidTaskTypeException e) {
+                    System.out.println(e.getMessage());
                 }
             } else if (userInput.toLowerCase().startsWith("deadline")) {
                 try {
                     // Remove the command word "deadline " first
                     String details = userInput.length() > 8 ? userInput.substring(9).trim() : "";
                     if (details.isEmpty()) {
-                        throw new IllegalArgumentException("Empty description");
+                        throw new InvalidTaskTypeException(TaskType.DEADLINE);
                     }
     
                     // Split description and due date
@@ -194,10 +192,8 @@ public class Cathy {
                         System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
                         System.out.println("    ____________________________________________________________\n");
                     }
-                } catch (IllegalArgumentException e) {
-                    System.out.println("     Wow. That’s not even close to a proper deadline format.");
-                    System.out.println("     Use: deadline <desc> /by <date> and try not to waste my time.");
-                    System.out.println("    ____________________________________________________________\n");
+                } catch (InvalidTaskTypeException e) {
+                    System.out.println(e.getMessage());
                 }
 
             } else if (userInput.toLowerCase().startsWith("event")) {
@@ -205,7 +201,7 @@ public class Cathy {
                     // Remove the command word "deadline " first
                     String details = userInput.length() > 5 ? userInput.substring(6).trim() : "";
                     if (details.isEmpty()) {
-                        throw new IllegalArgumentException("Empty description");
+                        throw new InvalidTaskTypeException(TaskType.EVENT);
                     }    
                     // example: event project meeting /from Mon 2pm /to 4pm
                     // Split description and due date
@@ -237,10 +233,8 @@ public class Cathy {
                             System.out.println("    ____________________________________________________________\n");
                         }
                     }
-                }  catch (IllegalArgumentException e) {
-                    System.out.println("     'event'... and then silence. Inspiring.");
-                    System.out.println("     Try: event <desc> /from <start> /to <end> — give me *something* to work with.");
-                    System.out.println("    ____________________________________________________________\n");
+                }  catch (InvalidTaskTypeException e) {
+                    System.out.println(e.getMessage());
                 }
             } else {
                 System.out.println("     Hmm… fascinating gibberish.");
