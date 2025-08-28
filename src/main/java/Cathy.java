@@ -10,13 +10,13 @@ public class Cathy {
         int counter = 0;
 
         String logo =
-                  "      ____      _   _          \n"
-                + "     / ___|__ _| |_| |__  _   _ \n"
-                + "    | |   / _` | __| '_ \\| | | |\n"
-                + "    | |__| (_| | |_| | | | |_| |\n"
-                + "     \\____\\__,_|\\__|_| |_|\\__, |\n"
-                + "                           __| |\n"
-                + "                           |___/";
+                "      ____      _   _          \n"
+                        + "     / ___|__ _| |_| |__  _   _ \n"
+                        + "    | |   / _` | __| '_ \\| | | |\n"
+                        + "    | |__| (_| | |_| | | | |_| |\n"
+                        + "     \\____\\__,_|\\__|_| |_|\\__, |\n"
+                        + "                           __| |\n"
+                        + "                           |___/";
         System.out.println(logo);
         System.out.println("    ____________________________________________________________\n");
         System.out.println("     Oh look, someone showed up.");
@@ -172,10 +172,10 @@ public class Cathy {
                     if (details.isEmpty()) {
                         throw new InvalidTaskTypeException(TaskType.DEADLINE);
                     }
-    
+
                     // Split description and due date
                     String[] parts = details.split(" /by ");
-    
+
                     if (parts.length < 2) {
                         System.out.println("     Seriously? That deadline format is a mess.");
                         System.out.println("     Try again like you actually read the instructions: deadline <desc> /by <date>");
@@ -183,7 +183,7 @@ public class Cathy {
                     } else {
                         String description = parts[0]; // "return book"
                         String by = parts[1];          // "Sunday"
-    
+
                         Task t = new Deadline(description, by);
                         toDoList.add(t);
                         counter += 1;
@@ -202,12 +202,12 @@ public class Cathy {
                     String details = userInput.length() > 5 ? userInput.substring(6).trim() : "";
                     if (details.isEmpty()) {
                         throw new InvalidTaskTypeException(TaskType.EVENT);
-                    }    
+                    }
                     // example: event project meeting /from Mon 2pm /to 4pm
                     // Split description and due date
                     String[] parts = details.split(" /from ");
                     String description = parts[0].trim(); // "project meeting"
-    
+
                     // Make sure /from was provided
                     if (parts.length < 2) {
                         System.out.println("     Invalid event format. Did you even try?");
@@ -223,7 +223,7 @@ public class Cathy {
                         } else {
                             String from = parts2[0].trim(); // "Mon 2pm"
                             String to = parts2[1].trim();   // "4pm"
-    
+
                             Task t = new Event(description, from, to);
                             toDoList.add(t);
                             counter += 1;
@@ -233,7 +233,7 @@ public class Cathy {
                             System.out.println("    ____________________________________________________________\n");
                         }
                     }
-                }  catch (InvalidTaskTypeException e) {
+                } catch (InvalidTaskTypeException e) {
                     System.out.println(e.getMessage());
                 }
             } else {
