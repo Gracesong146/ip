@@ -10,6 +10,14 @@ public class Event extends Task {
     protected String to;
     protected TaskType type;
 
+    /**
+     * Constructs a new {@code Event} task with the specified description,
+     * start time, and end time.
+     *
+     * @param description the description of the task
+     * @param from the start time of the event
+     * @param to the end time of the event
+     */
     public Event(String description, String from, String to) {
         super(description);
         this.from = from;

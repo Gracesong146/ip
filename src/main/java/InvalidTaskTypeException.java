@@ -9,6 +9,12 @@ public class InvalidTaskTypeException extends Exception {
 
     private TaskType type;
 
+    /**
+     * Constructs a new {@code InvalidTaskTypeException} with the
+     * specified {@link TaskType}.
+     *
+     * @param type the type of task that caused the exception
+     */
     public InvalidTaskTypeException(TaskType type) {
         super();
         this.type = type;

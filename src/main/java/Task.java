@@ -5,10 +5,7 @@
  * {@link Deadline} and {@link Event}.
  */
 public class Task {
-    /** The description of the task. */
     protected String description;
-
-    /** Whether the task has been completed. */
     protected boolean isDone;
 
     /**
