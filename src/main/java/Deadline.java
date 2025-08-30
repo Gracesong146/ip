@@ -21,6 +21,15 @@ public class Deadline extends Task {
         this.type = TaskType.DEADLINE;
     }
 
+    /**
+     * Returns the due date/time of this deadline task.
+     *
+     * @return a String representing the due date/time
+     */
+    public String getBy() {
+        return by;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";

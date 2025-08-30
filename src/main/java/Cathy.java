@@ -32,17 +32,17 @@ public class Cathy {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random rand = new Random();
-        ArrayList<Task> toDoList = new ArrayList<>();
-        int counter = 0;
+        Storage storage = new Storage("./data/cathy.txt");
+        ArrayList<Task> toDoList = storage.load();
+        int counter = toDoList.size();
 
-        String logo =
-                "      ____      _   _          \n"
-                        + "     / ___|__ _| |_| |__  _   _ \n"
-                        + "    | |   / _` | __| '_ \\| | | |\n"
-                        + "    | |__| (_| | |_| | | | |_| |\n"
-                        + "     \\____\\__,_|\\__|_| |_|\\__, |\n"
-                        + "                           __| |\n"
-                        + "                           |___/";
+        String logo = "      ____      _   _          \n"
+                + "     / ___|__ _| |_| |__  _   _ \n"
+                + "    | |   / _` | __| '_ \\| | | |\n"
+                + "    | |__| (_| | |_| | | | |_| |\n"
+                + "     \\____\\__,_|\\__|_| |_|\\__, |\n"
+                + "                           __| |\n"
+                + "                           |___/";
         System.out.println(logo);
         System.out.println("    ____________________________________________________________\n");
         System.out.println("     Oh look, someone showed up.");
@@ -108,6 +108,7 @@ public class Cathy {
                             System.out.println("     Marked as done. Go ahead, feel proud for once:");
                             System.out.println("        " + newT);
                             System.out.println("    ____________________________________________________________\n");
+                            storage.save(toDoList);
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("     Sweetie, numbers only. This isn’t a spelling bee");
@@ -138,6 +139,7 @@ public class Cathy {
                             System.out.println("     Fine, it lives to torment you another day:");
                             System.out.println("        " + newT);
                             System.out.println("    ____________________________________________________________\n");
+                            storage.save(toDoList);
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("     Sweetie, numbers only. This isn’t a spelling bee");
@@ -169,6 +171,7 @@ public class Cathy {
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("     Nice try, but that task doesn't even exist.");
                         System.out.println("    ____________________________________________________________\n");
+                        storage.save(toDoList);
                     }
                 } else {
                     System.out.println("     If you're going to delete something, at least give me something valid.");
@@ -188,6 +191,7 @@ public class Cathy {
                     System.out.println("       " + t);
                     System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
                     System.out.println("    ____________________________________________________________\n");
+                    storage.save(toDoList);
                 } catch (InvalidTaskTypeException e) {
                     System.out.println(e.getMessage());
                 }
@@ -217,6 +221,7 @@ public class Cathy {
                         System.out.println("       " + t);
                         System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
                         System.out.println("    ____________________________________________________________\n");
+                        storage.save(toDoList);
                     }
                 } catch (InvalidTaskTypeException e) {
                     System.out.println(e.getMessage());
@@ -257,6 +262,7 @@ public class Cathy {
                             System.out.println("       " + t);
                             System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
                             System.out.println("    ____________________________________________________________\n");
+                            storage.save(toDoList);
                         }
                     }
                 } catch (InvalidTaskTypeException e) {

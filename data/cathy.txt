@@ -1,0 +1,4 @@
+T | 0 | swim
+E | 0 | jump rope | 3pm - 6pm
+T | 0 | hi
+E | 0 | die | 8pm - 9pm

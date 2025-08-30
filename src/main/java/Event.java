@@ -25,6 +25,25 @@ public class Event extends Task {
         this.type = TaskType.EVENT;
     }
 
+    /**
+     * Returns the start time of this event.
+     *
+     * @return a String representing the start time
+     */
+    public String getTo() {
+        return to;
+    }
+
+    /**
+     * Returns the end time of this event.
+     *
+     * @return a String representing the end time
+     */
+    public String getFrom() {
+        return from;
+    }
+    public void setTo(String to) {}
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
