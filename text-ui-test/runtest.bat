@@ -1,4 +1,5 @@
 @ECHO OFF
+pushd "%~dp0"
 
 REM create bin directory if it doesn't exist
 if not exist ..\bin mkdir ..\bin
@@ -10,12 +11,14 @@ REM compile the code into the bin folder
 javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\*.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
+    popd
     exit /b 1
 )
 REM no error here, errorlevel == 0
 
 REM run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ..\bin Cathy < input.txt > ACTUAL.TXT
+if exist data\cathy.txt del data\cathy.txt
+java -classpath ..\bin Cathy < input.txt > ACTUAL.TXT 2>&1
 
 REM compare the output to the expected output
 REM ignore all white space differences
@@ -27,4 +30,5 @@ IF ERRORLEVEL 1 (
     echo No differences encountered. Test PASSED.
 )
 
+popd
 pause

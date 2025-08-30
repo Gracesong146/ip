@@ -1,4 +1,9 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -50,13 +55,21 @@ public class Storage {
                         t = new ToDo(description);
                         break;
                     case "D":
-                        String by = parts[3];
-                        t = new Deadline(description, by);
+                        if (parts.length >= 4) {
+                            String byIso = parts[3];
+                            t = new Deadline(description, byIso);
+                        } else {
+                            continue; // corrupted line, skip
+                        }
                         break;
                     case "E":
-                        String fromTo = parts[3]; // format "from-to"
-                        String[] times = fromTo.split(" - ");
-                        t = new Event(description, times[0], times[1]);
+                        if (parts.length >= 5) {
+                            String fromIso = parts[3];
+                            String toIso = parts[4];
+                            t = new Event(description, fromIso, toIso);
+                        } else {
+                            continue; // corrupted line, skip
+                        }
                         break;
                     default:
                         continue; // skip corrupted lines
@@ -89,10 +102,12 @@ public class Storage {
                 if (t instanceof ToDo) {
                     line = "T | " + status + " | " + t.getDescription();
                 } else if (t instanceof Deadline) {
-                    line = "D | " + status + " | " + t.getDescription() + " | " + ((Deadline) t).getBy();
+                    line = "D | " + status + " | " + t.getDescription() + " | "
+                            + ((Deadline) t).getBy().toString();
                 } else if (t instanceof Event) {
-                    line = "E | " + status + " | " + t.getDescription() + " | " +
-                            ((Event) t).getFrom() + " - " + ((Event) t).getTo();
+                    line = "E | " + status + " | " + t.getDescription() + " | "
+                            + ((Event) t).getFrom().toString() + " | "
+                            + ((Event) t).getTo().toString();
                 }
                 bw.write(line);
                 bw.newLine();

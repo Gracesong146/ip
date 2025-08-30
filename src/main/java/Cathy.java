@@ -1,7 +1,3 @@
-import java.util.Scanner;
-import java.util.Random;
-import java.util.ArrayList;
-
 /**
  * The main class for the Cathy task assistant application.
  * <p>
@@ -27,6 +23,11 @@ import java.util.ArrayList;
  * <p>
  * This class also handles invalid input with custom messages via {@link InvalidTaskTypeException}.
  */
+
+import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Cathy {
     public static void main(String[] args) {
@@ -85,14 +86,19 @@ public class Cathy {
                 System.out.println("    ____________________________________________________________\n");
                 break;
             } else if (userInput.equalsIgnoreCase("list")) {
-                int idx = 1;
-                System.out.println("     Your tasks, in all their glory.");
-                System.out.println("     Don’t pretend you didn’t forget some:");
-                for (Task item : toDoList) {
-                    System.out.println("     " + idx + ". " + item);
-                    idx += 1;
+                if (toDoList.isEmpty()) {
+                    System.out.println("     Wow… nothing. Your life must be thrilling.");
+                    System.out.println("    ____________________________________________________________\n");
+                } else {
+                    int idx = 1;
+                    System.out.println("     Your tasks, in all their glory.");
+                    System.out.println("     Don’t pretend you didn’t forget some:");
+                    for (Task item : toDoList) {
+                        System.out.println("     " + idx + ". " + item);
+                        idx += 1;
+                    }
+                    System.out.println("    ____________________________________________________________\n");
                 }
-                System.out.println("    ____________________________________________________________\n");
             } else if (userInput.toLowerCase().startsWith("mark")) {
                 String[] parts = userInput.split(" ");
                 if (parts.length == 2) {
@@ -225,6 +231,8 @@ public class Cathy {
                     }
                 } catch (InvalidTaskTypeException e) {
                     System.out.println(e.getMessage());
+                } catch (InvalidDateTimeException e) {
+                    System.out.println("     Invalid date/time: " + e.getMessage());
                 }
 
             } else if (userInput.toLowerCase().startsWith("event")) {
@@ -267,6 +275,41 @@ public class Cathy {
                     }
                 } catch (InvalidTaskTypeException e) {
                     System.out.println(e.getMessage());
+                } catch (InvalidDateTimeException e) {
+                    System.out.println("     Invalid date/time: " + e.getMessage());
+                }
+            } else if (userInput.toLowerCase().startsWith("on")) {
+                try {
+                    String dateStr = userInput.substring(3).trim().replace("/", "-");
+                    LocalDate queryDate = LocalDate.parse(dateStr);
+
+                    System.out.println("     Tasks happening on " + queryDate + ":");
+                    boolean found = false;
+
+                    for (Task t : toDoList) {
+                        if (t instanceof Deadline) {
+                            Deadline d = (Deadline) t;
+                            if (d.getBy().toLocalDate().equals(queryDate)) {
+                                System.out.println("       " + d);
+                                found = true;
+                            }
+                        } else if (t instanceof Event) {
+                            Event e = (Event) t;
+                            if (occursOn(e, queryDate)) {
+                                System.out.println("       " + e);
+                                found = true;
+                            }
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("     Nothing on that day. Must be nice to be free for once.");
+                    }
+                    System.out.println("    ____________________________________________________________\n");
+
+                } catch (Exception e) {
+                    System.out.println("     That date makes no sense. Use yyyy-MM-dd. Try again.");
+                    System.out.println("    ____________________________________________________________\n");
                 }
             } else {
                 System.out.println("     Hmm… fascinating gibberish.");
@@ -276,5 +319,28 @@ public class Cathy {
         }
 
         scanner.close();
+    }
+
+    /**
+     * Checks if the given event occurs on the specified date.
+     * An event is considered to occur on that date if the date is between
+     * (or equal to) its start and end dates.
+     *
+     * @param e the Event task to check
+     * @param q the query date
+     * @return true if the event spans the query date, false otherwise
+     */
+    private static boolean occursOn(Event e, LocalDate q) {
+        LocalDate start = e.getFrom().toLocalDate();
+        LocalDate end = e.getTo().toLocalDate();
+
+        // Handle swapped ranges
+        if (end.isBefore(start)) {
+            LocalDate tmp = start;
+            start = end;
+            end = tmp;
+        }
+        // Check if q ∈ [start, end]
+        return !(q.isBefore(start) || q.isAfter(end));
     }
 }

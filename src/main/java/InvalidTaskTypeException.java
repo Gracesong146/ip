@@ -7,7 +7,7 @@
  */
 public class InvalidTaskTypeException extends Exception {
 
-    private TaskType type;
+    private final TaskType type;
 
     /**
      * Constructs a new {@code InvalidTaskTypeException} with the
