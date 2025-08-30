@@ -18,7 +18,7 @@ public class Deadline extends Task {
      * Constructs a new {@code Deadline} task with the specified description and deadline.
      *
      * @param description the description of the task
-     * @param by the due date or time by which the task should be completed
+     * @param by          the due date or time by which the task should be completed
      */
     public Deadline(String description, String by) {
         super(description);
@@ -36,7 +36,7 @@ public class Deadline extends Task {
         String normalized = by.replace("/", "-");
 
         // Try patterns in order: datetime first, then date-only
-        DateTimeFormatter[] patterns = new DateTimeFormatter[] {
+        DateTimeFormatter[] patterns = new DateTimeFormatter[]{
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),
                 DateTimeFormatter.ofPattern("yyyy-MM-dd")
         };

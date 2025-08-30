@@ -20,15 +20,15 @@ public class Event extends Task {
      * start time, and end time.
      *
      * @param description the description of the task
-     * @param from the start time of the event
-     * @param to the end time of the event
+     * @param from        the start time of the event
+     * @param to          the end time of the event
      */
     public Event(String description, String from, String to) {
         super(description);
 
         try {
             this.from = LocalDateTime.parse(from); // default = ISO-8601
-            this.to   = LocalDateTime.parse(to);
+            this.to = LocalDateTime.parse(to);
             this.type = TaskType.EVENT;
             return;
         } catch (Exception ignore) {
@@ -40,7 +40,7 @@ public class Event extends Task {
         String normalizedTo = to.replace("/", "-");
 
         // Try patterns in order: datetime first, then date-only
-        DateTimeFormatter[] patterns = new DateTimeFormatter[] {
+        DateTimeFormatter[] patterns = new DateTimeFormatter[]{
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),
                 DateTimeFormatter.ofPattern("yyyy-MM-dd")
         };
@@ -100,7 +100,9 @@ public class Event extends Task {
     public LocalDateTime getFrom() {
         return from;
     }
-    public void setTo(String to) {}
+
+    public void setTo(String to) {
+    }
 
     @Override
     public String toString() {

@@ -332,7 +332,7 @@ public class Cathy {
      */
     private static boolean occursOn(Event e, LocalDate q) {
         LocalDate start = e.getFrom().toLocalDate();
-        LocalDate end   = e.getTo().toLocalDate();
+        LocalDate end = e.getTo().toLocalDate();
 
         // Handle swapped ranges
         if (end.isBefore(start)) {
