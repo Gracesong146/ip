@@ -76,8 +76,14 @@
 
     ____________________________________________________________
 
+     Invalid date/time: Your date/time format is wrong.
+     Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
      Fine, I've added to the list:
-       [D][ ] complete cs2100 assignment 1 (by: Sunday)
+       [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
      You’ve got 3 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
@@ -107,9 +113,29 @@
 
     ____________________________________________________________
 
+     Invalid date/time: Your date/time format is wrong.
+     Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Invalid date/time: Wow. You think time flows backwards? Cute.
+     The /from date has to come *before* the /to date.
+     Try again when you figure out how calendars work.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
      Fine, I've added to the list:
-       [E][ ] project meeting (from: Mon 2pm to: 4pm)
+       [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
      You’ve got 4 tasks now. Try not to lose track this time.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Fine, I've added to the list:
+       [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
+     You’ve got 5 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
     ____________________________________________________________
@@ -118,8 +144,46 @@
      Don’t pretend you didn’t forget some:
      1. [T][ ] visit museum
      2. [T][ ] read a book
-     3. [D][ ] complete cs2100 assignment 1 (by: Sunday)
-     4. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+     3. [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
+     4. [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
+     5. [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Tasks happening on 2025-09-01:
+       [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Tasks happening on 2025-09-02:
+       [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Tasks happening on 2025-09-05:
+       [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Tasks happening on 2025-09-07:
+       [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Tasks happening on 2025-09-10:
+       [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
+       [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
+    ____________________________________________________________
+
+    ____________________________________________________________
+
+     Tasks happening on 2025-12-25:
+     Nothing on that day. Must be nice to be free for once.
     ____________________________________________________________
 
     ____________________________________________________________
@@ -172,7 +236,7 @@
      Noted. I've removed this task:
         [T][ ] visit museum
      One less thing for you to forget.
-     You’ve got 3 tasks now.
+     You’ve got 4 tasks now.
     ____________________________________________________________
 
     ____________________________________________________________
@@ -180,8 +244,9 @@
      Your tasks, in all their glory.
      Don’t pretend you didn’t forget some:
      1. [T][ ] read a book
-     2. [D][ ] complete cs2100 assignment 1 (by: Sunday)
-     3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+     2. [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
+     3. [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
+     4. [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
     ____________________________________________________________
 
     ____________________________________________________________
