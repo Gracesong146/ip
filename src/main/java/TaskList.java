@@ -27,7 +27,7 @@ public class TaskList {
     }
 
     /** Read-only style access (still returns the list for iteration/printing). */
-    public ArrayList<Task> showList() {
+    public ArrayList<Task> getTasks() {
         return items;
     }
 

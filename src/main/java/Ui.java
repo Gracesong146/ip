@@ -92,4 +92,13 @@ public class Ui {
         return inputLine.split(" ", 2)[0].toLowerCase();
     }
 
+    public void print(String message) {
+        System.out.println("     " + message);
+    }
+
+    /* Close the Scanner */
+    public void close() {
+        in.close();
+    }
+
 }

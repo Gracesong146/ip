@@ -29,13 +29,15 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
+/**
+ * Main entry for the Cathy task assistant.
+ * I/O is handled by {@link Ui}. Persistence is via {@link Storage}.
+ */
 public class Cathy {
     public static void main(String[] args) {
         Ui ui = new Ui();
-        Scanner scanner = new Scanner(System.in);
-        Random rand = new Random();
         Storage storage = new Storage("./data/cathy.txt");
-        ArrayList<Task> toDoList = storage.load();
+        TaskList toDoList = new TaskList(storage.load());
         int counter = toDoList.size();
 
         ui.showWelcome();
@@ -52,11 +54,12 @@ public class Cathy {
 
                 break;
             case "bye":
-                System.out.println("     Finally! I was getting bored...");
+                ui.print("Finally! I was getting bored...");
                 ui.showLine();
+                ui.close();
                 break label;
             case "list":
-                ui.showList(toDoList);
+                ui.showList(toDoList.getTasks());
                 break;
             case "mark": {
                 String[] parts = userInput.split(" ");
@@ -65,27 +68,27 @@ public class Cathy {
                         int taskNumber = Integer.parseInt(parts[1]);
                         Task newT = toDoList.get(taskNumber - 1);
                         if (newT.getStatusIcon().equals("X")) {
-                            System.out.println("     Darling, that task’s already done. No need to be an overachiever.");
+                            ui.print("Darling, that task’s already done. No need to be an overachiever.");
                             ui.showLine();
                         } else {
                             newT.markAsDone();
                             toDoList.set(taskNumber - 1, newT);
-                            System.out.println("     Marked as done. Go ahead, feel proud for once:");
-                            System.out.println("        " + newT);
+                            ui.print("Marked as done. Go ahead, feel proud for once:");
+                            ui.print("   " + newT);
                             ui.showLine();
                             storage.save(toDoList);
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("     Sweetie, numbers only. This isn’t a spelling bee");
+                        ui.print("Sweetie, numbers only. This isn’t a spelling bee");
                         ui.showLine();
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("     Trying to mark task " + Integer.parseInt(parts[1]) + " as done? Cute.");
-                        System.out.println("     You can't just mark imaginary tasks to feel accomplished.");
+                        ui.print("Trying to mark task " + Integer.parseInt(parts[1]) + " as done? Cute.");
+                        ui.print("You can't just mark imaginary tasks to feel accomplished.");
                         ui.showLine();
                     }
                 } else {
-                    System.out.println("     If you're going to mark something, at least give me something valid.");
-                    System.out.println("     Give it in the following form: mark [number]");
+                    ui.print("If you're going to mark something, at least give me something valid.");
+                    ui.print("Give it in the following form: mark [number]");
                     ui.showLine();
                 }
                 break;
@@ -97,26 +100,26 @@ public class Cathy {
                         int taskNumber = Integer.parseInt(parts[1]);
                         Task newT = toDoList.get(taskNumber - 1);
                         if (newT.getStatusIcon().equals(" ")) {
-                            System.out.println("     Task " + taskNumber + " is already unmarked.");
-                            System.out.println("     Stop trying to double negative your way through life.");
+                            ui.print("Task " + taskNumber + " is already unmarked.");
+                            ui.print("Stop trying to double negative your way through life.");
                             ui.showLine();
                         } else {
                             newT.markAsNotDone();
                             toDoList.set(taskNumber - 1, newT);
-                            System.out.println("     Fine, it lives to torment you another day:");
-                            System.out.println("        " + newT);
+                            ui.print("Fine, it lives to torment you another day:");
+                            ui.print("   " + newT);
                             ui.showLine();
                             storage.save(toDoList);
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("     Sweetie, numbers only. This isn’t a spelling bee");
+                        ui.print("Sweetie, numbers only. This isn’t a spelling bee");
                         ui.showLine();
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("     Ah, clever. But no, that task is imaginary.");
+                        ui.print("Ah, clever. But no, that task is imaginary.");
                         ui.showLine();
                     }
                 } else {
-                    System.out.println("     If you're going to unmark something, at least give me a valid number. I'm not psychic");
+                    ui.print("If you're going to unmark something, at least give me a valid number. I'm not psychic");
                     ui.showLine();
                 }
                 break;
@@ -126,25 +129,24 @@ public class Cathy {
                 if (parts.length == 2) {
                     try {
                         int taskNumber = Integer.parseInt(parts[1]);
-                        Task newT = toDoList.get(taskNumber - 1);
-                        toDoList.remove(taskNumber - 1);
-                        counter -= 1;
-                        System.out.println("     Noted. I've removed this task:");
-                        System.out.println("        " + newT);
-                        System.out.println("     One less thing for you to forget.");
-                        System.out.println("     You’ve got " + counter + " tasks now.");
+                        Task removed = toDoList.removeAt(taskNumber - 1);
+                        counter--;
+                        ui.print("Noted. I've removed this task:");
+                        ui.print("   " + removed);
+                        ui.print("One less thing for you to forget.");
+                        ui.print("You’ve got " + counter + " tasks now.");
                         ui.showLine();
                     } catch (NumberFormatException e) {
-                        System.out.println("     Sweetie, numbers only. This isn’t a spelling bee");
+                        ui.print("Sweetie, numbers only. This isn’t a spelling bee");
                         ui.showLine();
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("     Nice try, but that task doesn't even exist.");
+                        ui.print("Nice try, but that task doesn't even exist.");
                         ui.showLine();
                         storage.save(toDoList);
                     }
                 } else {
-                    System.out.println("     If you're going to delete something, at least give me something valid.");
-                    System.out.println("     Give it in the following form: delete [number]");
+                    ui.print("If you're going to delete something, at least give me something valid.");
+                    ui.print("Give it in the following form: delete [number]");
                     ui.showLine();
                 }
                 break;
@@ -157,14 +159,14 @@ public class Cathy {
                     }
                     Task t = new ToDo(description);
                     toDoList.add(t);
-                    counter += 1;
-                    System.out.println("     Fine, I've added to the list:");
-                    System.out.println("       " + t);
-                    System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
+                    counter++;
+                    ui.print("Fine, I've added to the list:");
+                    ui.print("  " + t);
+                    ui.print("You’ve got " + counter + " tasks now. Try not to lose track this time.");
                     ui.showLine();
                     storage.save(toDoList);
                 } catch (InvalidTaskTypeException e) {
-                    System.out.println(e.getMessage());
+                    ui.print(e.getMessage());
                 }
                 break;
             case "deadline":
@@ -179,8 +181,8 @@ public class Cathy {
                     String[] parts = details.split(" /by ");
 
                     if (parts.length < 2) {
-                        System.out.println("     Seriously? That deadline format is a mess.");
-                        System.out.println("     Try again like you actually read the instructions: deadline <desc> /by <date>");
+                        ui.print("Seriously? That deadline format is a mess.");
+                        ui.print("Try again like you actually read the instructions: deadline <desc> /by <date>");
                         ui.showLine();
                     } else {
                         String description = parts[0]; // "return book"
@@ -188,17 +190,17 @@ public class Cathy {
 
                         Task t = new Deadline(description, by);
                         toDoList.add(t);
-                        counter += 1;
-                        System.out.println("     Fine, I've added to the list:");
-                        System.out.println("       " + t);
-                        System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
+                        counter++;
+                        ui.print("Fine, I've added to the list:");
+                        ui.print("  " + t);
+                        ui.print("You’ve got " + counter + " tasks now. Try not to lose track this time.");
                         ui.showLine();
                         storage.save(toDoList);
                     }
                 } catch (InvalidTaskTypeException e) {
-                    System.out.println(e.getMessage());
+                    ui.print(e.getMessage());
                 } catch (InvalidDateTimeException e) {
-                    System.out.println("     Invalid date/time: " + e.getMessage());
+                    ui.print("Invalid date/time: " + e.getMessage());
                 }
 
                 break;
@@ -216,15 +218,15 @@ public class Cathy {
 
                     // Make sure /from was provided
                     if (parts.length < 2) {
-                        System.out.println("     Invalid event format. Did you even try?");
-                        System.out.println("     Use: event <desc> /from <start> /to <end> — it's not that hard.");
+                        ui.print("Invalid event format. Did you even try?");
+                        ui.print("Use: event <desc> /from <start> /to <end> — it's not that hard.");
                         ui.showLine();
                     } else {
                         String duration = parts[1].trim();
                         String[] parts2 = duration.split(" /to "); // note space before /to
                         if (parts2.length < 2) {
-                            System.out.println("     Missing '/to <end>' in your event. Planning half an event now?");
-                            System.out.println("     Use: event <desc> /from <start> /to <end> — complete it like a grown-up.");
+                            ui.print("Missing '/to <end>' in your event. Planning half an event now?");
+                            ui.print("Use: event <desc> /from <start> /to <end> — complete it like a grown-up.");
                             ui.showLine();
                         } else {
                             String from = parts2[0].trim(); // "Mon 2pm"
@@ -232,18 +234,18 @@ public class Cathy {
 
                             Task t = new Event(description, from, to);
                             toDoList.add(t);
-                            counter += 1;
-                            System.out.println("     Fine, I've added to the list:");
-                            System.out.println("       " + t);
-                            System.out.println("     You’ve got " + counter + " tasks now. Try not to lose track this time.");
+                            counter++;
+                            ui.print("Fine, I've added to the list:");
+                            ui.print("  " + t);
+                            ui.print("You’ve got " + counter + " tasks now. Try not to lose track this time.");
                             ui.showLine();
                             storage.save(toDoList);
                         }
                     }
                 } catch (InvalidTaskTypeException e) {
-                    System.out.println(e.getMessage());
+                    ui.print(e.getMessage());
                 } catch (InvalidDateTimeException e) {
-                    System.out.println("     Invalid date/time: " + e.getMessage());
+                    ui.print("Invalid date/time: " + e.getMessage());
                 }
                 break;
             case "on":
@@ -251,44 +253,42 @@ public class Cathy {
                     String dateStr = userInput.substring(3).trim().replace("/", "-");
                     LocalDate queryDate = LocalDate.parse(dateStr);
 
-                    System.out.println("     Tasks happening on " + queryDate + ":");
+                    ui.print("Tasks happening on " + queryDate + ":");
                     boolean found = false;
 
-                    for (Task t : toDoList) {
-                        if (t instanceof Deadline) {
-                            Deadline d = (Deadline) t;
+                    for (Task t : toDoList.getTasks()) {
+                        if (t instanceof Deadline d) {
                             if (d.getBy().toLocalDate().equals(queryDate)) {
-                                System.out.println("       " + d);
+                                ui.print("  " + d);
                                 found = true;
                             }
-                        } else if (t instanceof Event) {
-                            Event e = (Event) t;
+                        } else if (t instanceof Event e) {
                             if (occursOn(e, queryDate)) {
-                                System.out.println("       " + e);
+                                ui.print("  " + e);
                                 found = true;
                             }
                         }
                     }
 
                     if (!found) {
-                        System.out.println("     Nothing on that day. Must be nice to be free for once.");
+                        ui.print("Nothing on that day. Must be nice to be free for once.");
                     }
                     ui.showLine();
 
                 } catch (Exception e) {
-                    System.out.println("     That date makes no sense. Use yyyy-MM-dd. Try again.");
+                    ui.print("That date makes no sense. Use yyyy-MM-dd. Try again.");
                     ui.showLine();
                 }
                 break;
             default:
-                System.out.println("     Hmm… fascinating gibberish.");
-                System.out.println("     Try again, or type \"help\" to see what I actually understand.");
+                ui.print("Hmm… fascinating gibberish.");
+                ui.print("Try again, or type \"help\" to see what I actually understand.");
                 ui.showLine();
                 break;
             }
         }
 
-        scanner.close();
+        ui.close();
     }
 
     /**

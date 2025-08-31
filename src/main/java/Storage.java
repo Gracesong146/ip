@@ -94,9 +94,9 @@ public class Storage {
      *
      * @param tasks an ArrayList of Task objects to save
      */
-    public void save(ArrayList<Task> tasks) {
+    public void save(TaskList tasks) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-            for (Task t : tasks) {
+            for (Task t : tasks.getTasks()) {
                 String line = "";
                 String status = t.getStatusIcon().equals("X") ? "1" : "0";
                 if (t instanceof ToDo) {
