@@ -1,26 +1,34 @@
 /**
- * Deletes a task by 1-based index.
+ * Command that deletes a {@link Task} from the task list by its 1-based index.
+ *
+ * <p><strong>Expected input format</strong>:
+ * <pre>{@code
+ * delete <task number>
+ * }</pre>
  */
 public class DeleteCommand extends Command {
     private final int index;
-    private final String description;
 
+    /**
+     * Creates a {@code DeleteCommand}.
+     *
+     * @param index the 1-based index of the task to delete.
+     */
     public DeleteCommand(int index) {
         this.index = index;
-        this.description = null;
     }
 
-    public DeleteCommand(String description) {
-        this.index = -1;
-        this.description = description;
-    }
-
+    /**
+     * Removes the task at the specified index from the {@link TaskList},
+     * saves the updated list via {@link Storage}, and shows a confirmation via {@link Ui}.
+     *
+     * @param tasks   the {@link TaskList} to modify
+     * @param ui      the {@link Ui} used to display feedback
+     * @param storage the {@link Storage} used to save the updated list
+     * @throws CathyException if the index is out of range (≤ 0 or greater than the current list size)
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
-        if (description != null) {
-            throw new CathyException("If you're going to delete something, at least give me something valid.\n" +
-                    "     Give it in the following form: delete [number]");
-        }
         if (index <= 0 || index > tasks.size()) {
             throw new CathyException("Nice try, but that task doesn't even exist.");
         }

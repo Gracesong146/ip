@@ -1,14 +1,27 @@
-/**
- * Represents an {@link Task} that occurs within a specific time range.
- * <p>
- * An {@code Event} task has a description (inherited from {@link Task})
- * along with a start time ({@code from}) and an end time ({@code to}).
- */
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a {@link Task} that occurs within a specific time range.
+ *
+ * <p>An {@code Event} has:
+ * <ul>
+ *   <li>a description (inherited from {@link Task}),</li>
+ *   <li>a start date/time ({@code from}), and</li>
+ *   <li>an end date/time ({@code to}).</li>
+ * </ul>
+ *
+ * <p>Input strings for {@code from} and {@code to} can be parsed in multiple formats:
+ * <ul>
+ *   <li>ISO-8601 (default, e.g. {@code 2025-09-01T18:00})</li>
+ *   <li>{@code yyyy-MM-dd HHmm} (e.g. {@code 2025-09-01 1800})</li>
+ *   <li>{@code yyyy-MM-dd} (date-only, defaults to start of day)</li>
+ * </ul>
+ *
+ * <p>If parsing fails, an {@link InvalidDateTimeException} is thrown.
+ * If {@code from} is after {@code to}, another {@link InvalidDateTimeException} is thrown.
+ */
 public class Event extends Task {
 
     protected LocalDateTime from;
@@ -16,12 +29,12 @@ public class Event extends Task {
     protected TaskType type;
 
     /**
-     * Constructs a new {@code Event} task with the specified description,
-     * start time, and end time.
+     * Constructs a new {@code Event} with the given description, start time, and end time.
      *
-     * @param description the description of the task
-     * @param from        the start time of the event
-     * @param to          the end time of the event
+     * @param description the description of the event
+     * @param from        the start time string
+     * @param to          the end time string
+     * @throws InvalidDateTimeException if parsing fails or {@code from} is after {@code to}
      */
     public Event(String description, String from, String to) {
         super(description);
@@ -65,8 +78,7 @@ public class Event extends Task {
         }
 
         if (!parsed) {
-            throw new InvalidDateTimeException("Your date/time format is wrong.\n" +
-                    "     Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.");
+            throw new InvalidDateTimeException();
         }
 
         // 🔹 Enforce that 'from' is not after 'to'
@@ -84,7 +96,7 @@ public class Event extends Task {
     /**
      * Returns the start time of this event.
      *
-     * @return a String representing the start time
+     * @return the start time as a {@link LocalDateTime}
      */
     public LocalDateTime getTo() {
         return to;
@@ -93,15 +105,19 @@ public class Event extends Task {
     /**
      * Returns the end time of this event.
      *
-     * @return a String representing the end time
+     * @return the end time as a {@link LocalDateTime}
      */
     public LocalDateTime getFrom() {
         return from;
     }
 
-    public void setTo(String to) {
-    }
-
+    /**
+     * Returns a string representation of this {@code Event}.
+     * The output includes the task type marker {@code [E]}, the description,
+     * and the formatted start and end date/times.
+     *
+     * @return formatted string for display
+     */
     @Override
     public String toString() {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mma");

@@ -1,8 +1,21 @@
 /**
- * Adds a ToDo task.
+ * Command that adds a {@link ToDo} task to the task list.
+ *
+ * <p><strong>Expected input format</strong>:
+ * <pre>{@code
+ * todo <description>
+ * }</pre>
  */
 public class AddToDoCommand extends Command {
     private final String description;
+
+    /**
+     * Creates an {@code AddToDoCommand}.
+     *
+     * @param description the ToDo description (trimmed during execution).
+     *                    If blank, {@link #execute(TaskList, Ui, Storage)} will throw
+     *                    an {@link InvalidTaskTypeException} with {@link TaskType#TODO}.
+     */
     public AddToDoCommand(String description) {
         this.description = description;
     }

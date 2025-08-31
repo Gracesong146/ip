@@ -17,6 +17,7 @@
          2. Deadlines: tasks that must be done before a date/time. Example command: deadline submit report /by 11/10/2019 5pm
          3. Events: tasks with a start and end time. Example command: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm
             (Notice the /from and /to – don’t forget them!)
+     - Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.
      - Type 'list' to see your glorious pile of tasks.
      - Type 'mark <number>' to mark a task as done. Try not to mess it up.
      - Type 'unmark <number>' to undo a completed task.
@@ -24,127 +25,108 @@
      - Type 'bye' to leave me in peace.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Fine, I've added to the list:
        [T][ ] visit museum
      You’ve got 1 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Excuse you—trying to add a todo with no description?
      Use: todo <desc> and try not to waste my time.
     ____________________________________________________________
 
+>     ____________________________________________________________
+
+     My brain can’t read your mind. Type something.
     ____________________________________________________________
 
-     Hmm… fascinating gibberish.
-     Try again, or type "help" to see what I actually understand.
-    ____________________________________________________________
-
-    ____________________________________________________________
-
-     Excuse you—trying to add a todo with no description?
-     Use: todo <desc> and try not to waste my time.
-    ____________________________________________________________
-
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Fine, I've added to the list:
        [T][ ] read a book
      You’ve got 2 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
-    ____________________________________________________________
-
-     Wow. That’s not even close to a proper deadline format.
-     Use: deadline <desc> /by <date> and try not to waste my time.
-    ____________________________________________________________
-
-    ____________________________________________________________
-
-     Wow. That’s not even close to a proper deadline format.
-     Use: deadline <desc> /by <date> and try not to waste my time.
-    ____________________________________________________________
-
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Seriously? That deadline format is a mess.
      Try again like you actually read the instructions: deadline <desc> /by <date>
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Seriously? That deadline format is a mess.
      Try again like you actually read the instructions: deadline <desc> /by <date>
     ____________________________________________________________
 
+>     ____________________________________________________________
+
+     Seriously? That deadline format is a mess.
+     Try again like you actually read the instructions: deadline <desc> /by <date>
     ____________________________________________________________
 
-     Invalid date/time: Your date/time format is wrong.
+>     ____________________________________________________________
+
+     Invalid date/time format.
      Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Fine, I've added to the list:
        [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
      You’ve got 3 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
-    ____________________________________________________________
-
-     'event'... and then silence. Inspiring.
-     Try: event <desc> /from <start> /to <end> — give me *something* to work with.
-    ____________________________________________________________
-
-    ____________________________________________________________
-
-     'event'... and then silence. Inspiring.
-     Try: event <desc> /from <start> /to <end> — give me *something* to work with.
-    ____________________________________________________________
-
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Invalid event format. Did you even try?
      Use: event <desc> /from <start> /to <end> — it's not that hard.
     ____________________________________________________________
 
+>     ____________________________________________________________
+
+     Invalid event format. Did you even try?
+     Use: event <desc> /from <start> /to <end> — it's not that hard.
     ____________________________________________________________
 
-     Missing '/to <end>' in your event. Planning half an event now?
-     Use: event <desc> /from <start> /to <end> — complete it like a grown-up.
+>     ____________________________________________________________
+
+     Invalid event format. Did you even try?
+     Use: event <desc> /from <start> /to <end> — it's not that hard.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
-     Invalid date/time: Your date/time format is wrong.
+     Invalid date/time format.
      Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
-     Invalid date/time: Wow. You think time flows backwards? Cute.
+     Wow. You think time flows backwards? Cute.
      The /from date has to come *before* the /to date.
      Try again when you figure out how calendars work.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Fine, I've added to the list:
        [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
      You’ve got 4 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Fine, I've added to the list:
        [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
      You’ve got 5 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Your tasks, in all their glory.
      Don’t pretend you didn’t forget some:
@@ -155,113 +137,123 @@
      5. [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Tasks happening on 2025-09-01:
        [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Tasks happening on 2025-09-02:
        [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Tasks happening on 2025-09-05:
        [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Tasks happening on 2025-09-07:
        [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Tasks happening on 2025-09-10:
        [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
        [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Tasks happening on 2025-12-25:
      Nothing on that day. Must be nice to be free for once.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Marked as done. Go ahead, feel proud for once:
         [T][X] read a book
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Darling, that task’s already done. No need to be an overachiever.
     ____________________________________________________________
 
+>     ____________________________________________________________
+
+     Sweetie, numbers only. This isn’t a spelling bee.
+     Use format: [command] [number]
     ____________________________________________________________
+
+>     ____________________________________________________________
+
+     Sweetie, numbers only. This isn’t a spelling bee.
+     Use format: [command] [number]
+    ____________________________________________________________
+
+>     ____________________________________________________________
 
      Fine, it lives to torment you another day:
         [T][ ] read a book
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
-     Task 2 is already unmarked.
+     Task 2 is already unmarked..
      Stop trying to double negative your way through life.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Trying to mark task 9 as done? Cute.
      You can't just mark imaginary tasks to feel accomplished.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Trying to mark task -1 as done? Cute.
      You can't just mark imaginary tasks to feel accomplished.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Nice try, but that task doesn't even exist.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Nice try, but that task doesn't even exist.
     ____________________________________________________________
 
+>     ____________________________________________________________
+
+     Nice try, but that task doesn't even exist.
     ____________________________________________________________
 
-     Noted. I've removed this task:
-        [T][ ] visit museum
-     One less thing for you to forget.
-     You’ve got 4 tasks now.
-    ____________________________________________________________
-
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Your tasks, in all their glory.
      Don’t pretend you didn’t forget some:
-     1. [T][ ] read a book
-     2. [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
-     3. [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
-     4. [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
+     1. [T][ ] visit museum
+     2. [T][ ] read a book
+     3. [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
+     4. [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
+     5. [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Hmm… fascinating gibberish.
      Try again, or type "help" to see what I actually understand.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
      Ugh… you again? Fine, I’ll repeat it. Pay attention this time.
      I'm Cathy, your gloriously underappreciated task assistant.
@@ -273,6 +265,7 @@
          2. Deadlines: must be done before a date/time. Example: deadline submit report /by 11/10/2019 5pm
          3. Events: start and end times required. Example: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm
             (Yes, /from and /to are mandatory. Try not to forget.)
+     - Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.
      - Type 'list' to see your glorious pile of tasks (again).
      - Type 'mark <number>' to mark a task as done. Don’t screw it up.
      - Type 'unmark <number>' to undo a completed task. Not that you’ll remember.
@@ -281,8 +274,8 @@
      And yes, I’ll never repeat this again… so maybe try reading this carefully.
     ____________________________________________________________
 
-    ____________________________________________________________
+>     ____________________________________________________________
 
-     Finally! I was getting bored...
+     Bye. Hope to see you again soon!
     ____________________________________________________________
 

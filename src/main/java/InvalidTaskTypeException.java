@@ -20,6 +20,18 @@ public class InvalidTaskTypeException extends CathyException {
         this.type = type;
     }
 
+    /**
+     * Returns a customized error message depending on the {@link TaskType}.
+     *
+     * <ul>
+     *   <li>{@link TaskType#TODO}: complains about a missing description</li>
+     *   <li>{@link TaskType#DEADLINE}: complains about a malformed deadline format</li>
+     *   <li>{@link TaskType#EVENT}: complains about missing /from or /to details</li>
+     *   <li>Default: generic gibberish-handling message</li>
+     * </ul>
+     *
+     * @return a sarcastic, task-specific error message
+     */
     @Override
     public String getMessage() {
         switch (type) {

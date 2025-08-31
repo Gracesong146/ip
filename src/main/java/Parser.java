@@ -1,156 +1,99 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
- * Turns raw user input into a (command, args) pair. Keep it tiny first.
+ * Parses raw user input into {@link Command} objects for execution.
+ *
+ * <p>The {@code Parser} is responsible for:
+ * <ul>
+ *   <li>Splitting the input string into a command word and arguments</li>
+ *   <li>Constructing the correct {@link Command} subclass (e.g., {@link AddToDoCommand}, {@link DeleteCommand})</li>
+ *   <li>Throwing {@link CathyException} for invalid or unrecognized input</li>
+ * </ul>
  */
-public final class Parser {
+public class Parser {
 
     /**
-     * All command kinds Cathy understands.
+     * Parses a raw user input string and returns the corresponding {@link Command}.
+     *
+     * @param input the raw input string typed by the user
+     * @return a {@link Command} representing the user’s intent
+     * @throws CathyException if the input is null, empty, malformed, or unrecognized
      */
-    public enum Action {
-        HELP, BYE, LIST, TODO, DEADLINE, EVENT, MARK, UNMARK, DELETE, ON, UNKNOWN
-    }
-
-    /**
-     * Parsed result container.
-     */
-
-    public static final class Parsed {
-        public final Action action;
-        public final String raw;        // original input (trimmed)
-        public final String description;
-        public final String by;         // for deadline
-        public final String from;       // for event
-        public final String to;         // for event
-        public final String index;      // for mark/unmark/delete (string so Cathy can error nicely)
-        public final String dateStr;    // for "on <date>"
-        public final String error;      // lightweight parse-time error (missing parts etc.)
-
-        private Parsed(Action action, String raw, String description, String by,
-                       String from, String to, String index, String dateStr, String error) {
-            this.action = action;
-            this.raw = raw;
-            this.description = description;
-            this.by = by;
-            this.from = from;
-            this.to = to;
-            this.index = index;
-            this.dateStr = dateStr;
-            this.error = error;
-        }
-
-        public static Parsed of(Action a, String raw) {
-            return new Parsed(a, raw, null, null, null, null, null, null, null);
-        }
-
-        public Parsed withDesc(String desc) {
-            return new Parsed(this.action, this.raw, desc, this.by, this.from, this.to, this.index, this.dateStr, this.error);
-        }
-
-        public Parsed withBy(String by) {
-            return new Parsed(this.action, this.raw, this.description, by, this.from, this.to, this.index, this.dateStr, this.error);
-        }
-
-        public Parsed withFromTo(String from, String to) {
-            return new Parsed(this.action, this.raw, this.description, this.by, from, to, this.index, this.dateStr, this.error);
-        }
-
-        public Parsed withIndex(String idx) {
-            return new Parsed(this.action, this.raw, this.description, this.by, this.from, this.to, idx, this.dateStr, this.error);
-        }
-
-        public Parsed withDate(String d) {
-            return new Parsed(this.action, this.raw, this.description, this.by, this.from, this.to, this.index, d, this.error);
-        }
-
-        public Parsed withError(String e) {
-            return new Parsed(this.action, this.raw, this.description, this.by, this.from, this.to, this.index, this.dateStr, e);
-        }
-    }
-
-    private Parser() {
-    } // prevent new Parser()
-
-    /**
-     * Parse a raw command line into a {@link Parsed} instruction.
-     */
-    public static Parsed parse(String input) {
+    public static Command parse(String input) throws CathyException {
         if (input == null) {
-            input = "";
+            throw new CathyException("My brain can’t read your mind. Type something.");
         }
-        final String raw = input.trim();
-        if (raw.isEmpty()) {
-            return Parsed.of(Action.UNKNOWN, raw);
+        String trimmed = input.trim();
+        if (trimmed.isEmpty()) {
+            throw new CathyException("My brain can’t read your mind. Type something.");
         }
 
-        // first word is action
-        String[] firstSplit = raw.split("\\s+", 2);
-        String command = firstSplit[0].toLowerCase();
-        String args = (firstSplit.length > 1) ? firstSplit[1].trim() : "";
+        // Split into command word and arguments
+        String[] parts = trimmed.split("\s+", 2);
+        String cmd = parts[0].toLowerCase();
+        String args = parts.length > 1 ? parts[1] : "";
 
-        switch (command) {
-        case "help":
-            return Parsed.of(Action.HELP, raw);
+        switch (cmd) {
         case "bye":
-            return Parsed.of(Action.BYE, raw);
+            return new ExitCommand();
+
         case "list":
-            return Parsed.of(Action.LIST, raw);
+            return new ListCommand();
+
         case "todo":
-            if (args.isEmpty()) {
-                return Parsed.of(Action.TODO, raw).withError("Empty description for todo.");
+            return new AddToDoCommand(args);
+
+        case "deadline": {
+            // Split by "/by"
+            String[] segs = args.split("\s+/by\s+", 2);
+            if (segs.length < 2) {
+                throw new CathyException("Seriously? That deadline format is a mess.\n" +
+                        "     Try again like you actually read the instructions: deadline <desc> /by <date>");
             }
-            return Parsed.of(Action.TODO, raw).withDesc(args);
-        case "deadline":
-            if (args.isEmpty()) {
-                return Parsed.of(Action.DEADLINE, raw).withError("Empty description for deadline.");
+            return new AddDeadlineCommand(segs[0], segs[1]);
+        }
+
+        case "event": {
+            // Split by "/from" and "/to"
+            Pattern p = Pattern.compile("^(.*?)\s+/from\s+(.*?)\s+/to\s+(.*)$");
+            Matcher m = p.matcher(args);
+            if (!m.matches()) {
+                throw new CathyException("Invalid event format. Did you even try?\n" +
+                        "     Use: event <desc> /from <start> /to <end> — it's not that hard.");
             }
-            String[] parts = args.split(" /by ", 2);
-            if (parts.length < 2 || parts[0].trim().isEmpty() || parts[1].trim().isEmpty()) {
-                return Parsed.of(Action.DEADLINE, raw).withError("Use: deadline <desc> /by <date>");
-            }
-            return Parsed.of(Action.DEADLINE, raw)
-                    .withDesc(parts[0].trim())
-                    .withBy(parts[1].trim());
-        case "event":
-            if (args.isEmpty()) {
-                return Parsed.of(Action.EVENT, raw).withError("Empty description/time for event.");
-            }
-            // expected: <desc> /from <start> /to <end>
-            String[] a = args.split(" /from ", 2);
-            if (a.length < 2 || a[0].trim().isEmpty()) {
-                return Parsed.of(Action.EVENT, raw).withError("Use: event <desc> /from <start> /to <end>");
-            }
-            String desc = a[0].trim();
-            String rest = a[1].trim();
-            String[] b = rest.split(" /to ", 2);
-            if (b.length < 2 || b[0].trim().isEmpty() || b[1].trim().isEmpty()) {
-                return Parsed.of(Action.EVENT, raw).withError("Use: event <desc> /from <start> /to <end>");
-            }
-            return Parsed.of(Action.EVENT, raw)
-                    .withDesc(desc)
-                    .withFromTo(b[0].trim(), b[1].trim());
+            return new AddEventCommand(m.group(1), m.group(2), m.group(3));
+        }
+
         case "mark":
-            if (args.isEmpty()) {
-                return Parsed.of(Action.MARK, raw).withError("Use: mark <number>");
-            }
-            return Parsed.of(Action.MARK, raw).withIndex(args);
+            return new MarkCommand(parseIndex(args));
         case "unmark":
-            if (args.isEmpty()) {
-                return Parsed.of(Action.UNMARK, raw).withError("Use: unmark <number>");
-            }
-            return Parsed.of(Action.UNMARK, raw).withIndex(args);
+            return new UnmarkCommand(parseIndex(args));
         case "delete":
-            if (args.isEmpty()) {
-                return Parsed.of(Action.DELETE, raw).withError("Use: delete <number>");
-            }
-            return Parsed.of(Action.DELETE, raw).withIndex(args);
+            return new DeleteCommand(parseIndex(args));
         case "on":
-            if (args.isEmpty()) {
-                return Parsed.of(Action.ON, raw).withError("Use: on <yyyy-MM-dd>");
-            }
-            return Parsed.of(Action.ON, raw).withDate(args.replace("/", "-"));
+            return new OnCommand(args);
+        case "help":
+            return new HelpCommand();
         default:
-            return Parsed.of(Action.UNKNOWN, raw);
+            throw new CathyException("Hmm… fascinating gibberish.\n" +
+                    "     Try again, or type \"help\" to see what I actually understand.");
         }
     }
 
+    /**
+     * Parses a string argument into a task index.
+     *
+     * @param args the raw string expected to contain a number
+     * @return the parsed integer index
+     * @throws CathyException if the argument is missing or not a valid integer
+     */
+    private static int parseIndex(String args) throws CathyException {
+        try {
+            return Integer.parseInt(args.trim());
+        } catch (Exception e) {
+            throw new CathyException("Sweetie, numbers only. This isn’t a spelling bee.\n" +
+                    "     Use format: [command] [number]");
+        }
+    }
 }
