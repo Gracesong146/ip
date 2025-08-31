@@ -1,0 +1,24 @@
+/**
+ * Command that lists all tasks in the current {@link TaskList}.
+ *
+ * <p><strong>Expected input</strong>:
+ * <pre>{@code
+ * list
+ * }</pre>
+ *
+ * <p>This command does not modify the task list and does not persist anything to {@link Storage}.
+ */
+public class ListCommand extends Command {
+
+    /**
+     * Displays the full task list via {@link Ui#showList(TaskList)}.
+     *
+     * @param tasks   the {@link TaskList} to display
+     * @param ui      the user interface used to render the list
+     * @param storage the storage handler (unused)
+     */
+    @Override
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
+        ui.showList(tasks);
+    }
+}

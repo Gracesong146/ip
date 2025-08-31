@@ -1,14 +1,12 @@
 todo visit museum
 todo
-todo
+
 todo read a book
-deadline
 deadline
 deadline complete cs2100 assignment 1
 deadline complete cs2100 assignment 1 /by
 deadline complete cs2100 assignment 1 /by Sunday
 deadline complete cs2100 assignment 1 /by 2025-09-10
-event
 event
 event project meeting /from
 event project meeting /from Mon 2pm /to
@@ -25,13 +23,15 @@ on 2025-09-10
 on 2025-12-25
 mark 2
 mark 2
+mark ew
+mark
 unmark 2
 unmark 2
 mark 9
 mark -1
 delete 9
-delete -1
-delete 1
+delete 9
+delete 9
 list
 quit
 help
