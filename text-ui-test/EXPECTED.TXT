@@ -39,6 +39,12 @@
 
     ____________________________________________________________
 
+     Hmm… fascinating gibberish.
+     Try again, or type "help" to see what I actually understand.
+    ____________________________________________________________
+
+    ____________________________________________________________
+
      Excuse you—trying to add a todo with no description?
      Use: todo <desc> and try not to waste my time.
     ____________________________________________________________

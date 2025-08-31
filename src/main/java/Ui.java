@@ -74,6 +74,18 @@ public class Ui {
         showLine();
     }
 
+    public void showList(TaskList tasks) {
+        if (tasks.size() == 0) {
+            print("Wow… nothing. Your life must be thrilling.");
+            showLine();
+            return;
+        }
+        print("Your tasks, in all their glory.");
+        print("Don’t pretend you didn’t forget some:");
+        for (int i = 0; i < tasks.size(); i++) {
+            print((i + 1) + ". " + tasks.get(i));
+        }
+    }
     /**
      * Reads the user's full command and returns it as-is.
      */

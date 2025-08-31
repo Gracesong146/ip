@@ -5,7 +5,7 @@
  * This exception customizes its error message depending on
  * the type of task (TODO, DEADLINE, or EVENT) that triggered it.
  */
-public class InvalidTaskTypeException extends Exception {
+public class InvalidTaskTypeException extends CathyException {
 
     private final TaskType type;
 
