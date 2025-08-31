@@ -1,3 +1,5 @@
+package cathy.task;
+
 /**
  * Represents a simple {@link Task} with only a description.
  *

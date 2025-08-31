@@ -1,9 +1,0 @@
-C:\Users\grace\ip\ip\src\main\java\Cathy.java
-C:\Users\grace\ip\ip\src\main\java\Deadline.java
-C:\Users\grace\ip\ip\src\main\java\Event.java
-C:\Users\grace\ip\ip\src\main\java\InvalidDateTimeException.java
-C:\Users\grace\ip\ip\src\main\java\InvalidTaskTypeException.java
-C:\Users\grace\ip\ip\src\main\java\Storage.java
-C:\Users\grace\ip\ip\src\main\java\Task.java
-C:\Users\grace\ip\ip\src\main\java\TaskType.java
-C:\Users\grace\ip\ip\src\main\java\ToDo.java

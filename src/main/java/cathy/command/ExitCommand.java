@@ -1,3 +1,9 @@
+package cathy.command;
+
+import cathy.Ui;
+import cathy.storage.Storage;
+import cathy.task.TaskList;
+
 /**
  * Command that exits the Cathy application.
  *

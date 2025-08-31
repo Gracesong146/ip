@@ -1,3 +1,13 @@
+package cathy.command;
+
+import cathy.Ui;
+import cathy.storage.Storage;
+import cathy.task.Deadline;
+import cathy.task.TaskList;
+import cathy.task.TaskType;
+import cathy.exception.CathyException;
+import cathy.exception.InvalidTaskTypeException;
+
 /**
  * Command that adds a {@link Deadline} task to the task list.
  *

@@ -1,3 +1,5 @@
+package cathy.exception;
+
 /**
  * Exception thrown when a provided date/time string cannot be parsed
  * into a valid {@link java.time.LocalDate} or {@link java.time.LocalDateTime}.

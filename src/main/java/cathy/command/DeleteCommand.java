@@ -1,3 +1,11 @@
+package cathy.command;
+
+import cathy.Ui;
+import cathy.task.Task;
+import cathy.storage.Storage;
+import cathy.task.TaskList;
+import cathy.exception.CathyException;
+
 /**
  * Command that deletes a {@link Task} from the task list by its 1-based index.
  *

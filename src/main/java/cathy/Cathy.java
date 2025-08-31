@@ -1,3 +1,15 @@
+package cathy;
+
+import cathy.command.Command;
+import cathy.exception.CathyException;
+import cathy.exception.InvalidDateTimeException;
+import cathy.exception.InvalidTaskTypeException;
+import cathy.storage.Storage;
+import cathy.task.Deadline;
+import cathy.task.Event;
+import cathy.task.TaskList;
+import cathy.task.ToDo;
+
 /**
  * The main class for the Cathy task assistant application.
  * <p>
@@ -25,9 +37,9 @@
  * This class also handles invalid input with custom messages via {@link InvalidTaskTypeException}.
  */
 public class Cathy {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
+    private final Ui ui;
 
     /**
      * Constructs a new {@code Cathy} instance with a given file path for persistent storage.

@@ -1,3 +1,6 @@
+package cathy.exception;
+
+import cathy.Ui;
 /**
  * Base exception for all Cathy-related errors.
  *

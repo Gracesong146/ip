@@ -1,3 +1,7 @@
+package cathy.exception;
+
+import cathy.task.TaskType;
+
 /**
  * Exception thrown when a task of a specific {@link TaskType}
  * is provided with an invalid or incomplete description.

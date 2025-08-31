@@ -1,3 +1,5 @@
+package cathy.task;
+
 /**
  * Represents the different types of tasks supported by the system.
  * <p>

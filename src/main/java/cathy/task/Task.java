@@ -1,3 +1,5 @@
+package cathy.task;
+
 /**
  * Represents a general task with a description and a completion status.
  * <p>

@@ -1,3 +1,13 @@
+package cathy.command;
+
+import cathy.Ui;
+import cathy.storage.Storage;
+import cathy.task.TaskList;
+import cathy.task.TaskType;
+import cathy.task.ToDo;
+import cathy.exception.CathyException;
+import cathy.exception.InvalidTaskTypeException;
+
 /**
  * Command that adds a {@link ToDo} task to the task list.
  *

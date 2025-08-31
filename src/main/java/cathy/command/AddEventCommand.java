@@ -1,3 +1,13 @@
+package cathy.command;
+
+import cathy.Ui;
+import cathy.storage.Storage;
+import cathy.task.Event;
+import cathy.task.TaskList;
+import cathy.task.TaskType;
+import cathy.exception.CathyException;
+import cathy.exception.InvalidTaskTypeException;
+
 /**
  * Command that adds an {@link Event} task to the task list.
  *

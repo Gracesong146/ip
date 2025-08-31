@@ -1,3 +1,10 @@
+package cathy.storage;
+
+import cathy.task.Task;
+import cathy.task.TaskList;
+import cathy.task.Event;
+import cathy.task.Deadline;
+import cathy.task.ToDo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
