@@ -25,20 +25,16 @@ public class InvalidTaskTypeException extends Exception {
         switch (type) {
         case TODO:
             return "Excuse you—trying to add a todo with no description?\n" +
-                    "     Use: todo <desc> and try not to waste my time.\n" +
-                    "    ____________________________________________________________\n";
+                    "     Use: todo <desc> and try not to waste my time.";
         case DEADLINE:
             return "Wow. That’s not even close to a proper deadline format.\n" +
-                    "     Use: deadline <desc> /by <date> and try not to waste my time.\n" +
-                    "    ____________________________________________________________\n";
+                    "     Use: deadline <desc> /by <date> and try not to waste my time.";
         case EVENT:
             return "'event'... and then silence. Inspiring.\n" +
-                    "     Try: event <desc> /from <start> /to <end> — give me *something* to work with.\n" +
-                    "    ____________________________________________________________\n";
+                    "     Try: event <desc> /from <start> /to <end> — give me *something* to work with.";
         default:
             return "Hmm… fascinating gibberish.\n" +
-                    "     Try again, or type \"help\" to see what I actually understand.\n" +
-                    "    ____________________________________________________________\n";
+                    "     Try again, or type \"help\" to see what I actually understand.";
         }
     }
 }

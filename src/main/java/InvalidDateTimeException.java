@@ -8,8 +8,7 @@ public class InvalidDateTimeException extends RuntimeException {
      * Constructs a new InvalidDateTimeException with the default message.
      */
     public InvalidDateTimeException() {
-        super("Use yyyy-MM-dd or yyyy-MM-dd HHmm.\n     It's not that hard." +
-                "    ____________________________________________________________\n");
+        super("Use yyyy-MM-dd or yyyy-MM-dd HHmm.\n     It's not that hard.");
     }
 
     /**

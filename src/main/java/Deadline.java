@@ -59,8 +59,7 @@ public class Deadline extends Task {
 
         if (!parsed) {
             throw new InvalidDateTimeException("Your date/time format is wrong.\n" +
-                    "     Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.\n" +
-                    "    ____________________________________________________________\n");
+                    "     Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.");
         }
     }
 

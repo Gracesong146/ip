@@ -45,23 +45,23 @@ public class Cathy {
         label:
         while (true) {
             String userInput = ui.readFullCommand();
-            String command = ui.readCommand(userInput);  // get just the first word
+            Parser.Parsed p = Parser.parse(userInput);
+            // String command = ui.readCommand(userInput);  // get just the first word
             ui.showLine();
 
-            switch (command) {
-            case "help":
+            switch (p.action) {
+            case HELP:
                 ui.showHelp();
-
                 break;
-            case "bye":
+            case BYE:
                 ui.print("Finally! I was getting bored...");
                 ui.showLine();
                 ui.close();
-                break label;
-            case "list":
+                return;
+            case LIST:
                 ui.showList(toDoList.getTasks());
                 break;
-            case "mark": {
+            case MARK: {
                 String[] parts = userInput.split(" ");
                 if (parts.length == 2) {
                     try {
@@ -79,21 +79,18 @@ public class Cathy {
                             storage.save(toDoList);
                         }
                     } catch (NumberFormatException e) {
-                        ui.print("Sweetie, numbers only. This isn’t a spelling bee");
-                        ui.showLine();
+                        ui.showError("Sweetie, numbers only. This isn’t a spelling bee");
                     } catch (IndexOutOfBoundsException e) {
                         ui.print("Trying to mark task " + Integer.parseInt(parts[1]) + " as done? Cute.");
-                        ui.print("You can't just mark imaginary tasks to feel accomplished.");
-                        ui.showLine();
+                        ui.showError("You can't just mark imaginary tasks to feel accomplished.");
                     }
                 } else {
                     ui.print("If you're going to mark something, at least give me something valid.");
-                    ui.print("Give it in the following form: mark [number]");
-                    ui.showLine();
+                    ui.showError("Give it in the following form: mark [number]");
                 }
                 break;
             }
-            case "unmark": {
+            case UNMARK: {
                 String[] parts = userInput.split(" ");
                 if (parts.length == 2) {
                     try {
@@ -101,8 +98,7 @@ public class Cathy {
                         Task newT = toDoList.get(taskNumber - 1);
                         if (newT.getStatusIcon().equals(" ")) {
                             ui.print("Task " + taskNumber + " is already unmarked.");
-                            ui.print("Stop trying to double negative your way through life.");
-                            ui.showLine();
+                            ui.showError("Stop trying to double negative your way through life.");
                         } else {
                             newT.markAsNotDone();
                             toDoList.set(taskNumber - 1, newT);
@@ -112,19 +108,16 @@ public class Cathy {
                             storage.save(toDoList);
                         }
                     } catch (NumberFormatException e) {
-                        ui.print("Sweetie, numbers only. This isn’t a spelling bee");
-                        ui.showLine();
+                        ui.showError("Sweetie, numbers only. This isn’t a spelling bee");
                     } catch (IndexOutOfBoundsException e) {
-                        ui.print("Ah, clever. But no, that task is imaginary.");
-                        ui.showLine();
+                        ui.showError("Ah, clever. But no, that task is imaginary.");
                     }
                 } else {
-                    ui.print("If you're going to unmark something, at least give me a valid number. I'm not psychic");
-                    ui.showLine();
+                    ui.showError("If you're going to unmark something, at least give me a valid number. I'm not psychic");
                 }
                 break;
             }
-            case "delete": {
+            case DELETE: {
                 String[] parts = userInput.split(" ");
                 if (parts.length == 2) {
                     try {
@@ -137,21 +130,19 @@ public class Cathy {
                         ui.print("You’ve got " + counter + " tasks now.");
                         ui.showLine();
                     } catch (NumberFormatException e) {
-                        ui.print("Sweetie, numbers only. This isn’t a spelling bee");
-                        ui.showLine();
+                        ui.showError("Sweetie, numbers only. This isn’t a spelling bee");
                     } catch (IndexOutOfBoundsException e) {
-                        ui.print("Nice try, but that task doesn't even exist.");
-                        ui.showLine();
+                        ui.showError("Nice try, but that task doesn't even exist.");
                         storage.save(toDoList);
                     }
                 } else {
                     ui.print("If you're going to delete something, at least give me something valid.");
-                    ui.print("Give it in the following form: delete [number]");
-                    ui.showLine();
+                    ui.showError("Give it in the following form: delete [number]");
                 }
                 break;
             }
-            case "todo":
+            case TODO:
+
                 try {
                     String description = userInput.length() > 4 ? userInput.substring(5).trim() : "";
                     if (description.isEmpty()) {
@@ -166,10 +157,10 @@ public class Cathy {
                     ui.showLine();
                     storage.save(toDoList);
                 } catch (InvalidTaskTypeException e) {
-                    ui.print(e.getMessage());
+                    ui.showError(e.getMessage());
                 }
                 break;
-            case "deadline":
+            case DEADLINE:
                 try {
                     // Remove the command word "deadline " first
                     String details = userInput.length() > 8 ? userInput.substring(9).trim() : "";
@@ -182,8 +173,7 @@ public class Cathy {
 
                     if (parts.length < 2) {
                         ui.print("Seriously? That deadline format is a mess.");
-                        ui.print("Try again like you actually read the instructions: deadline <desc> /by <date>");
-                        ui.showLine();
+                        ui.showError("Try again like you actually read the instructions: deadline <desc> /by <date>");
                     } else {
                         String description = parts[0]; // "return book"
                         String by = parts[1];          // "Sunday"
@@ -198,13 +188,13 @@ public class Cathy {
                         storage.save(toDoList);
                     }
                 } catch (InvalidTaskTypeException e) {
-                    ui.print(e.getMessage());
+                    ui.showError(e.getMessage());
                 } catch (InvalidDateTimeException e) {
-                    ui.print("Invalid date/time: " + e.getMessage());
+                    ui.showError("Invalid date/time: " + e.getMessage());
                 }
 
                 break;
-            case "event":
+            case EVENT:
                 try {
                     // Remove the command word "deadline " first
                     String details = userInput.length() > 5 ? userInput.substring(6).trim() : "";
@@ -219,15 +209,13 @@ public class Cathy {
                     // Make sure /from was provided
                     if (parts.length < 2) {
                         ui.print("Invalid event format. Did you even try?");
-                        ui.print("Use: event <desc> /from <start> /to <end> — it's not that hard.");
-                        ui.showLine();
+                        ui.showError("Use: event <desc> /from <start> /to <end> — it's not that hard.");
                     } else {
                         String duration = parts[1].trim();
                         String[] parts2 = duration.split(" /to "); // note space before /to
                         if (parts2.length < 2) {
                             ui.print("Missing '/to <end>' in your event. Planning half an event now?");
-                            ui.print("Use: event <desc> /from <start> /to <end> — complete it like a grown-up.");
-                            ui.showLine();
+                            ui.showError("Use: event <desc> /from <start> /to <end> — complete it like a grown-up.");
                         } else {
                             String from = parts2[0].trim(); // "Mon 2pm"
                             String to = parts2[1].trim();   // "4pm"
@@ -237,18 +225,17 @@ public class Cathy {
                             counter++;
                             ui.print("Fine, I've added to the list:");
                             ui.print("  " + t);
-                            ui.print("You’ve got " + counter + " tasks now. Try not to lose track this time.");
-                            ui.showLine();
+                            ui.showError("You’ve got " + counter + " tasks now. Try not to lose track this time.");
                             storage.save(toDoList);
                         }
                     }
                 } catch (InvalidTaskTypeException e) {
-                    ui.print(e.getMessage());
+                    ui.showError(e.getMessage());
                 } catch (InvalidDateTimeException e) {
-                    ui.print("Invalid date/time: " + e.getMessage());
+                    ui.showError("Invalid date/time: " + e.getMessage());
                 }
                 break;
-            case "on":
+            case ON:
                 try {
                     String dateStr = userInput.substring(3).trim().replace("/", "-");
                     LocalDate queryDate = LocalDate.parse(dateStr);
@@ -276,19 +263,17 @@ public class Cathy {
                     ui.showLine();
 
                 } catch (Exception e) {
-                    ui.print("That date makes no sense. Use yyyy-MM-dd. Try again.");
-                    ui.showLine();
+                    ui.showError("That date makes no sense. Use yyyy-MM-dd. Try again.");
                 }
                 break;
+            case UNKNOWN:
             default:
                 ui.print("Hmm… fascinating gibberish.");
-                ui.print("Try again, or type \"help\" to see what I actually understand.");
-                ui.showLine();
+                ui.showError("Try again, or type \"help\" to see what I actually understand.");
                 break;
             }
         }
 
-        ui.close();
     }
 
     /**

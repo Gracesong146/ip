@@ -66,8 +66,7 @@ public class Event extends Task {
 
         if (!parsed) {
             throw new InvalidDateTimeException("Your date/time format is wrong.\n" +
-                    "     Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.\n" +
-                    "    ____________________________________________________________\n");
+                    "     Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.");
         }
 
         // 🔹 Enforce that 'from' is not after 'to'
@@ -75,8 +74,7 @@ public class Event extends Task {
             throw new InvalidDateTimeException(
                     "Wow. You think time flows backwards? Cute.\n" +
                             "     The /from date has to come *before* the /to date.\n" +
-                            "     Try again when you figure out how calendars work.\n" +
-                            "    ____________________________________________________________\n"
+                            "     Try again when you figure out how calendars work."
             );
         }
 

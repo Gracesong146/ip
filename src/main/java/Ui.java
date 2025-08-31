@@ -96,6 +96,48 @@ public class Ui {
         System.out.println("     " + message);
     }
 
+    public void showError(String msg) {
+        System.out.println("     " + msg);
+        showLine();
+    }
+
+    public void showBye() {
+        print("Bye. Hope to see you again soon!");
+        showLine();
+    }
+
+    public void showAdd(Task t, int count) {
+        print("Fine, I've added to the list:");
+        print("  " + t);
+        print("You’ve got " + count + " tasks now. Try not to lose track this time.");
+        showLine();
+    }
+
+    public void showDelete(Task t, int count) {
+        print("Noted. I've removed this task:");
+        print("   " + t);
+        print("One less thing for you to forget.");
+        print("You’ve got " + count + " tasks now.");
+        showLine();
+    }
+
+    public void showMark(Task t) {
+        print("Marked as done. Go ahead, feel proud for once:");
+        print("   " + t);
+        showLine();
+    }
+
+    public void showUnmark(Task t) {
+        print("Fine, it lives to torment you another day:");
+        print("   " + t);
+        showLine();
+    }
+
+    public String readCommand() {
+        System.out.print("> ");
+        return in.nextLine();
+    }
+
     /* Close the Scanner */
     public void close() {
         in.close();
