@@ -8,6 +8,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
+/**
+ * Unit tests for Cathy.
+ * Verifies core operations such as adding, retrieving,
+ * checking size, and removing tasks.
+ */
 public class CathyTest {
 
     @Test

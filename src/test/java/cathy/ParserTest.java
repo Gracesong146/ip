@@ -11,6 +11,11 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Integration tests for the Parser class.
+ * Ensures that valid command strings are parsed and executed correctly,
+ * and that invalid or malformed commands throw the expected exceptions.
+ */
 class ParserTest {
 
     @TempDir Path tmp;

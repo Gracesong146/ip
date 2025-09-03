@@ -13,6 +13,15 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Unit tests for the {@link DeleteCommand} class.
+ * <p>
+ * Verifies that:
+ * <ul>
+ *   <li>Executing a valid delete command removes the correct task from the TaskList.</li>
+ *   <li>Executing with an out-of-range index throws a {@link CathyException}.</li>
+ * </ul>
+ */
 class DeleteCommandTest {
 
     @TempDir Path tmp;

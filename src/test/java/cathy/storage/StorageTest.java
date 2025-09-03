@@ -14,6 +14,9 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
+/**
+ * Tests for the Storage class, focusing on save and load.
+ */
 class StorageTest {
 
     @TempDir

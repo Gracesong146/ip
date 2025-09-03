@@ -12,6 +12,10 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
+/**
+ * Unit tests for the AddToDoCommand class.
+ * Verifies that executing the command adds a ToDo task.
+ */
 class AddToDoCommandTest {
 
     @TempDir Path tmp;
