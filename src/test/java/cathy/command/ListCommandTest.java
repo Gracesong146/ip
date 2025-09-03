@@ -11,6 +11,13 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Unit tests for the {@link ListCommand} class.
+ * <p>
+ * Verifies that executing the list command does not alter the
+ * contents of the {@link TaskList}, ensuring tasks remain intact
+ * and in the same order.
+ */
 class ListCommandTest {
 
     @TempDir Path tmp;

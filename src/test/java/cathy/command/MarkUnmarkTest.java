@@ -13,6 +13,16 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Unit tests for the {@link MarkCommand} and {@link UnmarkCommand} classes.
+ * <p>
+ * Verifies that:
+ * <ul>
+ *   <li>Marking a task updates its status icon to "X".</li>
+ *   <li>Unmarking a task resets its status icon to a blank space.</li>
+ *   <li>Executing mark on an out-of-range index throws a {@link CathyException}.</li>
+ * </ul>
+ */
 public class MarkUnmarkTest {
 
     @TempDir Path tmp;

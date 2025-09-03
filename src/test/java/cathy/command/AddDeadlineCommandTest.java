@@ -12,6 +12,11 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
+/**
+ * Unit tests for the AddDeadlineCommand class.
+ * Verifies that executing the command adds a Deadline task
+ * with the correct description and date/time to the TaskList.
+ */
 class AddDeadlineCommandTest {
 
     @TempDir Path tmp;
