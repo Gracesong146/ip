@@ -2,8 +2,8 @@ package cathy.command;
 
 import cathy.Ui;
 import cathy.storage.Storage;
-import cathy.task.TaskList;
 import cathy.task.Deadline;
+import cathy.task.TaskList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -19,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
  */
 class AddDeadlineCommandTest {
 
-    @TempDir Path tmp;
+    @TempDir
+    Path tmp;
 
     @Test
     void addDeadline() throws Exception {

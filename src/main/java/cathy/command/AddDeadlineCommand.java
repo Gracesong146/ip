@@ -1,12 +1,12 @@
 package cathy.command;
 
 import cathy.Ui;
+import cathy.exception.CathyException;
+import cathy.exception.InvalidTaskTypeException;
 import cathy.storage.Storage;
 import cathy.task.Deadline;
 import cathy.task.TaskList;
 import cathy.task.TaskType;
-import cathy.exception.CathyException;
-import cathy.exception.InvalidTaskTypeException;
 
 /**
  * Command that adds a {@link Deadline} task to the task list.
@@ -26,8 +26,8 @@ public class AddDeadlineCommand extends Command {
      *
      * @param description the task description (trimmed during execution).
      *                    If blank, execution throws an {@link InvalidTaskTypeException}.
-     * @param by the date/time string following {@code /by} (trimmed during execution).
-     *           If blank, execution throws a {@link CathyException}.
+     * @param by          the date/time string following {@code /by} (trimmed during execution).
+     *                    If blank, execution throws a {@link CathyException}.
      */
     public AddDeadlineCommand(String description, String by) {
         this.description = description;

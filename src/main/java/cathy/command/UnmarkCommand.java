@@ -1,10 +1,10 @@
 package cathy.command;
 
 import cathy.Ui;
+import cathy.exception.CathyException;
 import cathy.storage.Storage;
 import cathy.task.Task;
 import cathy.task.TaskList;
-import cathy.exception.CathyException;
 
 /**
  * Command that marks a {@link Task} as not done using a 1-based index.

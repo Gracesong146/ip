@@ -1,12 +1,12 @@
 package cathy.command;
 
 import cathy.Ui;
+import cathy.exception.CathyException;
+import cathy.exception.InvalidTaskTypeException;
 import cathy.storage.Storage;
 import cathy.task.Event;
 import cathy.task.TaskList;
 import cathy.task.TaskType;
-import cathy.exception.CathyException;
-import cathy.exception.InvalidTaskTypeException;
 
 /**
  * Command that adds an {@link Event} task to the task list.
@@ -26,10 +26,10 @@ public class AddEventCommand extends Command {
      *
      * @param description the event description (trimmed during execution);
      *                    if blank, execution throws an {@link InvalidTaskTypeException}.
-     * @param from the start date/time string (trimmed during execution);
-     *             if blank, execution throws a {@link CathyException}.
-     * @param to the end date/time string (trimmed during execution);
-     *           if blank, execution throws a {@link CathyException}.
+     * @param from        the start date/time string (trimmed during execution);
+     *                    if blank, execution throws a {@link CathyException}.
+     * @param to          the end date/time string (trimmed during execution);
+     *                    if blank, execution throws a {@link CathyException}.
      */
     public AddEventCommand(String description, String from, String to) {
         this.description = description;

@@ -2,6 +2,7 @@ package cathy;
 
 import cathy.task.Task;
 import cathy.task.TaskList;
+
 import java.util.Scanner;
 
 /**
@@ -34,28 +35,31 @@ public class Ui {
                 + "                           |___/";
         System.out.println(logo);
         showLine();
-        System.out.println("     Oh look, someone showed up.");
-        System.out.println("     I'm Cathy, your gloriously underappreciated task assistant.\n");
-        System.out.println("     Here's what I *might* help you with (if you're lucky):\n");
-        System.out.println("     - There are 3 types of tasks, and yes, you need to follow the format:");
-        System.out.println("         1. ToDos: simple tasks with no date/time. Example command: todo visit new theme park");
-        System.out.println("         2. Deadlines: tasks that must be done before a date/time. Example command: deadline submit report /by 11/10/2019 5pm");
-        System.out.println("         3. Events: tasks with a start and end time. Example command: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
-        System.out.println("            (Notice the /from and /to – don't forget them!)");
-        System.out.println("     - Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
-        System.out.println("     - Type 'list' to see your glorious pile of tasks.");
-        System.out.println("     - Type 'mark <number>' to mark a task as done. Try not to mess it up.");
-        System.out.println("     - Type 'unmark <number>' to undo a completed task.");
+        print("Oh look, someone showed up.");
+        print("I'm Cathy, your gloriously underappreciated task assistant.\n");
+        print("Here's what I *might* help you with (if you're lucky):\n");
+        print("- There are 3 types of tasks, and yes, you need to follow the format:");
+        print("    1. ToDos: simple tasks with no date/time. " +
+                "Example command: todo visit new theme park");
+        print("    2. Deadlines: tasks that must be done before a date/time. " +
+                "Example command: deadline submit report /by 11/10/2019 5pm");
+        print("    3. Events: tasks with a start and end time. " +
+                "Example command: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
+        print("       (Notice the /from and /to – don't forget them!)");
+        print("- Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
+        print("- Type 'list' to see your glorious pile of tasks.");
+        print("- Type 'mark <number>' to mark a task as done. Try not to mess it up.");
+        print("- Type 'unmark <number>' to undo a completed task.");
         print("- Type 'find <keyword>' to search for tasks by description.");
-        System.out.println("     - Type 'help' to see this list of commands. Even I can't help the clueless otherwise.");
-        System.out.println("     - Type 'bye' to leave me in peace.");
+        print("- Type 'help' to see this list of commands. Even I can't help the clueless otherwise.");
+        print("- Type 'bye' to leave me in peace.");
         showLine();
     }
 
     /**
      * Prints a divider line to separate command outputs.
      */
-    public void showLine()    {
+    public void showLine() {
         System.out.println("    ____________________________________________________________\n");
     }
 
@@ -64,22 +68,25 @@ public class Ui {
      * and their expected formats.
      */
     public void showHelp() {
-        System.out.println("     Ugh... you again? Fine, I'll repeat it. Pay attention this time.");
-        System.out.println("     I'm Cathy, your gloriously underappreciated task assistant.\n");
-        System.out.println("     Here's what I *might* help you with (if your brain can handle it):\n");
-        System.out.println("     - There are 3 types of tasks, so don't mess up the format:");
-        System.out.println("         1. ToDos: simple tasks with no date/time. Example: todo visit new theme park");
-        System.out.println("         2. Deadlines: must be done before a date/time. Example: deadline submit report /by 11/10/2019 5pm");
-        System.out.println("         3. Events: start and end times required. Example: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
-        System.out.println("            (Yes, /from and /to are mandatory. Try not to forget.)");
-        System.out.println("     - Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
-        System.out.println("     - Type 'list' to see your glorious pile of tasks (again).");
-        System.out.println("     - Type 'mark <number>' to mark a task as done. Don't screw it up.");
-        System.out.println("     - Type 'unmark <number>' to undo a completed task. Not that you'll remember.");
+        print("Ugh... you again? Fine, I'll repeat it. Pay attention this time.");
+        print("I'm Cathy, your gloriously underappreciated task assistant.\n");
+        print("Here's what I *might* help you with (if your brain can handle it):\n");
+        print("- There are 3 types of tasks, so don't mess up the format:");
+        print("    1. ToDos: simple tasks with no date/time. " +
+                "Example: todo visit new theme park");
+        print("    2. Deadlines: must be done before a date/time. " +
+                "Example: deadline submit report /by 11/10/2019 5pm");
+        print("    3. Events: start and end times required. " +
+                "Example: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
+        print("       (Yes, /from and /to are mandatory. Try not to forget.)");
+        print("- Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
+        print("- Type 'list' to see your glorious pile of tasks (again).");
+        print("- Type 'mark <number>' to mark a task as done. Don't screw it up.");
+        print("- Type 'unmark <number>' to undo a completed task. Not that you'll remember.");
         print("- Type 'find <keyword>' to search for tasks by description.");
-        System.out.println("     - Type 'help' to see this list again... seriously, pay attention.");
-        System.out.println("     - Type 'bye' to finally leave me alone.");
-        System.out.println("     And yes, I'll never repeat this again... so maybe try reading this carefully.");
+        print("- Type 'help' to see this list again... seriously, pay attention.");
+        print("- Type 'bye' to finally leave me alone.");
+        print("And yes, I'll never repeat this again... so maybe try reading this carefully.");
     }
 
     /**
