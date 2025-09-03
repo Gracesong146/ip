@@ -41,12 +41,12 @@ public class Ui {
         System.out.println("         1. ToDos: simple tasks with no date/time. Example command: todo visit new theme park");
         System.out.println("         2. Deadlines: tasks that must be done before a date/time. Example command: deadline submit report /by 11/10/2019 5pm");
         System.out.println("         3. Events: tasks with a start and end time. Example command: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
-        System.out.println("            (Notice the /from and /to – don’t forget them!)");
+        System.out.println("            (Notice the /from and /to – don't forget them!)");
         System.out.println("     - Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
         System.out.println("     - Type 'list' to see your glorious pile of tasks.");
         System.out.println("     - Type 'mark <number>' to mark a task as done. Try not to mess it up.");
         System.out.println("     - Type 'unmark <number>' to undo a completed task.");
-        System.out.println("     - Type 'help' to see this list of commands. Even I can’t help the clueless otherwise.");
+        System.out.println("     - Type 'help' to see this list of commands. Even I can't help the clueless otherwise.");
         System.out.println("     - Type 'bye' to leave me in peace.");
         showLine();
     }
@@ -63,21 +63,21 @@ public class Ui {
      * and their expected formats.
      */
     public void showHelp() {
-        System.out.println("     Ugh… you again? Fine, I’ll repeat it. Pay attention this time.");
+        System.out.println("     Ugh... you again? Fine, I'll repeat it. Pay attention this time.");
         System.out.println("     I'm Cathy, your gloriously underappreciated task assistant.\n");
-        System.out.println("     Here’s what I *might* help you with (if your brain can handle it):\n");
-        System.out.println("     - There are 3 types of tasks, so don’t mess up the format:");
+        System.out.println("     Here's what I *might* help you with (if your brain can handle it):\n");
+        System.out.println("     - There are 3 types of tasks, so don't mess up the format:");
         System.out.println("         1. ToDos: simple tasks with no date/time. Example: todo visit new theme park");
         System.out.println("         2. Deadlines: must be done before a date/time. Example: deadline submit report /by 11/10/2019 5pm");
         System.out.println("         3. Events: start and end times required. Example: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
         System.out.println("            (Yes, /from and /to are mandatory. Try not to forget.)");
         System.out.println("     - Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
         System.out.println("     - Type 'list' to see your glorious pile of tasks (again).");
-        System.out.println("     - Type 'mark <number>' to mark a task as done. Don’t screw it up.");
-        System.out.println("     - Type 'unmark <number>' to undo a completed task. Not that you’ll remember.");
-        System.out.println("     - Type 'help' to see this list again… seriously, pay attention.");
+        System.out.println("     - Type 'mark <number>' to mark a task as done. Don't screw it up.");
+        System.out.println("     - Type 'unmark <number>' to undo a completed task. Not that you'll remember.");
+        System.out.println("     - Type 'help' to see this list again... seriously, pay attention.");
         System.out.println("     - Type 'bye' to finally leave me alone.");
-        System.out.println("     And yes, I’ll never repeat this again… so maybe try reading this carefully.");
+        System.out.println("     And yes, I'll never repeat this again... so maybe try reading this carefully.");
     }
 
     /**
@@ -87,18 +87,18 @@ public class Ui {
      */
     public void showList(TaskList tasks) {
         if (tasks.size() == 0) {
-            print("Wow… nothing. Your life must be thrilling.");
+            print("Wow... nothing. Your life must be thrilling.");
             return;
         }
         print("Your tasks, in all their glory.");
-        print("Don’t pretend you didn’t forget some:");
+        print("Don't pretend you didn't forget some:");
         for (int i = 0; i < tasks.size(); i++) {
             print((i + 1) + ". " + tasks.get(i));
         }
     }
 
     /**
-     * Prints a message with the app’s left margin formatting.
+     * Prints a message with the app's left margin formatting.
      *
      * @param message the message to print
      */
@@ -107,7 +107,7 @@ public class Ui {
     }
 
     /**
-     * Displays an error message in the app’s standard format.
+     * Displays an error message in the app's standard format.
      *
      * @param msg the error message
      */
@@ -131,7 +131,7 @@ public class Ui {
     public void showAdd(Task t, int count) {
         print("Fine, I've added to the list:");
         print("  " + t);
-        print("You’ve got " + count + " tasks now. Try not to lose track this time.");
+        print("You've got " + count + " tasks now. Try not to lose track this time.");
     }
 
     /**
@@ -144,7 +144,7 @@ public class Ui {
         print("Noted. I've removed this task:");
         print("   " + t);
         print("One less thing for you to forget.");
-        print("You’ve got " + count + " tasks now.");
+        print("You've got " + count + " tasks now.");
     }
 
     /**

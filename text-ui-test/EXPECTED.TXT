@@ -16,12 +16,12 @@
          1. ToDos: simple tasks with no date/time. Example command: todo visit new theme park
          2. Deadlines: tasks that must be done before a date/time. Example command: deadline submit report /by 11/10/2019 5pm
          3. Events: tasks with a start and end time. Example command: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm
-            (Notice the /from and /to – don’t forget them!)
+            (Notice the /from and /to – don't forget them!)
      - Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.
      - Type 'list' to see your glorious pile of tasks.
      - Type 'mark <number>' to mark a task as done. Try not to mess it up.
      - Type 'unmark <number>' to undo a completed task.
-     - Type 'help' to see this list of commands. Even I can’t help the clueless otherwise.
+     - Type 'help' to see this list of commands. Even I can't help the clueless otherwise.
      - Type 'bye' to leave me in peace.
     ____________________________________________________________
 
@@ -29,7 +29,7 @@
 
      Fine, I've added to the list:
        [T][ ] visit museum
-     You’ve got 1 tasks now. Try not to lose track this time.
+     You've got 1 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
 >     ____________________________________________________________
@@ -40,14 +40,14 @@
 
 >     ____________________________________________________________
 
-     My brain can’t read your mind. Type something.
+     My brain can't read your mind. Type something.
     ____________________________________________________________
 
 >     ____________________________________________________________
 
      Fine, I've added to the list:
        [T][ ] read a book
-     You’ve got 2 tasks now. Try not to lose track this time.
+     You've got 2 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
 >     ____________________________________________________________
@@ -78,7 +78,7 @@
 
      Fine, I've added to the list:
        [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
-     You’ve got 3 tasks now. Try not to lose track this time.
+     You've got 3 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
 >     ____________________________________________________________
@@ -116,20 +116,20 @@
 
      Fine, I've added to the list:
        [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
-     You’ve got 4 tasks now. Try not to lose track this time.
+     You've got 4 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
 >     ____________________________________________________________
 
      Fine, I've added to the list:
        [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
-     You’ve got 5 tasks now. Try not to lose track this time.
+     You've got 5 tasks now. Try not to lose track this time.
     ____________________________________________________________
 
 >     ____________________________________________________________
 
      Your tasks, in all their glory.
-     Don’t pretend you didn’t forget some:
+     Don't pretend you didn't forget some:
      1. [T][ ] visit museum
      2. [T][ ] read a book
      3. [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
@@ -182,18 +182,18 @@
 
 >     ____________________________________________________________
 
-     Darling, that task’s already done. No need to be an overachiever.
+     Darling, that task's already done. No need to be an overachiever.
     ____________________________________________________________
 
 >     ____________________________________________________________
 
-     Sweetie, numbers only. This isn’t a spelling bee.
+     Sweetie, numbers only. This isn't a spelling bee.
      Use format: [command] [number]
     ____________________________________________________________
 
 >     ____________________________________________________________
 
-     Sweetie, numbers only. This isn’t a spelling bee.
+     Sweetie, numbers only. This isn't a spelling bee.
      Use format: [command] [number]
     ____________________________________________________________
 
@@ -239,7 +239,7 @@
 >     ____________________________________________________________
 
      Your tasks, in all their glory.
-     Don’t pretend you didn’t forget some:
+     Don't pretend you didn't forget some:
      1. [T][ ] visit museum
      2. [T][ ] read a book
      3. [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
@@ -249,29 +249,29 @@
 
 >     ____________________________________________________________
 
-     Hmm… fascinating gibberish.
+     Hmm... fascinating gibberish.
      Try again, or type "help" to see what I actually understand.
     ____________________________________________________________
 
 >     ____________________________________________________________
 
-     Ugh… you again? Fine, I’ll repeat it. Pay attention this time.
+     Ugh... you again? Fine, I'll repeat it. Pay attention this time.
      I'm Cathy, your gloriously underappreciated task assistant.
 
-     Here’s what I *might* help you with (if your brain can handle it):
+     Here's what I *might* help you with (if your brain can handle it):
 
-     - There are 3 types of tasks, so don’t mess up the format:
+     - There are 3 types of tasks, so don't mess up the format:
          1. ToDos: simple tasks with no date/time. Example: todo visit new theme park
          2. Deadlines: must be done before a date/time. Example: deadline submit report /by 11/10/2019 5pm
          3. Events: start and end times required. Example: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm
             (Yes, /from and /to are mandatory. Try not to forget.)
      - Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.
      - Type 'list' to see your glorious pile of tasks (again).
-     - Type 'mark <number>' to mark a task as done. Don’t screw it up.
-     - Type 'unmark <number>' to undo a completed task. Not that you’ll remember.
-     - Type 'help' to see this list again… seriously, pay attention.
+     - Type 'mark <number>' to mark a task as done. Don't screw it up.
+     - Type 'unmark <number>' to undo a completed task. Not that you'll remember.
+     - Type 'help' to see this list again... seriously, pay attention.
      - Type 'bye' to finally leave me alone.
-     And yes, I’ll never repeat this again… so maybe try reading this carefully.
+     And yes, I'll never repeat this again... so maybe try reading this carefully.
     ____________________________________________________________
 
 >     ____________________________________________________________

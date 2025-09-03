@@ -43,7 +43,7 @@ public class MarkCommand extends Command {
         }
         Task t = tasks.get(index - 1);
         if (t.getStatusIcon().equals("X")) {
-            throw new CathyException("Darling, that task’s already done. No need to be an overachiever.");
+            throw new CathyException("Darling, that task's already done. No need to be an overachiever.");
         }
         t.markAsDone();
         storage.save(tasks);

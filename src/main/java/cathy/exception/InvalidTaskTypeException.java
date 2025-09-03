@@ -43,7 +43,7 @@ public class InvalidTaskTypeException extends CathyException {
             return "Excuse you—trying to add a todo with no description?\n" +
                     "     Use: todo <desc> and try not to waste my time.";
         case DEADLINE:
-            return "Wow. That’s not even close to a proper deadline format.\n" +
+            return "Wow. That's not even close to a proper deadline format.\n" +
                     "     Use: deadline <desc> /by <date> and try not to waste my time.";
         case EVENT:
             return "'event'... and then silence. Inspiring.\n" +

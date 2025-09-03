@@ -22,16 +22,16 @@ public class Parser {
      * Parses a raw user input string and returns the corresponding {@link Command}.
      *
      * @param input the raw input string typed by the user
-     * @return a {@link Command} representing the user’s intent
+     * @return a {@link Command} representing the user's intent
      * @throws CathyException if the input is null, empty, malformed, or unrecognized
      */
     public static Command parse(String input) throws CathyException {
         if (input == null) {
-            throw new CathyException("My brain can’t read your mind. Type something.");
+            throw new CathyException("My brain can't read your mind. Type something.");
         }
         String trimmed = input.trim();
         if (trimmed.isEmpty()) {
-            throw new CathyException("My brain can’t read your mind. Type something.");
+            throw new CathyException("My brain can't read your mind. Type something.");
         }
 
         // Split into command word and arguments
@@ -81,7 +81,7 @@ public class Parser {
         case "help":
             return new HelpCommand();
         default:
-            throw new CathyException("Hmm… fascinating gibberish.\n" +
+            throw new CathyException("Hmm... fascinating gibberish.\n" +
                     "     Try again, or type \"help\" to see what I actually understand.");
         }
     }
@@ -97,7 +97,7 @@ public class Parser {
         try {
             return Integer.parseInt(args.trim());
         } catch (Exception e) {
-            throw new CathyException("Sweetie, numbers only. This isn’t a spelling bee.\n" +
+            throw new CathyException("Sweetie, numbers only. This isn't a spelling bee.\n" +
                     "     Use format: [command] [number]");
         }
     }
