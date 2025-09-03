@@ -1,8 +1,8 @@
 package cathy;
 
+import cathy.task.Task;
 import cathy.task.TaskList;
 import cathy.task.ToDo;
-import cathy.task.Task;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

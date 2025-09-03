@@ -19,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
  */
 class AddEventCommandTest {
 
-    @TempDir Path tmp;
+    @TempDir
+    Path tmp;
 
     @Test
     void addEvent() throws Exception {

@@ -9,7 +9,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Integration tests for the Parser class.
@@ -18,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class ParserTest {
 
-    @TempDir Path tmp;
+    @TempDir
+    Path tmp;
 
     @Test
     void todoMarkDelete() throws Exception {

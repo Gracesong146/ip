@@ -24,7 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 class DeleteCommandTest {
 
-    @TempDir Path tmp;
+    @TempDir
+    Path tmp;
 
     @Test
     void deleteRemovesItem() throws Exception {

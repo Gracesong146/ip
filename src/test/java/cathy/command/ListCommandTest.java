@@ -20,7 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class ListCommandTest {
 
-    @TempDir Path tmp;
+    @TempDir
+    Path tmp;
 
     @Test
     void executeDoesNotMutateList() throws Exception {

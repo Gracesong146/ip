@@ -1,10 +1,10 @@
 package cathy.command;
 
 import cathy.Ui;
-import cathy.storage.Storage;
-import cathy.task.ToDo;
-import cathy.task.TaskList;
 import cathy.exception.CathyException;
+import cathy.storage.Storage;
+import cathy.task.TaskList;
+import cathy.task.ToDo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -25,7 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 public class MarkUnmarkTest {
 
-    @TempDir Path tmp;
+    @TempDir
+    Path tmp;
 
     @Test
     void markUnmarkToggleStatus() throws Exception {

@@ -18,7 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
  */
 class AddToDoCommandTest {
 
-    @TempDir Path tmp;
+    @TempDir
+    Path tmp;
 
     @Test
     void addTodo() throws Exception {
