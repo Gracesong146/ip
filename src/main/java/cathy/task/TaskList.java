@@ -24,6 +24,14 @@ public class TaskList {
     }
 
     /**
+     * Returns whether the task list is empty.
+     * @return boolean True if task list is empty, else False.
+     */
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    /**
      * Returns the number of tasks in this list.
      *
      * @return the current size of the list

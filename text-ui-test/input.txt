@@ -32,6 +32,11 @@ mark -1
 delete 9
 delete 9
 delete 9
+find
+find hello world
+find cs2100
+find read a book
+find a
 list
 quit
 help

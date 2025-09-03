@@ -46,6 +46,7 @@ public class Ui {
         System.out.println("     - Type 'list' to see your glorious pile of tasks.");
         System.out.println("     - Type 'mark <number>' to mark a task as done. Try not to mess it up.");
         System.out.println("     - Type 'unmark <number>' to undo a completed task.");
+        print("- Type 'find <keyword>' to search for tasks by description.");
         System.out.println("     - Type 'help' to see this list of commands. Even I can't help the clueless otherwise.");
         System.out.println("     - Type 'bye' to leave me in peace.");
         showLine();
@@ -75,6 +76,7 @@ public class Ui {
         System.out.println("     - Type 'list' to see your glorious pile of tasks (again).");
         System.out.println("     - Type 'mark <number>' to mark a task as done. Don't screw it up.");
         System.out.println("     - Type 'unmark <number>' to undo a completed task. Not that you'll remember.");
+        print("- Type 'find <keyword>' to search for tasks by description.");
         System.out.println("     - Type 'help' to see this list again... seriously, pay attention.");
         System.out.println("     - Type 'bye' to finally leave me alone.");
         System.out.println("     And yes, I'll never repeat this again... so maybe try reading this carefully.");
@@ -86,7 +88,7 @@ public class Ui {
      * @param tasks the task list to display
      */
     public void showList(TaskList tasks) {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             print("Wow... nothing. Your life must be thrilling.");
             return;
         }
@@ -165,6 +167,22 @@ public class Ui {
     public void showUnmark(Task t) {
         print("Fine, it lives to torment you another day:");
         print("   " + t);
+    }
+
+    /**
+     * Displays the results of a 'find' command.
+     *
+     * @param matches list of tasks that match the search keyword
+     */
+    public void showFindResults(TaskList matches) {
+        if (matches.isEmpty()) {
+            print("No matching tasks. Guess your memory is as bad as your typing.");
+        } else {
+            print("Here’s what I painfully dug up for you:");
+            for (int i = 0; i < matches.size(); i++) {
+                print((i + 1) + ". " + matches.get(i));
+            }
+        }
     }
 
     /**

@@ -78,6 +78,12 @@ public class Parser {
             return new DeleteCommand(parseIndex(args));
         case "on":
             return new OnCommand(args);
+        case "find":
+            if (parts.length < 2 || parts[1].trim().isEmpty()) {
+                throw new CathyException("Pro tip: 'find' only works if you give me something to find.");
+            }
+            String keyword = parts[1].trim();
+            return new cathy.command.FindCommand(keyword);
         case "help":
             return new HelpCommand();
         default:

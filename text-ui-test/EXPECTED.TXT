@@ -21,6 +21,7 @@
      - Type 'list' to see your glorious pile of tasks.
      - Type 'mark <number>' to mark a task as done. Try not to mess it up.
      - Type 'unmark <number>' to undo a completed task.
+     - Type 'find <keyword>' to search for tasks by description.
      - Type 'help' to see this list of commands. Even I can't help the clueless otherwise.
      - Type 'bye' to leave me in peace.
     ____________________________________________________________
@@ -238,6 +239,37 @@
 
 >     ____________________________________________________________
 
+     Pro tip: 'find' only works if you give me something to find.
+    ____________________________________________________________
+
+>     ____________________________________________________________
+
+     No matching tasks. Guess your memory is as bad as your typing.
+    ____________________________________________________________
+
+>     ____________________________________________________________
+
+     Here’s what I painfully dug up for you:
+     1. [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
+    ____________________________________________________________
+
+>     ____________________________________________________________
+
+     Here’s what I painfully dug up for you:
+     1. [T][ ] read a book
+    ____________________________________________________________
+
+>     ____________________________________________________________
+
+     Here’s what I painfully dug up for you:
+     1. [T][ ] read a book
+     2. [D][ ] complete cs2100 assignment 1 (by: Sep 10 2025, 12:00AM)
+     3. [E][ ] hackathon (from: Sep 01 2025, 12:00AM to: Sep 03 2025, 12:00AM)
+     4. [E][ ] retreat (from: Sep 05 2025, 12:00AM to: Sep 10 2025, 12:00AM)
+    ____________________________________________________________
+
+>     ____________________________________________________________
+
      Your tasks, in all their glory.
      Don't pretend you didn't forget some:
      1. [T][ ] visit museum
@@ -269,6 +301,7 @@
      - Type 'list' to see your glorious pile of tasks (again).
      - Type 'mark <number>' to mark a task as done. Don't screw it up.
      - Type 'unmark <number>' to undo a completed task. Not that you'll remember.
+     - Type 'find <keyword>' to search for tasks by description.
      - Type 'help' to see this list again... seriously, pay attention.
      - Type 'bye' to finally leave me alone.
      And yes, I'll never repeat this again... so maybe try reading this carefully.
