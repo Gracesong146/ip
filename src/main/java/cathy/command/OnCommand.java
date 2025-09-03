@@ -1,12 +1,13 @@
 package cathy.command;
 
 import cathy.Ui;
+import cathy.exception.CathyException;
 import cathy.storage.Storage;
 import cathy.task.Deadline;
 import cathy.task.Event;
 import cathy.task.Task;
 import cathy.task.TaskList;
-import cathy.exception.CathyException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -78,6 +79,6 @@ public class OnCommand extends Command {
         LocalDate start = e.getFrom().toLocalDate();
         LocalDate end = e.getTo().toLocalDate();
         return (date.isEqual(start) || date.isAfter(start))
-                && (date.isEqual(end)   || date.isBefore(end));
+                && (date.isEqual(end) || date.isBefore(end));
     }
 }

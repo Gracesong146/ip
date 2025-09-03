@@ -1,12 +1,12 @@
 package cathy.command;
 
 import cathy.Ui;
+import cathy.exception.CathyException;
+import cathy.exception.InvalidTaskTypeException;
 import cathy.storage.Storage;
 import cathy.task.TaskList;
 import cathy.task.TaskType;
 import cathy.task.ToDo;
-import cathy.exception.CathyException;
-import cathy.exception.InvalidTaskTypeException;
 
 /**
  * Command that adds a {@link ToDo} task to the task list.
@@ -29,6 +29,7 @@ public class AddToDoCommand extends Command {
     public AddToDoCommand(String description) {
         this.description = description;
     }
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
         if (description == null || description.trim().isEmpty()) {

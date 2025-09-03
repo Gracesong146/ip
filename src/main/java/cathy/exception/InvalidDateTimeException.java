@@ -23,7 +23,7 @@ public class InvalidDateTimeException extends RuntimeException {
      * explaining the correct formats.
      */
     public InvalidDateTimeException() {
-        super("Invalid date/time format.\n"+
+        super("Invalid date/time format.\n" +
                 "     Use yyyy-MM-dd or yyyy-MM-dd HHmm. It's not that hard.");
     }
 

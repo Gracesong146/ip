@@ -1,9 +1,9 @@
 package cathy.command;
 
 import cathy.Ui;
+import cathy.exception.CathyException;
 import cathy.storage.Storage;
 import cathy.task.TaskList;
-import cathy.exception.CathyException;
 
 /**
  * Represents a user command in the Cathy task assistant application.
@@ -35,7 +35,7 @@ public abstract class Command {
      * {@code ExitCommand}) override this to return {@code true}.
      *
      * @return {@code true} if the application should exit after executing this command;
-     *         {@code false} otherwise
+     * {@code false} otherwise
      */
     public boolean isExit() {
         return false;

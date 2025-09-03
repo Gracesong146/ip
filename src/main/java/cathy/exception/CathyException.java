@@ -1,12 +1,13 @@
 package cathy.exception;
 
 import cathy.Ui;
+
 /**
  * Base exception for all Cathy-related errors.
  *
- * <p>Use this checked exception for predictable, recoverable conditions such as invalid user input, parse failures,
- * and storage I/O issues. The main loop should catch {@code CathyException} and
- * display a friendly message via {@link Ui}.
+ * <p>Use this checked exception for predictable, recoverable conditions such as invalid user input,
+ * parse failures, and storage I/O issues. The main loop should catch {@code CathyException}
+ * and display a friendly message via {@link Ui}.
  */
 public class CathyException extends Exception {
 

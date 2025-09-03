@@ -1,8 +1,18 @@
 package cathy;
 
-import java.util.regex.*;
-import cathy.command.*;
+import cathy.command.AddDeadlineCommand;
+import cathy.command.AddEventCommand;
+import cathy.command.AddToDoCommand;
+import cathy.command.Command;
+import cathy.command.DeleteCommand;
+import cathy.command.ExitCommand;
+import cathy.command.HelpCommand;
+import cathy.command.ListCommand;
+import cathy.command.MarkCommand;
+import cathy.command.OnCommand;
+import cathy.command.UnmarkCommand;
 import cathy.exception.CathyException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +22,8 @@ import java.util.regex.Pattern;
  * <p>The {@code Parser} is responsible for:
  * <ul>
  *   <li>Splitting the input string into a command word and arguments</li>
- *   <li>Constructing the correct {@link Command} subclass (e.g., {@link AddToDoCommand}, {@link DeleteCommand})</li>
+ *   <li>Constructing the correct {@link Command} subclass
+ *   (e.g., {@link AddToDoCommand}, {@link DeleteCommand})</li>
  *   <li>Throwing {@link CathyException} for invalid or unrecognized input</li>
  * </ul>
  */
@@ -54,7 +65,8 @@ public class Parser {
             String[] segs = args.split("\s+/by\s+", 2);
             if (segs.length < 2) {
                 throw new CathyException("Seriously? That deadline format is a mess.\n" +
-                        "     Try again like you actually read the instructions: deadline <desc> /by <date>");
+                        "     Try again like you actually read the instructions: " +
+                        "deadline <desc> /by <date>");
             }
             return new AddDeadlineCommand(segs[0], segs[1]);
         }
