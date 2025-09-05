@@ -1,17 +1,18 @@
 package cathy.command;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.nio.file.Path;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 import cathy.Ui;
 import cathy.exception.CathyException;
 import cathy.storage.Storage;
 import cathy.task.TaskList;
 import cathy.task.ToDo;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit tests for the {@link DeleteCommand} class.

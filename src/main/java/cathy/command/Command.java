@@ -35,7 +35,7 @@ public abstract class Command {
      * {@code ExitCommand}) override this to return {@code true}.
      *
      * @return {@code true} if the application should exit after executing this command;
-     * {@code false} otherwise
+     *     {@code false} otherwise
      */
     public boolean isExit() {
         return false;

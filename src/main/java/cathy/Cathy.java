@@ -29,7 +29,8 @@ import cathy.task.ToDo;
  *   <li>mark &lt;number&gt; – mark a task as done</li>
  *   <li>unmark &lt;number&gt; – mark a task as not done</li>
  *   <li>delete &lt;number&gt; – remove a task</li>
- *   <li><code>on &lt;date&gt;</code> – display all {@link Deadline} and {@link Event} tasks happening on a given date</li>
+ *   <li><code>on &lt;date&gt;</code>
+ *   – display all {@link Deadline} and {@link Event} tasks happening on a given date</li>
  *   <li>help – display instructions</li>
  *   <li>bye – exit the program</li>
  * </ul>

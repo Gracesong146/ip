@@ -1,9 +1,9 @@
 package cathy;
 
+import java.util.Scanner;
+
 import cathy.task.Task;
 import cathy.task.TaskList;
-
-import java.util.Scanner;
 
 /**
  * Handles all user-facing input and output (I/O).
@@ -39,12 +39,12 @@ public class Ui {
         print("I'm Cathy, your gloriously underappreciated task assistant.\n");
         print("Here's what I *might* help you with (if you're lucky):\n");
         print("- There are 3 types of tasks, and yes, you need to follow the format:");
-        print("    1. ToDos: simple tasks with no date/time. " +
-                "Example command: todo visit new theme park");
-        print("    2. Deadlines: tasks that must be done before a date/time. " +
-                "Example command: deadline submit report /by 11/10/2019 5pm");
-        print("    3. Events: tasks with a start and end time. " +
-                "Example command: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
+        print("    1. ToDos: simple tasks with no date/time. "
+                + "Example command: todo visit new theme park");
+        print("    2. Deadlines: tasks that must be done before a date/time. "
+                + "Example command: deadline submit report /by 11/10/2019 5pm");
+        print("    3. Events: tasks with a start and end time. "
+                + "Example command: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
         print("       (Notice the /from and /to – don't forget them!)");
         print("- Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
         print("- Type 'list' to see your glorious pile of tasks.");
@@ -72,12 +72,12 @@ public class Ui {
         print("I'm Cathy, your gloriously underappreciated task assistant.\n");
         print("Here's what I *might* help you with (if your brain can handle it):\n");
         print("- There are 3 types of tasks, so don't mess up the format:");
-        print("    1. ToDos: simple tasks with no date/time. " +
-                "Example: todo visit new theme park");
-        print("    2. Deadlines: must be done before a date/time. " +
-                "Example: deadline submit report /by 11/10/2019 5pm");
-        print("    3. Events: start and end times required. " +
-                "Example: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
+        print("    1. ToDos: simple tasks with no date/time. "
+                + "Example: todo visit new theme park");
+        print("    2. Deadlines: must be done before a date/time. "
+                + "Example: deadline submit report /by 11/10/2019 5pm");
+        print("    3. Events: start and end times required. "
+                + "Example: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
         print("       (Yes, /from and /to are mandatory. Try not to forget.)");
         print("- Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
         print("- Type 'list' to see your glorious pile of tasks (again).");
@@ -185,7 +185,7 @@ public class Ui {
         if (matches.isEmpty()) {
             print("No matching tasks. Guess your memory is as bad as your typing.");
         } else {
-            print("Here’s what I painfully dug up for you:");
+            print("Here's what I painfully dug up for you:");
             for (int i = 0; i < matches.size(); i++) {
                 print((i + 1) + ". " + matches.get(i));
             }

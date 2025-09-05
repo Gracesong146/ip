@@ -1,5 +1,8 @@
 package cathy;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cathy.command.AddDeadlineCommand;
 import cathy.command.AddEventCommand;
 import cathy.command.AddToDoCommand;
@@ -12,9 +15,6 @@ import cathy.command.MarkCommand;
 import cathy.command.OnCommand;
 import cathy.command.UnmarkCommand;
 import cathy.exception.CathyException;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Parses raw user input into {@link Command} objects for execution.
@@ -64,9 +64,9 @@ public class Parser {
             // Split by "/by"
             String[] segs = args.split("\s+/by\s+", 2);
             if (segs.length < 2) {
-                throw new CathyException("Seriously? That deadline format is a mess.\n" +
-                        "     Try again like you actually read the instructions: " +
-                        "deadline <desc> /by <date>");
+                throw new CathyException("Seriously? That deadline format is a mess.\n"
+                        + "     Try again like you actually read the instructions: "
+                        + "deadline <desc> /by <date>");
             }
             return new AddDeadlineCommand(segs[0], segs[1]);
         }
@@ -76,8 +76,8 @@ public class Parser {
             Pattern p = Pattern.compile("^(.*?)\s+/from\s+(.*?)\s+/to\s+(.*)$");
             Matcher m = p.matcher(args);
             if (!m.matches()) {
-                throw new CathyException("Invalid event format. Did you even try?\n" +
-                        "     Use: event <desc> /from <start> /to <end> — it's not that hard.");
+                throw new CathyException("Invalid event format. Did you even try?\n"
+                        + "     Use: event <desc> /from <start> /to <end> — it's not that hard.");
             }
             return new AddEventCommand(m.group(1), m.group(2), m.group(3));
         }
@@ -99,8 +99,8 @@ public class Parser {
         case "help":
             return new HelpCommand();
         default:
-            throw new CathyException("Hmm... fascinating gibberish.\n" +
-                    "     Try again, or type \"help\" to see what I actually understand.");
+            throw new CathyException("Hmm... fascinating gibberish.\n"
+                    + "     Try again, or type \"help\" to see what I actually understand.");
         }
     }
 
@@ -115,8 +115,8 @@ public class Parser {
         try {
             return Integer.parseInt(args.trim());
         } catch (Exception e) {
-            throw new CathyException("Sweetie, numbers only. This isn't a spelling bee.\n" +
-                    "     Use format: [command] [number]");
+            throw new CathyException("Sweetie, numbers only. This isn't a spelling bee.\n"
+                    + "     Use format: [command] [number]");
         }
     }
 }

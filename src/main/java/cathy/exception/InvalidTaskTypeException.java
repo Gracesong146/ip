@@ -40,17 +40,17 @@ public class InvalidTaskTypeException extends CathyException {
     public String getMessage() {
         switch (type) {
         case TODO:
-            return "Excuse you—trying to add a todo with no description?\n" +
-                    "     Use: todo <desc> and try not to waste my time.";
+            return "Excuse you—trying to add a todo with no description?\n"
+                    + "     Use: todo <desc> and try not to waste my time.";
         case DEADLINE:
-            return "Wow. That's not even close to a proper deadline format.\n" +
-                    "     Use: deadline <desc> /by <date> and try not to waste my time.";
+            return "Wow. That's not even close to a proper deadline format.\n"
+                    + "     Use: deadline <desc> /by <date> and try not to waste my time.";
         case EVENT:
-            return "'event'... and then silence. Inspiring.\n" +
-                    "     Try: event <desc> /from <start> /to <end> — give me *something* to work with.";
+            return "'event'... and then silence. Inspiring.\n"
+                    + "     Try: event <desc> /from <start> /to <end> — give me *something* to work with.";
         default:
-            return "Hmm… fascinating gibberish.\n" +
-                    "     Try again, or type \"help\" to see what I actually understand.";
+            return "Hmm… fascinating gibberish.\n"
+                    + "     Try again, or type \"help\" to see what I actually understand.";
         }
     }
 }

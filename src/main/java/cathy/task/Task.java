@@ -62,7 +62,7 @@ public class Task {
      * including its status icon and description.
      *
      * @return A formatted string in the form:
-     * {@code [status] description}.
+     *     {@code [status] description}.
      */
     @Override
     public String toString() {

@@ -1,12 +1,13 @@
 package cathy;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
+import org.junit.jupiter.api.Test;
+
 import cathy.task.Task;
 import cathy.task.TaskList;
 import cathy.task.ToDo;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * Unit tests for Cathy.

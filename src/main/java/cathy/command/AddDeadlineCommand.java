@@ -40,8 +40,8 @@ public class AddDeadlineCommand extends Command {
             throw new InvalidTaskTypeException(TaskType.DEADLINE);
         }
         if (by == null || by.trim().isEmpty()) {
-            throw new CathyException("Seriously? That deadline format is a mess.\n" +
-                    "     Try again like you actually read the instructions: deadline <desc> /by <date>");
+            throw new CathyException("Seriously? That deadline format is a mess.\n"
+                    + "     Try again like you actually read the instructions: deadline <desc> /by <date>");
         }
         Deadline d = new Deadline(description.trim(), by.trim());
         tasks.add(d);

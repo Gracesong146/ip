@@ -1,11 +1,5 @@
 package cathy.storage;
 
-import cathy.task.Deadline;
-import cathy.task.Event;
-import cathy.task.Task;
-import cathy.task.TaskList;
-import cathy.task.ToDo;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,6 +7,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import cathy.task.Deadline;
+import cathy.task.Event;
+import cathy.task.Task;
+import cathy.task.TaskList;
+import cathy.task.ToDo;
 
 /**
  * Storage class handles saving and loading tasks to and from a file.
@@ -83,7 +83,9 @@ public class Storage {
                         continue; // skip corrupted lines
                     }
 
-                    if (isDone) t.markAsDone();
+                    if (isDone) {
+                        t.markAsDone();
+                    }
                     tasks.add(t);
                 } catch (Exception e) {
                     System.out.println("Skipping corrupted line: " + line);

@@ -43,8 +43,8 @@ public class AddEventCommand extends Command {
             throw new InvalidTaskTypeException(TaskType.EVENT);
         }
         if (from == null || from.trim().isEmpty() || to == null || to.trim().isEmpty()) {
-            throw new CathyException("Invalid event format. Did you even try?\n" +
-                    "     Use: event <desc> /from <start> /to <end> — it's not that hard.");
+            throw new CathyException("Invalid event format. Did you even try?\n"
+                    + "     Use: event <desc> /from <start> /to <end> — it's not that hard.");
         }
 
         Event e = new Event(description.trim(), from.trim(), to.trim());

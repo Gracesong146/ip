@@ -38,8 +38,8 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
         if (index <= 0 || index > tasks.size()) {
-            throw new CathyException("Trying to mark task " + index + " as done? Cute.\n" +
-                    "     You can't just mark imaginary tasks to feel accomplished.");
+            throw new CathyException("Trying to mark task " + index + " as done? Cute.\n"
+                    + "     You can't just mark imaginary tasks to feel accomplished.");
         }
         Task t = tasks.get(index - 1);
         if (t.getStatusIcon().equals("X")) {

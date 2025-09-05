@@ -5,9 +5,6 @@ import cathy.storage.Storage;
 import cathy.task.Task;
 import cathy.task.TaskList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Represents a command that searches the task list for matches.
  * <p>
@@ -18,6 +15,11 @@ import java.util.List;
 public class FindCommand extends Command {
     private final String keywordLower;
 
+    /**
+     * Finds the tasks that match the keyword via {@link Ui#showList(TaskList)}.
+     *
+     * @param keyword the keyword that is part of the task
+     */
     public FindCommand(String keyword) {
         if (keyword == null || keyword.trim().isEmpty()) {
             throw new IllegalArgumentException("Keyword must not be empty.");

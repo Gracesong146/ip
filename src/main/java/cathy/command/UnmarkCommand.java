@@ -42,8 +42,8 @@ public class UnmarkCommand extends Command {
         }
         Task t = tasks.get(index - 1);
         if (t.getStatusIcon().equals(" ")) {
-            throw new CathyException("Task " + index + " is already unmarked..\n" +
-                    "     Stop trying to double negative your way through life.");
+            throw new CathyException("Task " + index + " is already unmarked..\n"
+                    + "     Stop trying to double negative your way through life.");
         }
         t.markAsNotDone();
         storage.save(tasks);

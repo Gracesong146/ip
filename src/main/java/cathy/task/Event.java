@@ -1,9 +1,10 @@
 package cathy.task;
 
-import cathy.exception.InvalidDateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import cathy.exception.InvalidDateTimeException;
 
 /**
  * Represents a {@link Task} that occurs within a specific time range.
@@ -87,9 +88,9 @@ public class Event extends Task {
         // 🔹 Enforce that 'from' is not after 'to'
         if (this.from.isAfter(this.to)) {
             throw new InvalidDateTimeException(
-                    "Wow. You think time flows backwards? Cute.\n" +
-                            "     The /from date has to come *before* the /to date.\n" +
-                            "     Try again when you figure out how calendars work."
+                    "Wow. You think time flows backwards? Cute.\n"
+                            + "     The /from date has to come *before* the /to date.\n"
+                            + "     Try again when you figure out how calendars work."
             );
         }
 
@@ -124,6 +125,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("MMM dd yyyy, h:mma");
-        return "[E]" + super.toString() + " (from: " + this.from.format(outputFormat) + " to: " + this.to.format(outputFormat) + ")";
+        return "[E]" + super.toString()
+                + " (from: " + this.from.format(outputFormat) + " to: " + this.to.format(outputFormat) + ")";
     }
 }

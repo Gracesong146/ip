@@ -1,18 +1,20 @@
 package cathy.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 import cathy.task.Deadline;
 import cathy.task.Event;
 import cathy.task.Task;
 import cathy.task.TaskList;
 import cathy.task.ToDo;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 /**
  * Tests for the Storage class, focusing on save and load.
@@ -35,7 +37,9 @@ class StorageTest {
         storage.save(out);
 
         TaskList in = new TaskList();
-        for (Task t : storage.load()) in.add(t);
+        for (Task t : storage.load()) {
+            in.add(t);
+        }
 
         assertEquals(3, in.size());
     }
@@ -52,7 +56,9 @@ class StorageTest {
         storage.save(out);
 
         TaskList in = new TaskList();
-        for (Task k : storage.load()) in.add(k);
+        for (Task k : storage.load()) {
+            in.add(k);
+        }
 
         assertEquals(1, in.size());
         assertInstanceOf(ToDo.class, in.get(0));
@@ -70,7 +76,9 @@ class StorageTest {
         storage.save(out);
 
         TaskList in = new TaskList();
-        for (Task k : storage.load()) in.add(k);
+        for (Task k : storage.load()) {
+            in.add(k);
+        }
 
         assertEquals(1, in.size());
         assertInstanceOf(Deadline.class, in.get(0));
@@ -87,7 +95,9 @@ class StorageTest {
         storage.save(out);
 
         TaskList in = new TaskList();
-        for (Task k : storage.load()) in.add(k);
+        for (Task k : storage.load()) {
+            in.add(k);
+        }
 
         assertEquals(1, in.size());
         assertInstanceOf(Event.class, in.get(0));
@@ -100,7 +110,9 @@ class StorageTest {
         Storage storage = new Storage(file);
 
         TaskList in = new TaskList();
-        for (Task t : storage.load()) in.add(t);
+        for (Task t : storage.load()) {
+            in.add(t);
+        }
 
         assertEquals(0, in.size());
     }
@@ -112,7 +124,9 @@ class StorageTest {
         Storage storage = new Storage(p.toString());
 
         TaskList in = new TaskList();
-        for (Task t : storage.load()) in.add(t);
+        for (Task t : storage.load()) {
+            in.add(t);
+        }
 
         assertEquals(0, in.size());
     }
