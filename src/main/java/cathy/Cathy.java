@@ -1,5 +1,7 @@
 package cathy;
 
+import javafx.application.Platform;
+
 import cathy.command.Command;
 import cathy.exception.CathyException;
 import cathy.exception.InvalidDateTimeException;
@@ -41,6 +43,7 @@ public class Cathy {
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
+    private String returnMessage;
 
     /**
      * Constructs a new {@code Cathy} instance with a given file path for persistent storage.
@@ -68,23 +71,37 @@ public class Cathy {
      *   <li>Terminates on an exit command</li>
      * </ol>
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (CathyException | InvalidDateTimeException e) {
-                ui.showError(e.getMessage());
-            } catch (Exception e) {
-                ui.showError("Unexpected error: " + e.getMessage());
-            } finally {
-                ui.showLine();
+
+    public String welcomeMessage() {
+        return ui.showWelcome();
+    }
+
+    public String getLogo() {
+        return "  ____      _   _          \n"
+                + " / ___|__ _| |_| |__  _   _ \n"
+                + "| |   / _` | __| '_ \\| | | |\n"
+                + "| |__| (_| | |_| | | | |_| |\n"
+                + " \\____\\__,_|\\__|_| |_|\\__, |\n"
+                + "                       __| |\n"
+                + "                       |___/\n\n";
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            String reply = c.execute(tasks, ui, storage);
+            if (c.isExit()) {
+                // Close the FX app after we return the goodbye text
+                Platform.runLater(Platform::exit);
             }
+            return reply;
+        } catch (CathyException e) {
+            return ui.showError(e.getMessage());
+        } catch (Exception e) {
+            return ui.showError("Unexpected error: " + e.getMessage());
         }
     }
 
@@ -94,6 +111,6 @@ public class Cathy {
      * @param args command-line arguments (ignored)
      */
     public static void main(String[] args) {
-        new Cathy("data/cathy.txt").run();
+        System.out.println("Hello!");
     }
 }

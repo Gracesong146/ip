@@ -40,39 +40,41 @@ public class OnCommand extends Command {
      * @throws CathyException if the argument is missing or cannot be parsed into a valid date
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+        StringBuilder returnMessage = new StringBuilder();
         if (arg.isEmpty()) {
             throw new CathyException("Use: on yyyy-MM-dd");
         }
-
         try {
             String dateStr = arg.replace("/", "-");
             LocalDate queryDate = LocalDate.parse(dateStr);
 
-            ui.print("Tasks happening on " + queryDate + ":");
+            returnMessage.append("Tasks happening on ").append(queryDate).append(":");
+
             boolean found = false;
 
             for (int i = 0; i < tasks.size(); i++) {
                 Task t = tasks.get(i);
                 if (t instanceof Deadline d) {
                     if (d.getBy().toLocalDate().equals(queryDate)) {
-                        ui.print("  " + d);
+                        returnMessage.append("\n  ").append(d);
                         found = true;
                     }
                 } else if (t instanceof Event e) {
                     if (occursOn(e, queryDate)) {
-                        ui.print("  " + e);
+                        returnMessage.append("\n  ").append(e);
                         found = true;
                     }
                 }
             }
 
             if (!found) {
-                ui.print("Nothing on that day. Must be nice to be free for once.");
+                return "Nothing on that day. Must be nice to be free for once.";
             }
         } catch (DateTimeParseException e) {
             throw new CathyException("That date makes no sense. Use yyyy-MM-dd. Try again.");
         }
+        return returnMessage.toString();
     }
 
     private boolean occursOn(Event e, LocalDate date) {

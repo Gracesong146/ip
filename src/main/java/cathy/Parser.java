@@ -65,7 +65,7 @@ public class Parser {
             String[] segs = args.split("\s+/by\s+", 2);
             if (segs.length < 2) {
                 throw new CathyException("Seriously? That deadline format is a mess.\n"
-                        + "     Try again like you actually read the instructions: "
+                        + "Try again like you actually read the instructions:\n"
                         + "deadline <desc> /by <date>");
             }
             return new AddDeadlineCommand(segs[0], segs[1]);
@@ -77,7 +77,7 @@ public class Parser {
             Matcher m = p.matcher(args);
             if (!m.matches()) {
                 throw new CathyException("Invalid event format. Did you even try?\n"
-                        + "     Use: event <desc> /from <start> /to <end> — it's not that hard.");
+                        + "Use: event <desc> /from <start> /to <end> — it's not that hard.");
             }
             return new AddEventCommand(m.group(1), m.group(2), m.group(3));
         }
@@ -100,7 +100,7 @@ public class Parser {
             return new HelpCommand();
         default:
             throw new CathyException("Hmm... fascinating gibberish.\n"
-                    + "     Try again, or type \"help\" to see what I actually understand.");
+                    + "Try again, or type \"help\" to see what I actually understand.");
         }
     }
 
@@ -116,7 +116,7 @@ public class Parser {
             return Integer.parseInt(args.trim());
         } catch (Exception e) {
             throw new CathyException("Sweetie, numbers only. This isn't a spelling bee.\n"
-                    + "     Use format: [command] [number]");
+                    + "Use format: [command] [number]");
         }
     }
 }

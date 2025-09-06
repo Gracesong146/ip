@@ -36,17 +36,17 @@ public class UnmarkCommand extends Command {
      * @throws CathyException if the index is out of range or the task is already marked as not done
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
         if (index <= 0 || index > tasks.size()) {
             throw new CathyException("Ah, clever. But no, that task is imaginary.");
         }
         Task t = tasks.get(index - 1);
         if (t.getStatusIcon().equals(" ")) {
             throw new CathyException("Task " + index + " is already unmarked..\n"
-                    + "     Stop trying to double negative your way through life.");
+                    + "Stop trying to double negative your way through life.");
         }
         t.markAsNotDone();
         storage.save(tasks);
-        ui.showUnmark(t);
+        return ui.showUnmark(t);
     }
 }

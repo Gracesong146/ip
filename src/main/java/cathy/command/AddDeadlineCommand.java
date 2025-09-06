@@ -35,18 +35,17 @@ public class AddDeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
         if (description == null || description.trim().isEmpty()) {
             throw new InvalidTaskTypeException(TaskType.DEADLINE);
         }
         if (by == null || by.trim().isEmpty()) {
             throw new CathyException("Seriously? That deadline format is a mess.\n"
-                    + "     Try again like you actually read the instructions: deadline <desc> /by <date>");
+                    + "Try again like you actually read the instructions: deadline <desc> /by <date>");
         }
         Deadline d = new Deadline(description.trim(), by.trim());
         tasks.add(d);
         storage.save(tasks);
-        ui.showAdd(d, tasks.size());
-
+        return ui.showAdd(d, tasks.size());
     }
 }

@@ -89,8 +89,8 @@ public class Event extends Task {
         if (this.from.isAfter(this.to)) {
             throw new InvalidDateTimeException(
                     "Wow. You think time flows backwards? Cute.\n"
-                            + "     The /from date has to come *before* the /to date.\n"
-                            + "     Try again when you figure out how calendars work."
+                            + "The /from date has to come *before* the /to date.\n"
+                            + "Try again when you figure out how calendars work."
             );
         }
 
