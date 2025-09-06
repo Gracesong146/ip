@@ -1,3 +1,5 @@
+package cathy;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -53,6 +56,16 @@ public class DialogBox extends HBox {
 
     public static DialogBox getCathyDialog(String text, Image img) {
         var db = new DialogBox(text, img);
+        db.dialog.getStyleClass().add("mono");
+        db.flip();
+        return db;
+    }
+
+    // in DialogBox.java add a helper:
+    public static DialogBox getCathyLogo(Image img) {
+        // Empty text, only image dialog
+        DialogBox db = new DialogBox("", img);
+        db.dialog.setVisible(false); // Hide the text bubble
         db.flip();
         return db;
     }

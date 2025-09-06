@@ -38,18 +38,18 @@ public class AddEventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
         if (description == null || description.trim().isEmpty()) {
             throw new InvalidTaskTypeException(TaskType.EVENT);
         }
         if (from == null || from.trim().isEmpty() || to == null || to.trim().isEmpty()) {
             throw new CathyException("Invalid event format. Did you even try?\n"
-                    + "     Use: event <desc> /from <start> /to <end> — it's not that hard.");
+                    + "Use: event <desc> /from <start> /to <end> — it's not that hard.");
         }
 
         Event e = new Event(description.trim(), from.trim(), to.trim());
         tasks.add(e);
         storage.save(tasks);
-        ui.showAdd(e, tasks.size());
+        return ui.showAdd(e, tasks.size());
     }
 }

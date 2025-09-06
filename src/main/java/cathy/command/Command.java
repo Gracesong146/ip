@@ -26,7 +26,7 @@ public abstract class Command {
      * @param storage the storage handler for saving/loading tasks
      * @throws CathyException if execution fails due to invalid input or storage issues
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException;
 
     /**
      * Indicates whether this command should terminate the application.

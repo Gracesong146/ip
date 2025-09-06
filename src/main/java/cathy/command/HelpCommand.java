@@ -26,7 +26,7 @@ public class HelpCommand extends Command {
      * @throws CathyException never thrown in normal operation
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
-        ui.showHelp();
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+        return ui.showHelp();
     }
 }

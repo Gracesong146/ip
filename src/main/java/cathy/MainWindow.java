@@ -1,10 +1,16 @@
+package cathy;
+
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.image.ImageView;
+
 /**
  * Controller for the main GUI.
  */
@@ -31,6 +37,24 @@ public class MainWindow extends AnchorPane {
     /** Injects the Cathy instance */
     public void setCathy(Cathy c) {
         cathy = c;
+
+        Image logo = new Image(this.getClass().getResourceAsStream("/images/cathy_welcome.png"));
+
+        // Create an ImageView so we can resize
+        ImageView logoView = new ImageView(logo);
+        logoView.setFitWidth(180);   // adjust size
+        logoView.setFitHeight(180);  // adjust size
+        logoView.setPreserveRatio(true);
+
+        // Wrap inside a DialogBox-like container (or just add directly)
+        HBox logoBox = new HBox(logoView);
+        logoBox.setAlignment(Pos.CENTER_LEFT); // align left
+
+        dialogContainer.getChildren().add(logoBox);
+
+        dialogContainer.getChildren().add(
+                DialogBox.getCathyDialog(cathy.welcomeMessage(), cathyImage)
+        );
     }
 
     /**

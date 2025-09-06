@@ -1,3 +1,5 @@
+package cathy;
+
 import javafx.application.Application;
 
 /**

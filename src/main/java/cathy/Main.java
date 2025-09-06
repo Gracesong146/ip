@@ -1,3 +1,5 @@
+package cathy;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,7 +13,7 @@ import java.io.IOException;
  */
 public class Main extends Application {
 
-    private Cathy cathy = new Cathy();
+    private Cathy cathy = new Cathy("data/cathy.txt");
 
     @Override
     public void start(Stage stage) {
@@ -21,7 +23,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             stage.setMinHeight(220);
-            stage.setMinWidth(417);
+            stage.setMinWidth(600);
 
             fxmlLoader.<MainWindow>getController().setCathy(cathy);  // inject the Cathy instance
             stage.show();

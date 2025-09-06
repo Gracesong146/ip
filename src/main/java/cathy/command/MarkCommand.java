@@ -36,10 +36,10 @@ public class MarkCommand extends Command {
      * @throws CathyException if the index is out of range or the task is already marked done
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
         if (index <= 0 || index > tasks.size()) {
             throw new CathyException("Trying to mark task " + index + " as done? Cute.\n"
-                    + "     You can't just mark imaginary tasks to feel accomplished.");
+                    + "You can't just mark imaginary tasks to feel accomplished.");
         }
         Task t = tasks.get(index - 1);
         if (t.getStatusIcon().equals("X")) {
@@ -47,6 +47,6 @@ public class MarkCommand extends Command {
         }
         t.markAsDone();
         storage.save(tasks);
-        ui.showMark(t);
+        return ui.showMark(t);
     }
 }

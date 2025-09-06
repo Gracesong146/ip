@@ -25,68 +25,52 @@ public class Ui {
      * Displays the welcome banner, ASCII logo, and a quick-start guide
      * describing the available commands.
      */
-    public void showWelcome() {
-        String logo = "      ____      _   _          \n"
-                + "     / ___|__ _| |_| |__  _   _ \n"
-                + "    | |   / _` | __| '_ \\| | | |\n"
-                + "    | |__| (_| | |_| | | | |_| |\n"
-                + "     \\____\\__,_|\\__|_| |_|\\__, |\n"
-                + "                           __| |\n"
-                + "                           |___/";
-        System.out.println(logo);
-        showLine();
-        print("Oh look, someone showed up.");
-        print("I'm Cathy, your gloriously underappreciated task assistant.\n");
-        print("Here's what I *might* help you with (if you're lucky):\n");
-        print("- There are 3 types of tasks, and yes, you need to follow the format:");
-        print("    1. ToDos: simple tasks with no date/time. "
-                + "Example command: todo visit new theme park");
-        print("    2. Deadlines: tasks that must be done before a date/time. "
-                + "Example command: deadline submit report /by 11/10/2019 5pm");
-        print("    3. Events: tasks with a start and end time. "
-                + "Example command: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
-        print("       (Notice the /from and /to – don't forget them!)");
-        print("- Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
-        print("- Type 'list' to see your glorious pile of tasks.");
-        print("- Type 'mark <number>' to mark a task as done. Try not to mess it up.");
-        print("- Type 'unmark <number>' to undo a completed task.");
-        print("- Type 'find <keyword>' to search for tasks by description.");
-        print("- Type 'help' to see this list of commands. Even I can't help the clueless otherwise.");
-        print("- Type 'bye' to leave me in peace.");
-        showLine();
-    }
+    public String showWelcome() {
+        String returnMessage = "";
 
-    /**
-     * Prints a divider line to separate command outputs.
-     */
-    public void showLine() {
-        System.out.println("    ____________________________________________________________\n");
+        returnMessage += """
+                Oh look, someone showed up.
+                I'm Cathy, your underappreciated task assistant.
+                
+                Here's some quick commands:
+                - todo <task>
+                - deadline <task> /by <yyyy-MM-dd>
+                - event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd>
+                - list <number> : to see your tasks
+                - mark / unmark / delete <number> : to update tasks
+                - find <keyword> / on <yyyy-MM-dd> : to search
+                - bye : to leave me in peace
+                
+                Type 'help' to see this list of commands again.
+                Even I can't help the clueless otherwise.
+                """;
+        return returnMessage;
     }
 
     /**
      * Displays the concise help block that lists available commands
      * and their expected formats.
      */
-    public void showHelp() {
-        print("Ugh... you again? Fine, I'll repeat it. Pay attention this time.");
-        print("I'm Cathy, your gloriously underappreciated task assistant.\n");
-        print("Here's what I *might* help you with (if your brain can handle it):\n");
-        print("- There are 3 types of tasks, so don't mess up the format:");
-        print("    1. ToDos: simple tasks with no date/time. "
-                + "Example: todo visit new theme park");
-        print("    2. Deadlines: must be done before a date/time. "
-                + "Example: deadline submit report /by 11/10/2019 5pm");
-        print("    3. Events: start and end times required. "
-                + "Example: event team meeting /from 2/10/2019 2pm /to 2/10/2019 4pm");
-        print("       (Yes, /from and /to are mandatory. Try not to forget.)");
-        print("- Type 'on <yyyy-MM-dd>' to see deadlines/events happening on that date.");
-        print("- Type 'list' to see your glorious pile of tasks (again).");
-        print("- Type 'mark <number>' to mark a task as done. Don't screw it up.");
-        print("- Type 'unmark <number>' to undo a completed task. Not that you'll remember.");
-        print("- Type 'find <keyword>' to search for tasks by description.");
-        print("- Type 'help' to see this list again... seriously, pay attention.");
-        print("- Type 'bye' to finally leave me alone.");
-        print("And yes, I'll never repeat this again... so maybe try reading this carefully.");
+    public String showHelp() {
+        return """
+                Ugh... you again?
+                Fine, I'll repeat it. Pay attention this time.
+                
+                I'm Cathy, your underappreciated task assistant.
+                
+                Here's some quick commands:
+                - todo <task>
+                - deadline <task> /by <yyyy-MM-dd>
+                - event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd>
+                - list <number> : to see your tasks
+                - mark / unmark / delete <number> : to update tasks
+                - find <keyword> / on <yyyy-MM-dd> : to search
+                - bye : to leave me in peace
+                
+                Type 'help' to see this list of commands again.
+                
+                And yes, I'll never repeat this again... so maybe try reading this carefully.
+                """;
     }
 
     /**
@@ -94,25 +78,16 @@ public class Ui {
      *
      * @param tasks the task list to display
      */
-    public void showList(TaskList tasks) {
+    public String showList(TaskList tasks) {
+        StringBuilder returnMessage = new StringBuilder();
         if (tasks.isEmpty()) {
-            print("Wow... nothing. Your life must be thrilling.");
-            return;
+            return "Wow... nothing. Your life must be thrilling.";
         }
-        print("Your tasks, in all their glory.");
-        print("Don't pretend you didn't forget some:");
+        returnMessage.append("Your tasks, in all their glory.\n" + "Don't pretend you didn't forget some:");
         for (int i = 0; i < tasks.size(); i++) {
-            print((i + 1) + ". " + tasks.get(i));
+            returnMessage.append("\n").append(i + 1).append(". ").append(tasks.get(i));
         }
-    }
-
-    /**
-     * Prints a message with the app's left margin formatting.
-     *
-     * @param message the message to print
-     */
-    public void print(String message) {
-        System.out.println("     " + message);
+        return returnMessage.toString();
     }
 
     /**
@@ -120,15 +95,15 @@ public class Ui {
      *
      * @param msg the error message
      */
-    public void showError(String msg) {
-        System.out.println("     " + msg);
+    public String showError(String msg) {
+        return msg;
     }
 
     /**
      * Displays a farewell message when the user exits the program.
      */
-    public void showBye() {
-        print("Bye. Hope to see you again soon!");
+    public String showBye() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -137,10 +112,10 @@ public class Ui {
      * @param t     the task that was added
      * @param count the new total number of tasks
      */
-    public void showAdd(Task t, int count) {
-        print("Fine, I've added to the list:");
-        print("  " + t);
-        print("You've got " + count + " tasks now. Try not to lose track this time.");
+    public String showAdd(Task t, int count) {
+        return "Fine, I've added to the list:\n"
+                + "  " + t
+                + "\nYou've got " + count + " tasks now. Try not to lose track this time.";
     }
 
     /**
@@ -149,11 +124,11 @@ public class Ui {
      * @param t     the task that was deleted
      * @param count the new total number of tasks
      */
-    public void showDelete(Task t, int count) {
-        print("Noted. I've removed this task:");
-        print("   " + t);
-        print("One less thing for you to forget.");
-        print("You've got " + count + " tasks now.");
+    public String showDelete(Task t, int count) {
+        return "Noted. I've removed this task:\n"
+                + "   " + t
+                + "\nOne less thing for you to forget."
+                + "\nYou've got " + count + " tasks now.";
     }
 
     /**
@@ -161,9 +136,8 @@ public class Ui {
      *
      * @param t the task that was marked as done
      */
-    public void showMark(Task t) {
-        print("Marked as done. Go ahead, feel proud for once:");
-        print("   " + t);
+    public String showMark(Task t) {
+        return "Marked as done. Go ahead, feel proud for once:\n   " + t;
     }
 
     /**
@@ -171,9 +145,8 @@ public class Ui {
      *
      * @param t the task that was unmarked
      */
-    public void showUnmark(Task t) {
-        print("Fine, it lives to torment you another day:");
-        print("   " + t);
+    public String showUnmark(Task t) {
+        return "Fine, it lives to torment you another day:\n   " + t;
     }
 
     /**
@@ -181,15 +154,15 @@ public class Ui {
      *
      * @param matches list of tasks that match the search keyword
      */
-    public void showFindResults(TaskList matches) {
+    public String showFindResults(TaskList matches) {
         if (matches.isEmpty()) {
-            print("No matching tasks. Guess your memory is as bad as your typing.");
-        } else {
-            print("Here's what I painfully dug up for you:");
-            for (int i = 0; i < matches.size(); i++) {
-                print((i + 1) + ". " + matches.get(i));
-            }
+            return "No matching tasks. Guess your memory is as bad as your typing.";
         }
+        StringBuilder returnMessage = new StringBuilder("Here's what I painfully dug up for you:");
+        for (int i = 0; i < matches.size(); i++) {
+            returnMessage.append("\n").append(i + 1).append(". ").append(matches.get(i));
+        }
+        return returnMessage.toString();
     }
 
     /**
@@ -198,7 +171,6 @@ public class Ui {
      * @return the raw string entered by the user
      */
     public String readCommand() {
-        System.out.print("> ");
         return in.nextLine();
     }
 }

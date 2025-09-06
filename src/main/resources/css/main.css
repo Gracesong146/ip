@@ -11,6 +11,12 @@
     -fx-font: 20px "Arial";
 }
 
+.mono {
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-size: 12px;
+    -fx-text-alignment: left;
+}
+
 .button {
     -fx-background-color: mediumspringgreen;
     -fx-font: italic bold 16px "Arial";

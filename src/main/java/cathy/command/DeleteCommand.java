@@ -36,12 +36,12 @@ public class DeleteCommand extends Command {
      * @throws CathyException if the index is out of range (≤ 0 or greater than the current list size)
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
         if (index <= 0 || index > tasks.size()) {
             throw new CathyException("Nice try, but that task doesn't even exist.");
         }
         Task removed = tasks.removeAt(index - 1);
         storage.save(tasks);
-        ui.showDelete(removed, tasks.size());
+        return ui.showDelete(removed, tasks.size());
     }
 }

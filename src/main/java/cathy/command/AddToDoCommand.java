@@ -31,13 +31,13 @@ public class AddToDoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
         if (description == null || description.trim().isEmpty()) {
             throw new InvalidTaskTypeException(TaskType.TODO);
         }
         ToDo t = new ToDo(description.trim());
         tasks.add(t);
         storage.save(tasks);
-        ui.showAdd(t, tasks.size());
+        return ui.showAdd(t, tasks.size());
     }
 }
