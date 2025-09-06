@@ -6,10 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * Controller for the main GUI.
@@ -34,7 +34,9 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Cathy instance */
+    /**
+     * Injects the Cathy instance
+     */
     public void setCathy(Cathy c) {
         cathy = c;
 
@@ -42,8 +44,8 @@ public class MainWindow extends AnchorPane {
 
         // Create an ImageView so we can resize
         ImageView logoView = new ImageView(logo);
-        logoView.setFitWidth(180);   // adjust size
-        logoView.setFitHeight(180);  // adjust size
+        logoView.setFitWidth(180); // adjust size
+        logoView.setFitHeight(180); // adjust size
         logoView.setPreserveRatio(true);
 
         // Wrap inside a DialogBox-like container (or just add directly)

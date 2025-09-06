@@ -27,23 +27,18 @@ public class Ui {
      */
     public String showWelcome() {
         String returnMessage = "";
-
-        returnMessage += """
-                Oh look, someone showed up.
-                I'm Cathy, your underappreciated task assistant.
-                
-                Here's some quick commands:
-                - todo <task>
-                - deadline <task> /by <yyyy-MM-dd>
-                - event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd>
-                - list <number> : to see your tasks
-                - mark / unmark / delete <number> : to update tasks
-                - find <keyword> / on <yyyy-MM-dd> : to search
-                - bye : to leave me in peace
-                
-                Type 'help' to see this list of commands again.
-                Even I can't help the clueless otherwise.
-                """;
+        returnMessage += "Oh look, someone showed up."
+                + "I'm Cathy, your underappreciated task assistant.\n\n"
+                + "Here's some quick commands:\n"
+                + "- todo <task>\n"
+                + "- deadline <task> /by <yyyy-MM-dd>\n"
+                + "- event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd>\n"
+                + "- list <number> : to see your tasks\n"
+                + "- mark / unmark / delete <number> : to update tasks\n"
+                + "- find <keyword> / on <yyyy-MM-dd> : to search\n"
+                + "- bye : to leave me in peace\n\n"
+                + "Type 'help' to see this list of commands again.\n"
+                + "Even I can't help the clueless otherwise.\n";
         return returnMessage;
     }
 
@@ -52,25 +47,19 @@ public class Ui {
      * and their expected formats.
      */
     public String showHelp() {
-        return """
-                Ugh... you again?
-                Fine, I'll repeat it. Pay attention this time.
-                
-                I'm Cathy, your underappreciated task assistant.
-                
-                Here's some quick commands:
-                - todo <task>
-                - deadline <task> /by <yyyy-MM-dd>
-                - event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd>
-                - list <number> : to see your tasks
-                - mark / unmark / delete <number> : to update tasks
-                - find <keyword> / on <yyyy-MM-dd> : to search
-                - bye : to leave me in peace
-                
-                Type 'help' to see this list of commands again.
-                
-                And yes, I'll never repeat this again... so maybe try reading this carefully.
-                """;
+        return "Ugh... you again?\n"
+                + "Fine, I'll repeat it. Pay attention this time.\n\n"
+                + "I'm Cathy, your underappreciated task assistant.\n\n"
+                + "Here's some quick commands:\n"
+                + "- todo <task>\n"
+                + "- deadline <task> /by <yyyy-MM-dd>\n"
+                + "- event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd>\n"
+                + "- list <number> : to see your tasks\n"
+                + "- mark / unmark / delete <number> : to update tasks\n"
+                + "- find <keyword> / on <yyyy-MM-dd> : to search\n"
+                + "- bye : to leave me in peace\n\n"
+                + "Type 'help' to see this list of commands again.\n\n"
+                + "And yes, I'll never repeat this again... so maybe try reading this carefully.\n";
     }
 
     /**

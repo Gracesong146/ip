@@ -1,16 +1,14 @@
 package cathy;
 
-import javafx.application.Platform;
-
 import cathy.command.Command;
 import cathy.exception.CathyException;
-import cathy.exception.InvalidDateTimeException;
 import cathy.exception.InvalidTaskTypeException;
 import cathy.storage.Storage;
 import cathy.task.Deadline;
 import cathy.task.Event;
 import cathy.task.TaskList;
 import cathy.task.ToDo;
+import javafx.application.Platform;
 
 /**
  * The main class for the Cathy task assistant application.
