@@ -136,7 +136,7 @@ public class Parser {
         case "sch":
             if (args.isBlank()) {
                 throw new CathyException("'sch' needs a date, not empty air.\n"
-                        + "Try: cal YYYY-MM-DD or cal today");
+                        + "Try: sch YYYY-MM-DD or sch today");
             }
             LocalDate date;
             if (args.equals("today")) {

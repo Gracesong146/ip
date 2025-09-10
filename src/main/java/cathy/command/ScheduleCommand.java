@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  *
  * <p><strong>Expected input</strong>:
  * <pre>{@code
- * cal yyyy-MM-dd
+ * sch yyyy-MM-dd
  * }</pre>
  */
 public class ScheduleCommand extends Command {
