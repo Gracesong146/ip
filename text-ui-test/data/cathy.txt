@@ -1,5 +1,0 @@
-T | 0 | visit museum
-T | 0 | read a book
-D | 0 | complete cs2100 assignment 1 | 2025-09-10T00:00
-E | 0 | hackathon | 2025-09-01T00:00 | 2025-09-03T00:00
-E | 0 | retreat | 2025-09-05T00:00 | 2025-09-10T00:00
