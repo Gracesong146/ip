@@ -1,16 +1,16 @@
 package cathy.command;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 import cathy.Ui;
 import cathy.storage.Storage;
 import cathy.task.Deadline;
 import cathy.task.Event;
 import cathy.task.Task;
 import cathy.task.TaskList;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 /**
  * Command that lists all tasks in the current {@link TaskList} that happens on specific date(s).
@@ -56,18 +56,23 @@ public class ScheduleCommand extends Command {
         } else if (t instanceof Event ev) {
             LocalDate s = ev.getFrom().toLocalDate();
             LocalDate e = ev.getTo().toLocalDate();
+
+            // check d is within [startDate, endDate] inclusive
             return !d.isBefore(s) && !d.isAfter(e); // inclusive span
         } else {
-            // ToDo has no date; omit from single-day schedule (change if you want them shown)
+            // To Do has no date; omit from single-day schedule (change if you want them shown)
             return false;
         }
     }
 
-    /** Order: Event by start time, then Deadline by time, then ToDo by description. */
+    /** Order: Event by start time, then Deadline by time, then To Do by description. */
     private static Comparator<Task> taskOrder() {
         return (a, b) -> {
-            int ra = rank(a), rb = rank(b);
-            if (ra != rb) return Integer.compare(ra, rb);
+            int ra = rank(a);
+            int rb = rank(b);
+            if (ra != rb) {
+                return Integer.compare(ra, rb);
+            }
             if (a instanceof Event ea && b instanceof Event eb) {
                 return ea.getFrom().compareTo(eb.getFrom());
             }
@@ -79,9 +84,13 @@ public class ScheduleCommand extends Command {
     }
 
     private static int rank(Task t) {
-        if (t instanceof Event) return 0;
-        if (t instanceof Deadline) return 1;
-        return 2; // ToDo (not shown here, but keeps comparator generic)
+        if (t instanceof Event) {
+            return 0;
+        }
+        if (t instanceof Deadline) {
+            return 1;
+        }
+        return 2; // To Do (not shown here, but keeps comparator generic)
     }
 
     /** Format one line for the schedule, showing times when available. */

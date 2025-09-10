@@ -45,7 +45,7 @@ public class Event extends Task {
         assert from != null && to != null : "Event: time range must be parsed";
 
         this.from = parseFlexibleStart(from);
-        this.to   = parseFlexibleEnd(to);
+        this.to = parseFlexibleEnd(to);
 
         if (this.from.isAfter(this.to)) {
             throw new InvalidDateTimeException(
@@ -56,12 +56,20 @@ public class Event extends Task {
         this.type = TaskType.EVENT;
     }
 
+    /**
+     * Constructs a new {@code Event} with the given description, start time, and end time.
+     *
+     * @param description the description of the event
+     * @param from        the start time LocalDateTime
+     * @param to          the end time LocalDateTime
+     * @throws InvalidDateTimeException if parsing fails or {@code from} is after {@code to}
+     */
     public Event(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         assert from != null : "Event: from must not be null";
         assert to != null : "Event: to must not be null";
         this.from = from;
-        this.to   = to;
+        this.to = to;
         this.type = TaskType.EVENT;
     }
 
@@ -80,9 +88,13 @@ public class Event extends Task {
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
         };
         for (DateTimeFormatter f : dt) {
-            try { return LocalDateTime.parse(s, f); } catch (Exception ignored) {}
+            try {
+                return LocalDateTime.parse(s, f);
+            } catch (Exception ignored) {
+                // ignore
+            }
         }
-        // Date-only → 00:00
+        // Date-only -> 00:00
         try {
             LocalDate d = LocalDate.parse(s, DateTimeFormatter.ISO_LOCAL_DATE);
             return d.atStartOfDay();
@@ -97,6 +109,7 @@ public class Event extends Task {
         try {
             return LocalDateTime.parse(s);
         } catch (Exception ignored) {
+            // ignore
         }
         // Explicit datetime
         DateTimeFormatter[] dt = new DateTimeFormatter[]{
@@ -107,6 +120,7 @@ public class Event extends Task {
             try {
                 return LocalDateTime.parse(s, f);
             } catch (Exception ignored) {
+                // ignore
             }
         }
         // Date-only → 23:59

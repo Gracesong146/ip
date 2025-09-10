@@ -1,5 +1,7 @@
 package cathy.command;
 
+import java.time.LocalDateTime;
+
 import cathy.Ui;
 import cathy.exception.CathyException;
 import cathy.exception.InvalidTaskTypeException;
@@ -7,8 +9,6 @@ import cathy.storage.Storage;
 import cathy.task.Deadline;
 import cathy.task.TaskList;
 import cathy.task.TaskType;
-
-import java.time.LocalDateTime;
 
 /**
  * Command that adds a {@link Deadline} task to the task list.

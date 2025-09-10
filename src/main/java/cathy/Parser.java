@@ -9,7 +9,6 @@ import java.time.format.DateTimeParseException;
 import cathy.command.AddDeadlineCommand;
 import cathy.command.AddEventCommand;
 import cathy.command.AddToDoCommand;
-import cathy.command.ScheduleCommand;
 import cathy.command.Command;
 import cathy.command.DeleteCommand;
 import cathy.command.ExitCommand;
@@ -17,6 +16,7 @@ import cathy.command.HelpCommand;
 import cathy.command.ListCommand;
 import cathy.command.MarkCommand;
 import cathy.command.OnCommand;
+import cathy.command.ScheduleCommand;
 import cathy.command.UnmarkCommand;
 import cathy.exception.CathyException;
 import cathy.exception.InvalidDateTimeException;
@@ -35,10 +35,10 @@ import cathy.exception.InvalidDateTimeException;
 public class Parser {
 
     private static final DateTimeFormatter[] DT_PATTERNS = new DateTimeFormatter[] {
-            DateTimeFormatter.ISO_LOCAL_DATE_TIME,           // 2025-09-15T23:59
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),  // 2025-09-15 2359
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")  // 2025-09-15 23:59
-            // date-only handled separately below
+        DateTimeFormatter.ISO_LOCAL_DATE_TIME, // 2025-09-15T23:59
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"), // 2025-09-15 2359
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm") // 2025-09-15 23:59
+        // date-only handled separately below
     };
 
     /**
@@ -74,30 +74,34 @@ public class Parser {
 
         case "deadline": {
             int byIndex = args.indexOf("/by");
-            if (byIndex < 0) throw new CathyException("Need '/by'. Try: deadline <desc> /by <date or date time>");
+            if (byIndex < 0) {
+                throw new CathyException("Need '/by'. Try: deadline <desc> /by <date or date time>");
+            }
 
-            String desc  = args.substring(0, byIndex).trim();
+            String desc = args.substring(0, byIndex).trim();
             String byStr = args.substring(byIndex + 3).trim();
-            if (desc.isEmpty() || byStr.isEmpty()) throw new CathyException("Fill in both description and /by.");
+            if (desc.isEmpty() || byStr.isEmpty()) {
+                throw new CathyException("Fill in both description and /by.");
+            }
 
             ParsedDT p = parseDateTimeOrDate(byStr);
             LocalDateTime by = p.hasTime()
                     ? LocalDateTime.of(p.date(), p.time())
-                    : p.date().atTime(23, 59);                 // default for date-only deadlines
+                    : p.date().atTime(23, 59); // default for date-only deadlines
 
             return new AddDeadlineCommand(desc, by);
         }
 
         case "event": {
             int fromAt = args.indexOf("/from");
-            int toAt   = args.indexOf("/to");
+            int toAt = args.indexOf("/to");
             if (fromAt < 0 || toAt < 0 || toAt < fromAt) {
                 throw new CathyException("Use: event <desc> /from <date [time]> /to <date [time]>");
             }
 
-            String desc    = args.substring(0, fromAt).trim();
+            String desc = args.substring(0, fromAt).trim();
             String fromStr = args.substring(fromAt + 6, toAt).trim();
-            String toStr   = args.substring(toAt + 3).trim();
+            String toStr = args.substring(toAt + 3).trim();
             if (desc.isEmpty() || fromStr.isEmpty() || toStr.isEmpty()) {
                 throw new CathyException("Missing description/from/to.");
             }
@@ -106,9 +110,9 @@ public class Parser {
             ParsedDT pt = parseDateTimeOrDate(toStr);
 
             LocalDateTime from = pf.hasTime() ? LocalDateTime.of(pf.date(), pf.time())
-                    : pf.date().atStartOfDay();       // 00:00
-            LocalDateTime to   = pt.hasTime() ? LocalDateTime.of(pt.date(), pt.time())
-                    : pt.date().atTime(23, 59);       // 23:59
+                    : pf.date().atStartOfDay(); // 00:00
+            LocalDateTime to = pt.hasTime() ? LocalDateTime.of(pt.date(), pt.time())
+                    : pt.date().atTime(23, 59); // 23:59
 
             if (to.isBefore(from)) {
                 throw new InvalidDateTimeException(
@@ -178,7 +182,9 @@ public class Parser {
             try {
                 LocalDateTime dt = LocalDateTime.parse(s, f);
                 return new ParsedDT(dt.toLocalDate(), dt.toLocalTime(), true);
-            } catch (DateTimeParseException ignored) {}
+            } catch (DateTimeParseException ignored) {
+                // ignore
+            }
         }
         // Fall back to date-only (ISO date)
         try {

@@ -7,10 +7,10 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import cathy.Parser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import cathy.Parser;
 import cathy.Ui;
 import cathy.storage.Storage;
 import cathy.task.Deadline;
@@ -27,7 +27,7 @@ class AddDeadlineCommandTest {
     Path tmp;
 
     @Test
-    void addDeadline_withExplicitTime_addsCorrectTask() throws Exception {
+    void addDeadlineWithExplicitTime() throws Exception {
         Ui ui = new Ui();
         Storage storage = new Storage(tmp.resolve("tasks.txt").toString());
         TaskList list = new TaskList();
@@ -43,7 +43,7 @@ class AddDeadlineCommandTest {
     }
 
     @Test
-    void addDeadline_dateOnly_defaultsTo2359_viaParser() throws Exception {
+    void addDeadlineDateOnly() throws Exception {
         Ui ui = new Ui();
         Storage storage = new Storage(tmp.resolve("tasks.txt").toString());
         TaskList list = new TaskList();

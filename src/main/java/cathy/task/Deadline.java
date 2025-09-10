@@ -48,7 +48,9 @@ public class Deadline extends Task {
             this.by = LocalDateTime.parse(s); // ISO-8601
             this.type = TaskType.DEADLINE;
             return;
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            // ignore
+        }
 
         // Try explicit datetime patterns
         DateTimeFormatter[] dt = new DateTimeFormatter[] {
@@ -60,7 +62,9 @@ public class Deadline extends Task {
                 this.by = LocalDateTime.parse(s, f);
                 this.type = TaskType.DEADLINE;
                 return;
-            } catch (Exception ignored) { }
+            } catch (Exception ignored) {
+                // ignore
+            }
         }
 
         // Try date-only, default to 23:59
@@ -69,11 +73,20 @@ public class Deadline extends Task {
             this.by = d.atTime(23, 59);
             this.type = TaskType.DEADLINE;
             return;
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            // ignore
+        }
 
         throw new InvalidDateTimeException("Could not parse deadline date/time: " + by);
     }
 
+    /**
+     * Constructs a new {@code Deadline} task with the specified description and deadline.
+     *
+     * @param description the description of the task
+     * @param by          the due date or time LocalDateTime. Accepts ISO-8601 or supported custom formats.
+     * @throws InvalidDateTimeException if the {@code by} LocalDateTime cannot be parsed
+     */
     public Deadline(String description, LocalDateTime by) {
         super(description);
         assert by != null : "Deadline: by must not be null";

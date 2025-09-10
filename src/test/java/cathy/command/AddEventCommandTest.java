@@ -7,10 +7,10 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import cathy.Parser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import cathy.Parser;
 import cathy.Ui;
 import cathy.storage.Storage;
 import cathy.task.Event;
@@ -27,13 +27,13 @@ class AddEventCommandTest {
     Path tmp;
 
     @Test
-    void addEvent_withExplicitTimes_addsCorrectTask() throws Exception {
+    void addEventWithExplicitTimes() throws Exception {
         Ui ui = new Ui();
         Storage storage = new Storage(tmp.resolve("tasks.txt").toString());
         TaskList list = new TaskList();
 
         LocalDateTime from = LocalDateTime.of(2025, 9, 1, 14, 0);
-        LocalDateTime to   = LocalDateTime.of(2025, 9, 1, 15, 30);
+        LocalDateTime to = LocalDateTime.of(2025, 9, 1, 15, 30);
 
         new AddEventCommand("team sync", from, to).execute(list, ui, storage);
 
@@ -46,7 +46,7 @@ class AddEventCommandTest {
     }
 
     @Test
-    void addEvent_dateOnly_defaultsToFullDay_viaParser() throws Exception {
+    void addEventDateOnly() throws Exception {
         Ui ui = new Ui();
         Storage storage = new Storage(tmp.resolve("tasks.txt").toString());
         TaskList list = new TaskList();
