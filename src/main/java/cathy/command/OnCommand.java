@@ -2,6 +2,7 @@ package cathy.command;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.stream.Collectors;
 
 import cathy.Ui;
 import cathy.exception.CathyException;
@@ -52,32 +53,22 @@ public class OnCommand extends Command {
             String dateStr = arg.replace("/", "-");
             LocalDate queryDate = LocalDate.parse(dateStr);
 
-            returnMessage.append("Tasks happening on ").append(queryDate).append(":");
+            String matches = tasks.getTasks().stream()
+                    .filter(t -> (t instanceof Deadline
+                            && ((Deadline) t).getBy().toLocalDate().isEqual(queryDate))
+                            || (t instanceof Event && occursOn((Event) t, queryDate)))
+                    .map(Task::toString)
+                    .collect(Collectors.joining("\n  "));
 
-            boolean found = false;
-
-            for (int i = 0; i < tasks.size(); i++) {
-                Task t = tasks.get(i);
-                if (t instanceof Deadline d) {
-                    if (d.getBy().toLocalDate().equals(queryDate)) {
-                        returnMessage.append("\n  ").append(d);
-                        found = true;
-                    }
-                } else if (t instanceof Event e) {
-                    if (occursOn(e, queryDate)) {
-                        returnMessage.append("\n  ").append(e);
-                        found = true;
-                    }
-                }
-            }
-
-            if (!found) {
+            if (matches.isEmpty()) {
                 return "Nothing on that day. Must be nice to be free for once.";
             }
+
+            return "Tasks happening on " + queryDate + ":\n  " + matches;
+
         } catch (DateTimeParseException e) {
             throw new CathyException("That date makes no sense. Use yyyy-MM-dd. Try again.");
         }
-        return returnMessage.toString();
     }
 
     private boolean occursOn(Event e, LocalDate date) {
