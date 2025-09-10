@@ -21,6 +21,7 @@ import cathy.task.ToDo;
  * Level 7 minimal implementation.
  */
 public class Storage {
+    private static final String SEP = " \\| "; // Separation
     private final String filePath;
 
     /**
@@ -52,41 +53,7 @@ public class Storage {
             String line;
             while ((line = br.readLine()) != null) {
                 try {
-                    String[] parts = line.split(" \\| ");
-                    String type = parts[0];
-                    boolean isDone = parts[1].equals("1");
-                    String description = parts[2];
-
-                    Task t;
-                    switch (type) {
-                    case "T":
-                        t = new ToDo(description);
-                        break;
-                    case "D":
-                        if (parts.length >= 4) {
-                            String byIso = parts[3];
-                            t = new Deadline(description, byIso);
-                        } else {
-                            continue; // corrupted line, skip
-                        }
-                        break;
-                    case "E":
-                        if (parts.length >= 5) {
-                            String fromIso = parts[3];
-                            String toIso = parts[4];
-                            t = new Event(description, fromIso, toIso);
-                        } else {
-                            continue; // corrupted line, skip
-                        }
-                        break;
-                    default:
-                        continue; // skip corrupted lines
-                    }
-
-                    if (isDone) {
-                        t.markAsDone();
-                    }
-                    tasks.add(t);
+                    tasks.add(parseLine(line));
                 } catch (Exception e) {
                     System.out.println("Skipping corrupted line: " + line);
                 }
@@ -96,6 +63,40 @@ public class Storage {
         }
 
         return tasks;
+    }
+
+    /**
+     * Helper for parsing lines
+     *
+     * @param line the line to be parsed
+     * @return a static Task
+     */
+    private static Task parseLine(String line) {
+        String[] t = line.split(SEP);
+        String type = t[0];
+        boolean isDone = "1".equals(t[1]);
+        String desc = t[2];
+
+        Task task;
+        switch (type) {
+        case "T":
+            task = new ToDo(desc);
+            break;
+        case "D":
+            assert t.length >= 4 : "Storage: Deadline needs by";
+            task = new Deadline(desc, t[3]);
+            break;
+        case "E":
+            assert t.length >= 5 : "Storage: Event needs from/to";
+            task = new Event(desc, t[3], t[4]);
+            break;
+        default:
+            throw new IllegalArgumentException("Unknown task type: " + type);
+        }
+        if (isDone) {
+            task.markAsDone();
+        }
+        return task;
     }
 
     /**

@@ -12,6 +12,8 @@ import javafx.stage.Stage;
  * A GUI for Cathy using FXML.
  */
 public class Main extends Application {
+    private static final double MIN_HEIGHT = 220.0;
+    private static final double MIN_WIDTH = 600.0;
 
     private Cathy cathy = new Cathy("data/cathy.txt");
 
@@ -22,8 +24,8 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            stage.setMinHeight(220);
-            stage.setMinWidth(600);
+            stage.setMinHeight(MIN_HEIGHT);
+            stage.setMinWidth(MIN_WIDTH);
 
             fxmlLoader.<MainWindow>getController().setCathy(cathy); // inject the Cathy instance
             stage.show();

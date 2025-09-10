@@ -11,10 +11,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.util.Objects;
+
 /**
  * Controller for the main GUI.
  */
 public class MainWindow extends AnchorPane {
+    private static final double LOGO_SIZE = 180.0;
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -23,11 +26,9 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
     private Cathy cathy;
-
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user_pfp.png"));
-    private Image cathyImage = new Image(this.getClass().getResourceAsStream("/images/cathy_pfp.png"));
+    private final Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user_pfp.png")));
+    private final Image cathyImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/cathy_pfp.png")));
 
     @FXML
     public void initialize() {
@@ -40,12 +41,12 @@ public class MainWindow extends AnchorPane {
     public void setCathy(Cathy c) {
         cathy = c;
 
-        Image logo = new Image(this.getClass().getResourceAsStream("/images/cathy_welcome.png"));
+        Image logo = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/cathy_welcome.png")));
 
         // Create an ImageView so we can resize
         ImageView logoView = new ImageView(logo);
-        logoView.setFitWidth(180); // adjust size
-        logoView.setFitHeight(180); // adjust size
+        logoView.setFitWidth(LOGO_SIZE); // adjust size
+        logoView.setFitHeight(LOGO_SIZE); // adjust size
         logoView.setPreserveRatio(true);
 
         // Wrap inside a DialogBox-like container (or just add directly)
