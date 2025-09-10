@@ -41,6 +41,9 @@ public class MarkCommand extends Command {
             throw new CathyException("Trying to mark task " + index + " as done? Cute.\n"
                     + "You can't just mark imaginary tasks to feel accomplished.");
         }
+        assert tasks != null : "Command: tasks must not be null";
+        assert ui != null : "Command: ui must not be null";
+        assert storage != null : "Command: storage must not be null";
         Task t = tasks.get(index - 1);
         if (t.getStatusIcon().equals("X")) {
             throw new CathyException("Darling, that task's already done. No need to be an overachiever.");
