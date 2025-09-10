@@ -35,6 +35,9 @@ public class AddToDoCommand extends Command {
         if (description == null || description.trim().isEmpty()) {
             throw new InvalidTaskTypeException(TaskType.TODO);
         }
+        assert tasks != null : "Command: tasks must not be null";
+        assert ui != null : "Command: ui must not be null";
+        assert storage != null : "Command: storage must not be null";
         ToDo t = new ToDo(description.trim());
         tasks.add(t);
         storage.save(tasks);
