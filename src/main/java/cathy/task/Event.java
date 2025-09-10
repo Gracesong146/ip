@@ -42,61 +42,80 @@ public class Event extends Task {
      */
     public Event(String description, String from, String to) {
         super(description);
-
         assert from != null && to != null : "Event: time range must be parsed";
 
-        try {
-            this.from = LocalDateTime.parse(from); // default = ISO-8601
-            this.to = LocalDateTime.parse(to);
-            this.type = TaskType.EVENT;
-            return;
-        } catch (Exception ignore) {
-            // fall through to user formats
-        }
+        this.from = parseFlexibleStart(from);
+        this.to   = parseFlexibleEnd(to);
 
-        // Normalize separators: replace "/" with "-"
-        String normalizedFrom = from.replace("/", "-");
-        String normalizedTo = to.replace("/", "-");
-
-        // Try patterns in order: datetime first, then date-only
-        DateTimeFormatter[] patterns = new DateTimeFormatter[]{
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        };
-
-        boolean parsed = false;
-        for (DateTimeFormatter fmt : patterns) {
-            try {
-                if (fmt.toString().contains("HH")) {
-                    this.from = LocalDateTime.parse(normalizedFrom, fmt);
-                    this.to = LocalDateTime.parse(normalizedTo, fmt);
-                } else {
-                    LocalDate dateFrom = LocalDate.parse(normalizedFrom, fmt);
-                    LocalDate dateTo = LocalDate.parse(normalizedTo, fmt);
-                    this.from = dateFrom.atStartOfDay();
-                    this.to = dateTo.atStartOfDay();
-                }
-                parsed = true;
-                break;
-            } catch (Exception e) {
-                // keep trying next pattern
-            }
-        }
-
-        if (!parsed) {
-            throw new InvalidDateTimeException();
-        }
-
-        // 🔹 Enforce that 'from' is not after 'to'
         if (this.from.isAfter(this.to)) {
             throw new InvalidDateTimeException(
                     "Wow. You think time flows backwards? Cute.\n"
                             + "The /from date has to come *before* the /to date.\n"
-                            + "Try again when you figure out how calendars work."
-            );
+                            + "Try again when you figure out how calendars work.");
         }
-
         this.type = TaskType.EVENT;
+    }
+
+    public Event(String description, LocalDateTime from, LocalDateTime to) {
+        super(description);
+        assert from != null : "Event: from must not be null";
+        assert to != null : "Event: to must not be null";
+        this.from = from;
+        this.to   = to;
+        this.type = TaskType.EVENT;
+    }
+
+    private static LocalDateTime parseFlexibleStart(String raw) {
+        String s;
+        s = raw.trim().replace("/", "-");
+        // ISO datetime
+        try {
+            return LocalDateTime.parse(s);
+        } catch (Exception ignored) {
+            // ignored
+        }
+        // Explicit datetime
+        DateTimeFormatter[] dt = new DateTimeFormatter[] {
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        };
+        for (DateTimeFormatter f : dt) {
+            try { return LocalDateTime.parse(s, f); } catch (Exception ignored) {}
+        }
+        // Date-only → 00:00
+        try {
+            LocalDate d = LocalDate.parse(s, DateTimeFormatter.ISO_LOCAL_DATE);
+            return d.atStartOfDay();
+        } catch (Exception e) {
+            throw new InvalidDateTimeException("Could not parse event start: " + raw);
+        }
+    }
+
+    private static LocalDateTime parseFlexibleEnd(String raw) {
+        String s = raw.trim().replace("/", "-");
+        // ISO datetime
+        try {
+            return LocalDateTime.parse(s);
+        } catch (Exception ignored) {
+        }
+        // Explicit datetime
+        DateTimeFormatter[] dt = new DateTimeFormatter[]{
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        };
+        for (DateTimeFormatter f : dt) {
+            try {
+                return LocalDateTime.parse(s, f);
+            } catch (Exception ignored) {
+            }
+        }
+        // Date-only → 23:59
+        try {
+            LocalDate d = LocalDate.parse(s, DateTimeFormatter.ISO_LOCAL_DATE);
+            return d.atTime(23, 59);
+        } catch (Exception e) {
+            throw new InvalidDateTimeException("Could not parse event end: " + raw);
+        }
     }
 
     /**

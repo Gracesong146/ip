@@ -38,48 +38,48 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by) {
         super(description);
-
         assert by != null : "Deadline: by must be parsed";
 
+        // Normalize separators
+        String s = by.trim().replace("/", "-");
+
+        // Try ISO first
         try {
-            this.by = LocalDateTime.parse(by); // default = ISO-8601
+            this.by = LocalDateTime.parse(s); // ISO-8601
             this.type = TaskType.DEADLINE;
             return;
-        } catch (Exception ignore) {
-            // fall through to user formats
-        }
+        } catch (Exception ignored) { }
 
-        this.type = TaskType.DEADLINE;
-        // Normalize separators: replace "/" with "-"
-        String normalized = by.replace("/", "-");
-
-        // Try patterns in order: datetime first, then date-only
-        DateTimeFormatter[] patterns = new DateTimeFormatter[]{
+        // Try explicit datetime patterns
+        DateTimeFormatter[] dt = new DateTimeFormatter[] {
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
         };
-
-        boolean parsed = false;
-        for (DateTimeFormatter fmt : patterns) {
+        for (DateTimeFormatter f : dt) {
             try {
-                if (fmt.toString().contains("HH")) {
-                    this.by = LocalDateTime.parse(normalized, fmt);
-                } else {
-                    LocalDate date = LocalDate.parse(normalized, fmt);
-                    this.by = date.atStartOfDay();
-                }
-                parsed = true;
-                break;
-            } catch (Exception e) {
-                // keep trying next pattern
-            }
+                this.by = LocalDateTime.parse(s, f);
+                this.type = TaskType.DEADLINE;
+                return;
+            } catch (Exception ignored) { }
         }
 
-        if (!parsed) {
-            throw new InvalidDateTimeException();
-        }
+        // Try date-only, default to 23:59
+        try {
+            LocalDate d = LocalDate.parse(s, DateTimeFormatter.ISO_LOCAL_DATE);
+            this.by = d.atTime(23, 59);
+            this.type = TaskType.DEADLINE;
+            return;
+        } catch (Exception ignored) { }
+
+        throw new InvalidDateTimeException("Could not parse deadline date/time: " + by);
     }
 
+    public Deadline(String description, LocalDateTime by) {
+        super(description);
+        assert by != null : "Deadline: by must not be null";
+        this.by = by;
+        this.type = TaskType.DEADLINE;
+    }
 
     /**
      * Returns the due date/time of this {@code Deadline}.

@@ -1,11 +1,15 @@
 package cathy;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import cathy.command.AddDeadlineCommand;
 import cathy.command.AddEventCommand;
 import cathy.command.AddToDoCommand;
+import cathy.command.ScheduleCommand;
 import cathy.command.Command;
 import cathy.command.DeleteCommand;
 import cathy.command.ExitCommand;
@@ -15,6 +19,7 @@ import cathy.command.MarkCommand;
 import cathy.command.OnCommand;
 import cathy.command.UnmarkCommand;
 import cathy.exception.CathyException;
+import cathy.exception.InvalidDateTimeException;
 
 /**
  * Parses raw user input into {@link Command} objects for execution.
@@ -28,6 +33,13 @@ import cathy.exception.CathyException;
  * </ul>
  */
 public class Parser {
+
+    private static final DateTimeFormatter[] DT_PATTERNS = new DateTimeFormatter[] {
+            DateTimeFormatter.ISO_LOCAL_DATE_TIME,           // 2025-09-15T23:59
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"),  // 2025-09-15 2359
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")  // 2025-09-15 23:59
+            // date-only handled separately below
+    };
 
     /**
      * Parses a raw user input string and returns the corresponding {@link Command}.
@@ -46,7 +58,7 @@ public class Parser {
         }
 
         // Split into command word and arguments
-        String[] parts = trimmed.split("\s+", 2);
+        String[] parts = trimmed.split("\\s+", 2);
         String cmd = parts[0].toLowerCase();
         String args = parts.length > 1 ? parts[1] : "";
 
@@ -61,28 +73,52 @@ public class Parser {
             return new AddToDoCommand(args);
 
         case "deadline": {
-            // Split by "/by"
-            String[] segs = args.split("\s+/by\s+", 2);
-            if (segs.length < 2) {
-                throw new CathyException("Seriously? That deadline format is a mess.\n"
-                        + "Try again like you actually read the instructions:\n"
-                        + "deadline <desc> /by <date>");
-            }
-            assert args.contains("/by") : "Parser: deadline must contain /by";
-            return new AddDeadlineCommand(segs[0], segs[1]);
+            int byIndex = args.indexOf("/by");
+            if (byIndex < 0) throw new CathyException("Need '/by'. Try: deadline <desc> /by <date or date time>");
+
+            String desc  = args.substring(0, byIndex).trim();
+            String byStr = args.substring(byIndex + 3).trim();
+            if (desc.isEmpty() || byStr.isEmpty()) throw new CathyException("Fill in both description and /by.");
+
+            ParsedDT p = parseDateTimeOrDate(byStr);
+            LocalDateTime by = p.hasTime()
+                    ? LocalDateTime.of(p.date(), p.time())
+                    : p.date().atTime(23, 59);                 // default for date-only deadlines
+
+            return new AddDeadlineCommand(desc, by);
         }
 
         case "event": {
-            // Split by "/from" and "/to"
-            Pattern p = Pattern.compile("^(.*?)\s+/from\s+(.*?)\s+/to\s+(.*)$");
-            Matcher m = p.matcher(args);
-            if (!m.matches()) {
-                throw new CathyException("Invalid event format. Did you even try?\n"
-                        + "Use: event <desc> /from <start> /to <end> — it's not that hard.");
+            int fromAt = args.indexOf("/from");
+            int toAt   = args.indexOf("/to");
+            if (fromAt < 0 || toAt < 0 || toAt < fromAt) {
+                throw new CathyException("Use: event <desc> /from <date [time]> /to <date [time]>");
             }
-            return new AddEventCommand(m.group(1), m.group(2), m.group(3));
-        }
 
+            String desc    = args.substring(0, fromAt).trim();
+            String fromStr = args.substring(fromAt + 6, toAt).trim();
+            String toStr   = args.substring(toAt + 3).trim();
+            if (desc.isEmpty() || fromStr.isEmpty() || toStr.isEmpty()) {
+                throw new CathyException("Missing description/from/to.");
+            }
+
+            ParsedDT pf = parseDateTimeOrDate(fromStr);
+            ParsedDT pt = parseDateTimeOrDate(toStr);
+
+            LocalDateTime from = pf.hasTime() ? LocalDateTime.of(pf.date(), pf.time())
+                    : pf.date().atStartOfDay();       // 00:00
+            LocalDateTime to   = pt.hasTime() ? LocalDateTime.of(pt.date(), pt.time())
+                    : pt.date().atTime(23, 59);       // 23:59
+
+            if (to.isBefore(from)) {
+                throw new InvalidDateTimeException(
+                        "Wow. You think time flows backwards? Cute.\n"
+                                + "The /from date has to come *before* the /to date.\n"
+                                + "Try again when you figure out how calendars work.");
+            }
+
+            return new AddEventCommand(desc, from, to);
+        }
         case "mark":
             return new MarkCommand(parseIndex(args));
         case "unmark":
@@ -97,6 +133,18 @@ public class Parser {
             }
             String keyword = parts[1].trim();
             return new cathy.command.FindCommand(keyword);
+        case "sch":
+            if (args.isBlank()) {
+                throw new CathyException("'sch' needs a date, not empty air.\n"
+                        + "Try: cal YYYY-MM-DD or cal today");
+            }
+            LocalDate date;
+            if (args.equals("today")) {
+                date = LocalDate.now();
+            } else {
+                date = LocalDate.parse(args.trim().replace("/", "-"));
+            }
+            return new ScheduleCommand(date);
         case "help":
             return new HelpCommand();
         default:
@@ -118,6 +166,27 @@ public class Parser {
         } catch (Exception e) {
             throw new CathyException("Sweetie, numbers only. This isn't a spelling bee.\n"
                     + "Use format: [command] [number]");
+        }
+    }
+
+    private static record ParsedDT(LocalDate date, LocalTime time, boolean hasTime) {}
+
+    private static ParsedDT parseDateTimeOrDate(String raw) throws CathyException {
+        String s = raw.trim().replace("/", "-");
+        // Try date+time formats first
+        for (DateTimeFormatter f : DT_PATTERNS) {
+            try {
+                LocalDateTime dt = LocalDateTime.parse(s, f);
+                return new ParsedDT(dt.toLocalDate(), dt.toLocalTime(), true);
+            } catch (DateTimeParseException ignored) {}
+        }
+        // Fall back to date-only (ISO date)
+        try {
+            LocalDate d = LocalDate.parse(s, DateTimeFormatter.ISO_LOCAL_DATE);
+            return new ParsedDT(d, LocalTime.MIDNIGHT, false);
+        } catch (DateTimeParseException e) {
+            throw new CathyException("Nope. '" + raw + "' is not a valid date/time.\n"
+                    + "Try yyyy-MM-dd HHmm, yyyy-MM-dd HH:mm, or just yyyy-MM-dd.");
         }
     }
 }

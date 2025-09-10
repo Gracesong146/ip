@@ -8,6 +8,8 @@ import cathy.task.Event;
 import cathy.task.TaskList;
 import cathy.task.TaskType;
 
+import java.time.LocalDateTime;
+
 /**
  * Command that adds an {@link Event} task to the task list.
  *
@@ -18,8 +20,8 @@ import cathy.task.TaskType;
  */
 public class AddEventCommand extends Command {
     private final String description;
-    private final String from;
-    private final String to;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 
     /**
      * Creates an {@code AddEventCommand}.
@@ -31,7 +33,7 @@ public class AddEventCommand extends Command {
      * @param to          the end date/time string (trimmed during execution);
      *                    if blank, execution throws a {@link CathyException}.
      */
-    public AddEventCommand(String description, String from, String to) {
+    public AddEventCommand(String description, LocalDateTime from, LocalDateTime to) {
         this.description = description;
         this.from = from;
         this.to = to;
@@ -42,14 +44,14 @@ public class AddEventCommand extends Command {
         if (description == null || description.trim().isEmpty()) {
             throw new InvalidTaskTypeException(TaskType.EVENT);
         }
-        if (from == null || from.trim().isEmpty() || to == null || to.trim().isEmpty()) {
+        if (from == null || to == null) {
             throw new CathyException("Invalid event format. Did you even try?\n"
                     + "Use: event <desc> /from <start> /to <end> — it's not that hard.");
         }
         assert tasks != null : "Command: tasks must not be null";
         assert ui != null : "Command: ui must not be null";
         assert storage != null : "Command: storage must not be null";
-        Event e = new Event(description.trim(), from.trim(), to.trim());
+        Event e = new Event(description.trim(), from, to);
         tasks.add(e);
         storage.save(tasks);
         return ui.showAdd(e, tasks.size());

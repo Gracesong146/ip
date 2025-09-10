@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import cathy.Parser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -24,15 +27,35 @@ class AddDeadlineCommandTest {
     Path tmp;
 
     @Test
-    void addDeadline() throws Exception {
-        var ui = new Ui();
-        var storage = new Storage(tmp.resolve("tasks.txt").toString());
-        var list = new TaskList();
+    void addDeadline_withExplicitTime_addsCorrectTask() throws Exception {
+        Ui ui = new Ui();
+        Storage storage = new Storage(tmp.resolve("tasks.txt").toString());
+        TaskList list = new TaskList();
 
-        new AddDeadlineCommand("submit report", "2025-09-10T00:00").execute(list, ui, storage);
+        // explicit time: 2025-09-10T16:00
+        LocalDateTime by = LocalDateTime.of(2025, 9, 10, 16, 0);
+        new AddDeadlineCommand("submit report", by).execute(list, ui, storage);
 
         assertEquals(1, list.size());
         assertInstanceOf(Deadline.class, list.get(0));
         assertEquals("submit report", list.get(0).getDescription());
+        assertEquals(by, ((Deadline) list.get(0)).getBy());
+    }
+
+    @Test
+    void addDeadline_dateOnly_defaultsTo2359_viaParser() throws Exception {
+        Ui ui = new Ui();
+        Storage storage = new Storage(tmp.resolve("tasks.txt").toString());
+        TaskList list = new TaskList();
+
+        // date-only: should default to 23:59 by Parser logic
+        Parser.parse("deadline pay bills /by 2025-09-10").execute(list, ui, storage);
+
+        assertEquals(1, list.size());
+        assertInstanceOf(Deadline.class, list.get(0));
+
+        Deadline d = (Deadline) list.get(0);
+        assertEquals("pay bills", d.getDescription());
+        assertEquals(LocalDate.of(2025, 9, 10).atTime(23, 59), d.getBy());
     }
 }

@@ -31,14 +31,17 @@ public class Ui {
                 + "I'm Cathy, your underappreciated task assistant.\n\n"
                 + "Here's some quick commands:\n"
                 + "- todo <task>\n"
-                + "- deadline <task> /by <yyyy-MM-dd>\n"
-                + "- event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd>\n"
+                + "- deadline <task> /by <date> <time>\n"
+                + "- event <task> /from <date> <time> /to <date> <time>\n"
                 + "- list <number> : to see your tasks\n"
                 + "- mark / unmark / delete <number> : to update tasks\n"
-                + "- find <keyword> / on <yyyy-MM-dd> : to search\n"
+                + "- find <keyword> / on <date> <time> : to search\n"
+                + "- sch <date> <time> : to see schedule on specific date\n"
                 + "- bye : to leave me in peace\n\n"
-                + "Type 'help' to see this list of commands again.\n"
-                + "Even I can't help the clueless otherwise.\n";
+                + "Type 'help' to see this list of commands again.\n\n"
+                + "Note: <date> <time> is in the form of YYYY-MM-DD HH:MM.\n"
+                + "Try not to mess it up.\n\n"
+                + "Even I can't help the clueless sometimes.";
         return returnMessage;
     }
 
@@ -52,14 +55,17 @@ public class Ui {
                 + "I'm Cathy, your underappreciated task assistant.\n\n"
                 + "Here's some quick commands:\n"
                 + "- todo <task>\n"
-                + "- deadline <task> /by <yyyy-MM-dd>\n"
-                + "- event <task> /from <yyyy-MM-dd> /to <yyyy-MM-dd>\n"
+                + "- deadline <task> /by <date> <time>\n"
+                + "- event <task> /from <date> <time> /to <date> <time>\n"
                 + "- list <number> : to see your tasks\n"
                 + "- mark / unmark / delete <number> : to update tasks\n"
-                + "- find <keyword> / on <yyyy-MM-dd> : to search\n"
+                + "- find <keyword> / on <date> <time> : to search\n"
+                + "- sch <date> <time> : to see schedule on specific date\n"
                 + "- bye : to leave me in peace\n\n"
                 + "Type 'help' to see this list of commands again.\n\n"
-                + "And yes, I'll never repeat this again... so maybe try reading this carefully.\n";
+                + "Note: <date> <time> is in the form of YYYY-MM-DD HH:MM.\n"
+                + "Try not to mess it up.\n\n"
+                + "And yes, I'll never repeat this again... so maybe try reading this carefully.";
     }
 
     /**
