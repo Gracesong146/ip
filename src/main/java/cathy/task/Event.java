@@ -43,6 +43,8 @@ public class Event extends Task {
     public Event(String description, String from, String to) {
         super(description);
 
+        assert from != null && to != null : "Event: time range must be parsed";
+
         try {
             this.from = LocalDateTime.parse(from); // default = ISO-8601
             this.to = LocalDateTime.parse(to);

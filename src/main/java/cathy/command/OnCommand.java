@@ -46,6 +46,9 @@ public class OnCommand extends Command {
             throw new CathyException("Use: on yyyy-MM-dd");
         }
         try {
+            assert tasks != null : "Command: tasks must not be null";
+            assert ui != null : "Command: ui must not be null";
+            assert storage != null : "Command: storage must not be null";
             String dateStr = arg.replace("/", "-");
             LocalDate queryDate = LocalDate.parse(dateStr);
 

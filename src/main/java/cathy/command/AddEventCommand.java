@@ -46,7 +46,9 @@ public class AddEventCommand extends Command {
             throw new CathyException("Invalid event format. Did you even try?\n"
                     + "Use: event <desc> /from <start> /to <end> — it's not that hard.");
         }
-
+        assert tasks != null : "Command: tasks must not be null";
+        assert ui != null : "Command: ui must not be null";
+        assert storage != null : "Command: storage must not be null";
         Event e = new Event(description.trim(), from.trim(), to.trim());
         tasks.add(e);
         storage.save(tasks);

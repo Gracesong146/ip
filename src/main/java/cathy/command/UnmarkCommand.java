@@ -37,6 +37,9 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws CathyException {
+        assert tasks != null : "Command: tasks must not be null";
+        assert ui != null : "Command: ui must not be null";
+        assert storage != null : "Command: storage must not be null";
         if (index <= 0 || index > tasks.size()) {
             throw new CathyException("Ah, clever. But no, that task is imaginary.");
         }

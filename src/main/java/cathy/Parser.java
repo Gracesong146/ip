@@ -68,6 +68,7 @@ public class Parser {
                         + "Try again like you actually read the instructions:\n"
                         + "deadline <desc> /by <date>");
             }
+            assert args.contains("/by") : "Parser: deadline must contain /by";
             return new AddDeadlineCommand(segs[0], segs[1]);
         }
 

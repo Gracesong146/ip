@@ -30,6 +30,7 @@ public class Storage {
      * @param filePath the path to the file where tasks will be saved
      */
     public Storage(String filePath) {
+        assert filePath != null : "Storage: path provided";
         this.filePath = filePath;
         File file = new File(filePath);
         file.getParentFile().mkdirs();
