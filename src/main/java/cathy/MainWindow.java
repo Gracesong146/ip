@@ -1,5 +1,7 @@
 package cathy;
 
+import java.util.Objects;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -10,8 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.util.Objects;
 
 /**
  * Controller for the main GUI.
@@ -27,8 +27,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
     private Cathy cathy;
-    private final Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user_pfp.png")));
-    private final Image cathyImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/cathy_pfp.png")));
+    private final Image userImage = new Image(
+            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user_pfp.png")));
+    private final Image cathyImage = new Image(
+            Objects.requireNonNull(this.getClass().getResourceAsStream("/images/cathy_pfp.png")));
 
     @FXML
     public void initialize() {
@@ -41,7 +43,8 @@ public class MainWindow extends AnchorPane {
     public void setCathy(Cathy c) {
         cathy = c;
 
-        Image logo = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/cathy_welcome.png")));
+        Image logo = new Image(
+                Objects.requireNonNull(this.getClass().getResourceAsStream("/images/cathy_welcome.png")));
 
         // Create an ImageView so we can resize
         ImageView logoView = new ImageView(logo);
