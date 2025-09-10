@@ -39,6 +39,8 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
 
+        assert by != null : "Deadline: by must be parsed";
+
         try {
             this.by = LocalDateTime.parse(by); // default = ISO-8601
             this.type = TaskType.DEADLINE;

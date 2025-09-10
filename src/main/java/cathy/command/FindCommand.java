@@ -43,6 +43,9 @@ public class FindCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "Command: tasks must not be null";
+        assert ui != null : "Command: ui must not be null";
+        assert storage != null : "Command: storage must not be null";
         TaskList matches = filter(tasks);
         return ui.showFindResults(matches);
     }
