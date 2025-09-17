@@ -20,7 +20,12 @@ All you need to do is:
 
 ## Features (aka things Cathy will judge you for)
 
-- [x] Adding tasks (she’ll mock you anyway)
-- [x] Marking tasks as done (don’t expect a gold star)
-- [ ] Smart reminders (coming… if she feels like it)
-- [ ] Emotional support (lol nope)
+- 🖥️ **GUI Interface**: No more dull terminal! Interact with Cathy in a clean, chat-style window.
+- ✅ **Task Management**: Add, delete, mark, and unmark tasks with simple commands.
+- ⏰ **Deadlines & Events**: Track important dates with `/by`, `/from`, and `/to`.
+- 🔍 **Search & Filter**: Quickly find tasks by keyword or date.
+- 💾 **Persistent Storage**: Tasks are saved automatically to `data/cathy.txt`.
+- 🙃 **Sassy Personality**: Cathy replies with witty and sometimes rude remarks to keep you entertained.
+- 👋 **Custom Welcome Sticker**: Cathy greets you with her own Ghibli-style chibi sticker.
+- 📆 **View Schedule**: Cathy shows you the schedule on specific dates.
+
