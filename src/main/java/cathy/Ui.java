@@ -98,7 +98,7 @@ public class Ui {
      * Displays a farewell message when the user exits the program.
      */
     public String showBye() {
-        return "Bye. Hope to see you again soon!";
+        return "Good Riddance.";
     }
 
     /**
