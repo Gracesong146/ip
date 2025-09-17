@@ -8,7 +8,9 @@ import cathy.task.Deadline;
 import cathy.task.Event;
 import cathy.task.TaskList;
 import cathy.task.ToDo;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
+import javafx.util.Duration;
 
 /**
  * The main class for the Cathy task assistant application.
@@ -93,7 +95,11 @@ public class Cathy {
             String reply = c.execute(tasks, ui, storage);
             if (c.isExit()) {
                 // Close the FX app after we return the goodbye text
-                Platform.runLater(Platform::exit);
+                // Delay exit after showing bye message
+                // AI-Assisted 17 September 2025
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished(event -> Platform.exit());
+                delay.play();
             }
             return reply;
         } catch (CathyException e) {
