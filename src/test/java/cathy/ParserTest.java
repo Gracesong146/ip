@@ -6,15 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 
-import cathy.command.AddToDoCommand;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import cathy.command.AddToDoCommand;
 import cathy.command.Command;
 import cathy.exception.CathyException;
 import cathy.storage.Storage;
 import cathy.task.TaskList;
-
 
 /**
  * Integration tests for the Parser class.

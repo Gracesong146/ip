@@ -1,7 +1,5 @@
 package cathy.task;
 
-import cathy.exception.CathyException;
-
 import java.util.ArrayList;
 
 /**
