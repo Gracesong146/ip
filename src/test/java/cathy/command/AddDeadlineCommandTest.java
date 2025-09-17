@@ -2,6 +2,7 @@ package cathy.command;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -25,6 +26,13 @@ class AddDeadlineCommandTest {
 
     @TempDir
     Path tmp;
+
+    @Test
+    public void deadlineToStringIncludesDate() {
+        Deadline d = new Deadline("submit report", LocalDateTime.of(2025, 9, 18, 23, 59));
+        assertTrue(d.toString().contains("submit report"));
+        assertTrue(d.toString().contains("2025"));
+    }
 
     @Test
     void addDeadlineWithExplicitTime() throws Exception {

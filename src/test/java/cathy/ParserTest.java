@@ -2,9 +2,11 @@ package cathy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 
+import cathy.command.AddToDoCommand;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -23,6 +25,12 @@ class ParserTest {
 
     @TempDir
     Path tmp;
+
+    @Test
+    public void parserParseValidTodoSuccess() throws Exception {
+        Command c = Parser.parse("todo read book");
+        assertTrue(c instanceof AddToDoCommand);
+    }
 
     @Test
     void todoMarkDelete() throws Exception {
