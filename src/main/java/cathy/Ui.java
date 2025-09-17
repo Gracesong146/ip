@@ -27,7 +27,7 @@ public class Ui {
      */
     public String showWelcome() {
         String returnMessage = "";
-        returnMessage += "Oh look, someone showed up."
+        returnMessage += "Oh look, someone showed up.\n"
                 + "I'm Cathy, your underappreciated task assistant.\n\n"
                 + "Here's some quick commands:\n"
                 + "- todo <task>\n"
@@ -91,7 +91,7 @@ public class Ui {
      * @param msg the error message
      */
     public String showError(String msg) {
-        return msg;
+        return "<ERROR>\n" + msg;
     }
 
     /**

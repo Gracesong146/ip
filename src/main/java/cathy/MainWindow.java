@@ -71,10 +71,17 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = cathy.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getCathyDialog(response, cathyImage)
-        );
+
+        DialogBox user = DialogBox.getUserDialog(input, userImage);
+        DialogBox bot  = DialogBox.getCathyDialog(response, cathyImage);
+
+        // AI-ASSIST: ChatGPT (2025-09-17)
+        // If the response starts with our error marker, style the bubble as an error.
+        if (response != null && (response.startsWith("<ERROR>"))) {
+            bot.getStyleClass().add("error");   // <-- this toggles the CSS block above
+        }
+
+        dialogContainer.getChildren().addAll(user, bot);
         userInput.clear();
     }
 }

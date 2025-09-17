@@ -1,14 +1,25 @@
 .label {
     -fx-background-color: linear-gradient(to bottom right, palegreen, peachpuff);
-    -fx-border-color: linear-gradient(to bottom right, #00ffbf, pink);;
+    /*-fx-border-color: linear-gradient(to bottom right, #00ffbf, pink);;*/
     -fx-border-width: 2px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.20), 8, 0.2, 2, 2);
 }
 
 .reply-label {
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.20), 8, 0.2, 2, 2);
+}
+.error .label {
+    -fx-background-color: #ffe5e5;
+    -fx-text-fill: #b00020;
+    /*-fx-border-color: linear-gradient(to bottom right, darkred, red);;*/
+    -fx-border-width: 2px;
+    -fx-background-radius: 1em 1em 1em 0;
+    -fx-border-radius: 1em 1em 0 1em;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.20), 8, 0.2, 2, 2);
 }
 
 #displayPicture {
