@@ -42,6 +42,9 @@ public class AddDeadlineCommand extends Command {
         if (description == null || description.trim().isEmpty()) {
             throw new InvalidTaskTypeException(TaskType.DEADLINE);
         }
+        if (tasks.containsTask(description)) {
+            throw new CathyException("Why you wanna do the same thing twice? Chill.");
+        }
         if (by == null) {
             throw new CathyException("Seriously? That deadline format is a mess.\n"
                     + "Try again like you actually read the instructions: deadline <desc> /by <date>");
