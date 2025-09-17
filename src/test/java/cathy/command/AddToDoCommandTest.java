@@ -23,6 +23,14 @@ class AddToDoCommandTest {
     Path tmp;
 
     @Test
+    public void todoTooStringCorrectFormat() {
+        ToDo t = new ToDo("read book");
+        assertEquals("[T][ ] read book", t.toString());
+        t.markAsDone();
+        assertEquals("[T][X] read book", t.toString());
+    }
+
+    @Test
     void addTodo() throws Exception {
         var ui = new Ui();
         var storage = new Storage(tmp.resolve("tasks.txt").toString());
