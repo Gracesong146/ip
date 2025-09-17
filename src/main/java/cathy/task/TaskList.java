@@ -1,5 +1,7 @@
 package cathy.task;
 
+import cathy.exception.CathyException;
+
 import java.util.ArrayList;
 
 /**
@@ -50,6 +52,18 @@ public class TaskList {
      */
     public ArrayList<Task> getTasks() {
         return items;
+    }
+
+    /**
+     * Returns error message if duplicates are detected.
+     *
+     * @param description
+     * @return True / False
+     */
+    public boolean containsTask(String description) {
+        // Check if any existing task has the same description (case-insensitive)
+        return items.stream()
+                .anyMatch(t -> t.getDescription().equalsIgnoreCase(description.trim()));
     }
 
     /**

@@ -44,6 +44,9 @@ public class AddEventCommand extends Command {
         if (description == null || description.trim().isEmpty()) {
             throw new InvalidTaskTypeException(TaskType.EVENT);
         }
+        if (tasks.containsTask(description)) {
+            throw new CathyException("Why you wanna do the same thing twice? Chill.");
+        }
         if (from == null || to == null) {
             throw new CathyException("Invalid event format. Did you even try?\n"
                     + "Use: event <desc> /from <start> /to <end> — it's not that hard.");
